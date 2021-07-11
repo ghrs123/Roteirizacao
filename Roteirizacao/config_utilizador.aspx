@@ -47,7 +47,8 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                               <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                                <i class="align-middle" data-feather="log-out"></i>
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
                             </a>
                         </li>
 
@@ -226,9 +227,9 @@
 													<input type="password" class="form-control" id="inputPasswordNew2">
 												</div>
 												 Verificação de senha -->
-                                                    <asp:Button ID="btn_salvar" class="btn btn-primary" runat="server" Text="Salvar Alterações" />
-                                                </div>
-
+                                                    <asp:Button ID="btn_salvar" class="btn btn-primary" runat="server" Text="Salvar Alterações" OnClick="btn_salvar_Click" />
+                                                   <div> <asp:Label ID="lbl_mensagem" runat="server" Text=""></asp:Label></div>
+                                                </div>                                               
                                             </div>
 
                                         </div>
