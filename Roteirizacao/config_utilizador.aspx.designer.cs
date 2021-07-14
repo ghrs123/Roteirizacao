@@ -42,76 +42,49 @@ namespace Roteirizacao
         protected global::System.Web.UI.WebControls.LinkButton btn_log;
 
         /// <summary>
-        /// Controle tb_user.
+        /// Controle DataList1.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_user;
+        protected global::System.Web.UI.WebControls.DataList DataList1;
 
         /// <summary>
-        /// Controle tb_nome.
+        /// Controle SqlDataSource1.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_nome;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// Controle tb_apelido.
+        /// Controle FileUpload1.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_apelido;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
 
         /// <summary>
-        /// Controle tb_email.
+        /// Controle btnUpload.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tb_email;
+        protected global::System.Web.UI.WebControls.Button btnUpload;
 
         /// <summary>
-        /// Controle tb_morada.
+        /// Controle btn_salvardados.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_morada;
-
-        /// <summary>
-        /// Controle tb_cidade.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_cidade;
-
-        /// <summary>
-        /// Controle tb_pais.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_pais;
-
-        /// <summary>
-        /// Controle tb_postcod.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_postcod;
+        protected global::System.Web.UI.WebControls.Button btn_salvardados;
 
         /// <summary>
         /// Controle tb_senhaatual.
@@ -120,7 +93,7 @@ namespace Roteirizacao
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword tb_senhaatual;
+        protected global::System.Web.UI.WebControls.TextBox tb_senhaatual;
 
         /// <summary>
         /// Controle tb_novasenha.
@@ -129,7 +102,7 @@ namespace Roteirizacao
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword tb_novasenha;
+        protected global::System.Web.UI.WebControls.TextBox tb_novasenha;
 
         /// <summary>
         /// Controle btn_salvar.

@@ -23,7 +23,7 @@ namespace Roteirizacao
 
         protected void btn_recuperar_Click(object sender, EventArgs e)
         {
-            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["WebStoreConnectionString"].ConnectionString);
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand();
 
             myCommand.Parameters.AddWithValue("@email", tb_email.Value);
