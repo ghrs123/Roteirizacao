@@ -33,6 +33,40 @@ namespace Roteirizacao
 
             }
 
+            
+                /* LEr Imagem Configuração */
+                string query = " SELECT ficheiro FROM imagem" +
+                    " INNER JOIN utilizador ON imagem.utilizadorid = utilizador.utilizadorid" +
+                    " WHERE username ='" + Session["util"] + "' OR email='" + Session["util"] + "';";
+
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                SqlCommand myCommand = new SqlCommand(query, myConn);
+
+                //myCommand.Parameters.AddWithValue("@cod", myCommand.CommandText);
+
+                //myCommand.CommandType = CommandType.StoredProcedure;
+                //myCommand.CommandText = "ler_imagem";
+
+                myCommand.Connection = myConn;
+                myConn.Open();
+
+
+                SqlDataReader dr = myCommand.ExecuteReader();
+
+                if (dr.Read())
+                {
+
+                    Image2.ImageUrl = "data:image/png;base64," + Convert.ToBase64String((byte[])dr["ficheiro"]);
+                }
+
+                myConn.Close();
+            
+
+            
+
+            /* Fim ler Imagem*/
+
+
             //string query = " SELECT * FROM utilizador " +
             //  " INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid " +
             //  " INNER JOIN imagem ON utilizador.utilizadorid = imagem.utilizadorid " +
@@ -178,58 +212,57 @@ namespace Roteirizacao
         int utilizadorid;
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+
+        
+                string imgContentType = FileUpload1.PostedFile.ContentType;
+
+
+                Stream imgStream = FileUpload1.PostedFile.InputStream;
+
+                int imgLen = FileUpload1.PostedFile.ContentLength;
+
+                byte[] imgBinaryData = new byte[imgLen];
+
+              
+                imgStream.Read(imgBinaryData, 0, imgLen);
+
+                string query = " SELECT utilizadorid FROM utilizador WHERE username = '" + Session["util"] + "' OR email='" + Session["util"] + "';";
+
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                SqlCommand myCommand = new SqlCommand();
+
+                myConn.Open();
+
+                SqlCommand Command = new SqlCommand(query, myConn);
+
+                SqlDataReader itemsReader = Command.ExecuteReader();
+
+                while (itemsReader.Read())
+                {
+                   
+                    utilizadorid = itemsReader.GetInt32(0);
+
+                }
+
+                itemsReader.Close();
+
+                myCommand.Parameters.AddWithValue("@contentType", imgContentType);
+                myCommand.Parameters.AddWithValue("@ficheiro", imgBinaryData);
+                myCommand.Parameters.AddWithValue("@utilizadorid", utilizadorid);
+
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "inserir_imagem";
+
+
+                myCommand.Connection = myConn;
+
+                myCommand.ExecuteNonQuery();
+                myConn.Close();
+
+            Response.Redirect("config_utilizador.aspx");
             
-            //string utilizador = Session["util"].ToString();
-            //string imgName ;
-
-            //tipo do arquivo
-            string imgContentType = FileUpload1.PostedFile.ContentType;
-
-            //conhecer o conteudo do ficheiro
-            Stream imgStream = FileUpload1.PostedFile.InputStream;
-
-            //saber o tamanho do ficheiro
-            int imgLen = FileUpload1.PostedFile.ContentLength;
-
-            byte[] imgBinaryData = new byte[imgLen];
-
-            //adicionar o conteudo 
-            imgStream.Read(imgBinaryData, 0, imgLen);
-
-            string query = " SELECT utilizadorid FROM utilizador WHERE username = '" + Session["util"] + "' OR email='" + Session["util"] + "';";
-
-            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            SqlCommand myCommand = new SqlCommand();
-    
-            myConn.Open();
-
-            SqlCommand Command = new SqlCommand(query, myConn);
             
-            SqlDataReader itemsReader = Command.ExecuteReader();
-
-            while (itemsReader.Read())
-            {
-                //imgName = itemsReader.GetString(1);
-                utilizadorid = itemsReader.GetInt32(0);
-
-            }
-
-            itemsReader.Close();
-
-            //myCommand.Parameters.AddWithValue("@foto", imgName);
-            myCommand.Parameters.AddWithValue("@contentType", imgContentType);
-            myCommand.Parameters.AddWithValue("@ficheiro", imgBinaryData);
-            myCommand.Parameters.AddWithValue("@utilizadorid", utilizadorid);
-
-
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "inserir_imagem";
-
-
-            myCommand.Connection = myConn;
-
-            myCommand.ExecuteNonQuery();
-            myConn.Close();
         }
 
         protected void btn_salvardados_Click(object sender, EventArgs e)

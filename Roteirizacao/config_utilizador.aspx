@@ -196,13 +196,12 @@
                                                         <!-- Upload Foto-->
                                                         <div class="col-md-4">
                                                             <div class="text-center">
-                                                      <%--          <asp:Image ID="Image1" runat="server" />--%>
-                                                                <img alt="Charles Hall" src="img/avatars/avatar-4.jpg" class="rounded-circle img-responsive mt-2" width="128" height="128" />
+                                                                <asp:Image ID="Image2" runat="server" class="rounded-circle img-responsive mt-2" Width="128" Height="128" />
                                                                 <div class="mt-2">
                                                                     <asp:FileUpload ID="FileUpload1" runat="server" />
-
                                                                 </div>
                                                                 <small>Para melhores resultados, use uma imagem pelo menos 128px por 128px no formato . jpg</small>
+
                                                                 <div class=" mb-5">
                                                                     <asp:Button ID="btnUpload" type="submit" Text="Upload" runat="server" class="btn btn-primary" OnClick="btnUpload_Click" Width="80px"></asp:Button>
                                                                 </div>

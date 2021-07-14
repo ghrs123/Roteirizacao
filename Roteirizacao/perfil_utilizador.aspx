@@ -117,7 +117,7 @@
 
                                         <asp:DataList ID="DataList1" runat="server"  DataSourceID="SqlDataSource1" Width="100%" >
                                             <ItemTemplate>
-
+                                    
                                                 <div class="content-fluid">
                                                     <div class="row">
                                                         <div class="col-md-8">
@@ -197,7 +197,7 @@
                                                                         <h5 class="card-title mb-0">Minha Foto</h5>
                                                                     </div>
                                                                     <div class="card-body text-center">
-                                                                       <%-- <asp:Image ID="Image1" runat="server" ImageUrl=<%# "ImageHandler.ashx?ImgID="+ Eval("id") %>'     class="img-fluid rounded-circle mb-2" Width="128" Height="128" />--%>
+                                                                       <%-- <asp:Image ID="Image1" runat="server" ImageUrl="data:image/png;base64,"<%# "ImageHandler.ashx?ImgID="+ Eval("id") %>'     class="img-fluid rounded-circle mb-2" Width="128" Height="128" />--%>
                                                                         <%--<img src="img/avatars/avatar-4.jpg" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />--%>
                                                                         <h5 class="card-title mb-0">
                                                                             <asp:Label ID="lbl_name" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
