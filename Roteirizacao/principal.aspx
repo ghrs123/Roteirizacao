@@ -10,8 +10,8 @@
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <title>Roteirização | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
-   
-   <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>--%>
+
+    <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>--%>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-1XQsZgfFm92nBllJAJ8P4a31xYaYGs4&libraries=places,geometry&signed_in=true"></script>
     <script src="assets/js/cnv.js"></script>
     <link href="estilo.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
     <script>
         function getJSON() {
             var result = document.getElementById("teste").innerHTML;
-          
+
            <%-- document.getElementById("<%=hidden.ClientID%>").value = result;--%>
             console.log("Resultado: " + result);
         }
@@ -28,60 +28,59 @@
 <body>
     <form id="form1" runat="server" method="post">
         <div class="wrapper">
-          <nav id="sidebar" class="sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
-				  <span class="align-middle">Roteirização</span>
-				</a>
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Paginas
-					</li>
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="https://localhost:44399/login.aspx">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Login</span>
-						</a>
-					</li>			
-				</ul>			
-			</div>
-		</nav>
+            <nav id="sidebar" class="sidebar">
+                <div class="sidebar-content js-simplebar">
+                    <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
+                        <span class="align-middle">Roteirização</span>
+                    </a>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-header">Paginas
+                        </li>
+                        <li class="sidebar-item active">
+                            <a class="sidebar-link" href="https://localhost:44399/login.aspx">
+                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Login</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-		<div class="main">
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle d-flex">
-				  <i class="hamburger align-self-center"></i>
-				</a>
+            <div class="main">
+                <nav class="navbar navbar-expand navbar-light navbar-bg">
+                    <a class="sidebar-toggle d-flex">
+                        <i class="hamburger align-self-center"></i>
+                    </a>
 
-				<div class="form-inline d-none d-sm-inline-block">
-					<div class="input-group input-group-navbar">
-						<input  type="hidden" class="form-control" " aria-label="Search"/>
-					<h3>Roteirização</h3>
-					</div>
-				</div>
+                    <div class="form-inline d-none d-sm-inline-block">
+                        <div class="input-group input-group-navbar">
+                            <input type="hidden" class="form-control" aria-label="Search" />
+                            <h3>Roteirização</h3>
+                        </div>
+                    </div>
 
-				<div class="navbar-collapse collapse">
-					<ul class="navbar-nav navbar-align">
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-								<i class="align-middle" data-feather="settings"></i>
-							</a>
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav navbar-align">
+                            <li class="nav-item dropdown">
+                                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                                    <i class="align-middle" data-feather="settings"></i>
+                                </a>
 
-							<a class="nav-link  d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/registar.aspx">
-                                 <span class="text-dark">Cadastre-se</span>
-							</a>
-                            <a class="nav-link d-none d-sm-inline-block btn btn-light" href="#" >
-                                 <span class="text-dark">Contacto</span>
-							</a>
-							
-						</li>
-					</ul>
-				</div>
-			</nav>
-                 <main class="content fundo">
+                                <a class="nav-link  d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/registar.aspx">
+                                    <span class="text-dark">Cadastre-se</span>
+                                </a>
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light" href="#">
+                                    <span class="text-dark">Contacto</span>
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main class="content fundo">
                     <div class="row">
                         <div class="container">
                             <!--form method="post" action="/calc"-->
-                            
+
                             <div class="form principal">
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_origin">
                                     <thead>
@@ -102,21 +101,17 @@
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_logic">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="display: none;">
-                                                #
+                                            <th class="text-center" style="display: none;">#
                                             </th>
-                                            <th class="text-center">
-                                                Local de Coleta
+                                            <th class="text-center">Local de Coleta
                                             </th>
-                                            <th class="text-center">
-                                                Local de Entrega
+                                            <th class="text-center">Local de Entrega
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr id='pickup1'>
-                                            <td class="text-center" style="display: none;">
-                                                1
+                                            <td class="text-center" style="display: none;">1
                                             </td>
                                             <td>
                                                 <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Coleta" />
@@ -128,14 +123,11 @@
                                     </tbody>
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="display: none;">
-                                                #
+                                            <th class="text-center" style="display: none;">#
                                             </th>
-                                            <th class="text-center">
-                                                Produto
+                                            <th class="text-center">Produto
                                             </th>
-                                            <th class="text-center">
-                                                Demanda (kg)
+                                            <th class="text-center">Demanda (kg)
                                             </th>
                                         </tr>
                                     </thead>
@@ -198,27 +190,27 @@
                                 <a id='delete_truck' class="btn btn-danger pull-center ">Remover Veículo</a>
                                 <a id='enviar' runat="server" class="btn btn-success pull-center ">ROTEIRIZAR</a>&nbsp
 				                <a id='send' runat="server" class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
-                       
-                           
-                            <div class="rotas">
-                                <p>Rotas por veículo</p>
-                            <asp:HiddenField ID="hidden"  runat="server"/>
-                                <div id="resultado" class="mb-5">
-                                    <label id="teste">ATEC</label>
-                                    
-                                   
+
+
+                                <div class="rotas">
+                                    <p>Rotas por veículo</p>
+                                    <asp:HiddenField ID="hidden" runat="server" />
+                                    <div id="resultado" class="mb-5">
+                                        <label id="teste">ATEC</label>
+
+
+
+                                    </div>
+                                    <div id="rtime" style="background-color: chartreuse;"></div>
+                                    <div id="zmin" style="background-color: chartreuse;"></div>
 
                                 </div>
-                                <div id="rtime" style="background-color: chartreuse;"></div>
-                                <div id="zmin" style="background-color: chartreuse;"></div>
-                                
-                            </div>
-                                 <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="getJSON()" />
-                                <div class="mapa" style ="position: relative;">
+                                <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="getJSON()" />
+                                <div class="mapa" style="position: relative;">
                                     <div id="map"></div>
                                 </div>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </main>
 
@@ -252,9 +244,9 @@
             </div>
         </div>
     </form>
-    
+
     <script src="assets/js/jquery.js"></script>
-   <!--<script src="assets/js/vendor.js"></script>-->
+    <!--<script src="assets/js/vendor.js"></script>-->
     <script src="assets/js/app.js"></script>
     <script>
 
@@ -986,7 +978,7 @@
 
 
     </script>
- 
-    
+
+
 </body>
 </html>

@@ -46,7 +46,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
                                 <i class="align-middle sair" data-feather="log-out"></i>
-                                <asp:Button class="align-middle " ID="btn_sair" runat="server" Text="Sair" style=" width: 40px;" OnClick="btn_sair_Click" />
+                                <asp:Button class="align-middle " ID="btn_sair" runat="server" Text="Sair" Style="width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>
@@ -84,7 +84,7 @@
                                     <a class="dropdown-item" href="https://localhost:44399/config_utilizador.aspx"><i class="align-middle mr-1"></i>Configuração</a>
                                     <div class="dropdown-divider"></div>
                                     <div class="dropdown-item" style="text-align: center;">
-                                        <asp:LinkButton type="submit" Font-Underline="false" ForeColor="#6E7B8B" class="align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click"  PostBackUrl="~/principal.aspx" Width="20px">Sair</asp:LinkButton>
+                                        <asp:LinkButton type="submit" Font-Underline="false" ForeColor="#6E7B8B" class="align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx" Width="20px">Sair</asp:LinkButton>
 
                                     </div>
 
@@ -116,9 +116,9 @@
 
                                         <!-- Conteudo perfil -->
 
-                                        <asp:DataList ID="DataList1" runat="server"  DataSourceID="SqlDataSource1" Width="100%" >
+                                        <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" Width="100%">
                                             <ItemTemplate>
-                                    
+
                                                 <div class="content-fluid">
                                                     <div class="row">
                                                         <div class="col-md-8">
@@ -198,9 +198,9 @@
                                                                         <h5 class="card-title mb-0">Minha Foto</h5>
                                                                     </div>
                                                                     <div class="card-body text-center">
-                                                                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# String.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String((byte[])Eval("ficheiro")) ) %>'     class="img-fluid rounded-circle mb-2" Width="128" Height="128" />
+                                                                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# String.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String((byte[])Eval("ficheiro")) ) %>' class="img-fluid rounded-circle mb-2" Width="128" Height="128" />
                                                                         <h5 class="card-title mb-0">
-                                                                         <asp:Label ID="lbl_name" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
+                                                                            <asp:Label ID="lbl_name" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
                                                                     </div>
                                                                 </div>
                                                                 <hr />
@@ -213,15 +213,15 @@
                                             </ItemTemplate>
                                         </asp:DataList>
 
-                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>" 
+                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
                                             SelectCommand="SELECT * FROM utilizador INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid 
                                             INNER JOIN imagem ON imagem.utilizadorid = utilizador.utilizadorid
                                             WHERE username = @util">
-                                             <SelectParameters>
-                                                 <asp:SessionParameter Name="util" SessionField="util" Type="String" />
-                                                </SelectParameters>
-                                          </asp:SqlDataSource>
-                                        
+                                            <SelectParameters>
+                                                <asp:SessionParameter Name="util" SessionField="util" Type="String" />
+                                            </SelectParameters>
+                                        </asp:SqlDataSource>
+
                                         <!-- Fim  Conteudo perfil -->
 
                                     </div>

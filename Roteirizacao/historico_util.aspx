@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-      <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="assets/css/app.css" rel="stylesheet" />
 
     <title>Histórico | Roteirização</title>
     <link href="estilo.css" rel="stylesheet" />
@@ -49,7 +49,8 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                                <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"    ID="btn_sair" runat="server" Text="Sair" style=" width: 40px;" OnClick="btn_sair_Click1" />
+                                <i class="align-middle" data-feather="log-out"></i>
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" Style="width: 40px;" OnClick="btn_sair_Click1" />
                             </a>
                         </li>
                     </ul>
@@ -132,43 +133,75 @@
 
                                                         <div class="tab-content">
                                                             <div role="tabpanel" class="tab-pane fade show active" id="peter">
-                                                                <div class="card">
-                                                                    <div class="card-header">
-                                                                        <h7 class="card-subtitle text-muted">Informações sobre as rotas</h7>
-                                                                    </div>
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th style="width: 5%;"></th>
-                                                                                <th style="width: 5%;">Id</th>
-                                                                                <th style="width: 12%">Produto</th>
-                                                                                 <th style="width: 10%">Quantidade Kg</th>
-                                                                                <th style="width: 8%;">Origem</th>
-                                                                                <th style="width: 8%">Destino</th>
-                                                                                <th style="width: 8%">Data</th>
-                                                                                <!--<th style="width:15.83%">Distância (Km)</th>-->
-                                                                                <th style="width: 6%">Custo €</th>
-                                                                                <th style="width: 13%">Matrícula do Veículo</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <label class="form-check">
-                                                                                        <input class="form-check-input" type="checkbox" value="" />
-                                                                                    </label>
-                                                                                </td>
-                                                                                <td>1</td>
-                                                                                <td>Banana</td>
-                                                                                <td>2000</td>
-                                                                                <td>Viana do Castelo</td>
-                                                                                <td>Porto</td>
-                                                                                <td class="d-none d-md-table-cell">20-05-2019</td>
-                                                                                <!--<td>315</td>-->
-                                                                                <td>100000</td>
-                                                                                <td>FH-65-GJ</td>
-                                                                            </tr>
-                                                                            <tr class="">
+                                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
+                                                                    SelectCommand="SELECT historico_viagem.historicoid ,produto.descricao, quantidade, origem,localcoleta, localentrega,[data] 'data', custo, matricula
+                                                                        FROM historico_viagem 
+                                                                        JOIN carregar ON carregar.historicoid = historico_viagem.historicoid
+                                                                        JOIN produto ON carregar.produtoid = produto.produtoid
+                                                                        JOIN camiao ON carregar.camiaoid = camiao.camiaoid
+                                                                        JOIN utilizador ON utilizador.utilizadorid = camiao.utilizadorid
+                                                                        JOIN rota ON rota.historicoid = historico_viagem.historicoid
+                                                                        WHERE username = @util">
+
+                                                                    <SelectParameters>
+                                                                        <asp:SessionParameter Name="util" SessionField="util" Type="String" />
+                                                                    </SelectParameters>
+                                                                </asp:SqlDataSource>
+
+                                                                <asp:Repeater runat="server" ID="rptViagem">
+
+                                                                    <HeaderTemplate>
+                                                                        <div class="card">
+                                                                            <div class="card-header">
+                                                                                <h7 class="card-subtitle text-muted">Informações sobre as rotas</h7>
+                                                                            </div>
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th style="width: 5%;"></th>
+                                                                                        <th style="width: 5%;">Id</th>
+                                                                                        <th style="width: 12%">Produto</th>
+                                                                                        <th style="width: 10%">Quantidade Kg</th>
+                                                                                        <th style="width: 8%;">Origem</th>
+                                                                                         <th style="width: 10%">Local Coleta</th>
+                                                                                        <th style="width: 10%">Local de entrega</th>
+                                                                                        <th style="width: 8%">Data</th>
+                                                                                        <!--<th style="width:15.83%">Distância (Km)</th>-->
+                                                                                        <th style="width: 6%">Custo €</th>
+                                                                                        <th style="width: 13%">Matrícula do Veículo</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                    </HeaderTemplate>
+                                                                    <ItemTemplate>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label class="form-check">
+                                                                                    <input class="form-check-input" type="checkbox" value="" />
+                                                                                </label>
+                                                                            </td>
+                                                                            <td><%# Eval("historicoid") %></td>
+                                                                            <td><%# Eval("descricao") %></td>
+                                                                            <td><%# Eval("quantidade") %></td>
+                                                                            <td><%# Eval("origem") %></td>
+                                                                            <td><%# Eval("localcoleta") %></td>
+                                                                            <td><%# Eval("localentrega") %></td>
+                                                                            <td"><td><%# Eval("data") %></td></td>
+                                                                            <!--<td>315</td>-->
+                                                                            <td><%# Eval("custo") %></td>
+                                                                            <td><%# Eval("matricula") %></td>
+                                                                        </tr>
+                                                                    </ItemTemplate>
+                                                                    <FooterTemplate>
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                                    </FooterTemplate>
+                                                                </asp:Repeater>
+
+
+                                                                <%-- <tr class="">
                                                                                 <td>
                                                                                     <label class="form-check">
                                                                                         <input class="form-check-input" type="checkbox" value="" />
@@ -212,12 +245,8 @@
                                                                                 <!--<td>315</td>-->
                                                                                 <td>60</td>
                                                                                 <td>FH-65-GJ</td>
-                                                                            </tr>
+                                                                            </tr>--%>
 
-                                                                        </tbody>
-                                                                    </table>
-
-                                                                </div>
                                                                 <div class="btn_salvar col-md-3">
                                                                     <button type="submit" class="btn btn-primary">Salvar em PDF</button>
                                                                 </div>
