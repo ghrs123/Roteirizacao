@@ -21,7 +21,7 @@ namespace Roteirizacao
 {
     public partial class config_utilizador : System.Web.UI.Page
     {
-        string email, username, palavra_passe, nome, apelido, morada, cod_postal, pais, cidade, name, Image1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,80 +33,30 @@ namespace Roteirizacao
 
             }
 
-            
-                /* LEr Imagem Configuração */
-                string query = " SELECT ficheiro FROM imagem" +
-                    " INNER JOIN utilizador ON imagem.utilizadorid = utilizador.utilizadorid" +
-                    " WHERE username ='" + Session["util"] + "' OR email='" + Session["util"] + "';";
 
-                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-                SqlCommand myCommand = new SqlCommand(query, myConn);
+            /* LEr Imagem Configuração */
+            string query = " SELECT ficheiro FROM imagem" +
+                " INNER JOIN utilizador ON imagem.utilizadorid = utilizador.utilizadorid" +
+                " WHERE username ='" + Session["util"] + "' OR email='" + Session["util"] + "';";
 
-                //myCommand.Parameters.AddWithValue("@cod", myCommand.CommandText);
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+            SqlCommand myCommand = new SqlCommand(query, myConn);
 
-                //myCommand.CommandType = CommandType.StoredProcedure;
-                //myCommand.CommandText = "ler_imagem";
-
-                myCommand.Connection = myConn;
-                myConn.Open();
+            myCommand.Connection = myConn;
+            myConn.Open();
 
 
-                SqlDataReader dr = myCommand.ExecuteReader();
+            SqlDataReader dr = myCommand.ExecuteReader();
 
-                if (dr.Read())
-                {
+            if (dr.Read())
+            {
 
-                    Image2.ImageUrl = "data:image/png;base64," + Convert.ToBase64String((byte[])dr["ficheiro"]);
-                }
+                Image2.ImageUrl = "data:image/png;base64," + Convert.ToBase64String((byte[])dr["ficheiro"]);
+            }
 
-                myConn.Close();
-            
-
-            
-
-            /* Fim ler Imagem*/
+            myConn.Close();
 
 
-            //string query = " SELECT * FROM utilizador " +
-            //  " INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid " +
-            //  " INNER JOIN imagem ON utilizador.utilizadorid = imagem.utilizadorid " +
-            //  " WHERE username = '" + Session["util"] + "';";
-
-            //SqlConnection myCon = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            //myCon.Open();
-            //SqlCommand myCommand = new SqlCommand(query, myCon);
-
-            //SqlDataReader itemsReader = myCommand.ExecuteReader();
-
-            //while (itemsReader.Read())
-            //{
-            //    email = itemsReader.GetString(1);
-            //    username = itemsReader.GetString(2);
-            //    palavra_passe = itemsReader.GetString(3);
-            //    nome = itemsReader.GetString(4);
-            //    apelido = itemsReader.GetString(5);
-            //    morada = itemsReader.GetString(9);
-            //    cod_postal = itemsReader.GetString(10);
-            //    pais = itemsReader.GetString(11);
-            //    cidade = itemsReader.GetString(12);
-            //   // Image1 = "data:image/png;base64," + Convert.ToBase64String((byte[])itemsReader["ficheiro"]);
-            //    name = itemsReader.GetString(4);
-
-
-            //}
-
-            //itemsReader.Close();
-
-            //DataTable dt = new DataTable();
-
-            //SqlDataAdapter da = new SqlDataAdapter(myCommand);
-            //da.Fill(dt);
-
-            //DataList1.DataSource = dt;
-            //DataList1.DataBind();
-
-
-            //myCon.Close();
         }
 
         protected void btn_log_Click(object sender, EventArgs e)
@@ -123,46 +73,7 @@ namespace Roteirizacao
             Response.Redirect("principal.aspx");
         }
 
-        protected void btn_salvar_Click(object sender, EventArgs e)
-        {
-            //SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            //SqlCommand myCommand = new SqlCommand();
-
-            //myCommand.Parameters.AddWithValue("@utilizador", Session["util"].ToString());
-            //myCommand.Parameters.AddWithValue("@pw_atual", EncryptString(tb_senhaatual.Text));
-            //myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tb_novasenha.Text));
-
-
-            //SqlParameter valor = new SqlParameter();
-            //valor.ParameterName = "@retorno";
-            //valor.Direction = ParameterDirection.Output;
-            //valor.SqlDbType = SqlDbType.Int;
-            //myCommand.Parameters.Add(valor);
-
-            //myCommand.CommandType = CommandType.StoredProcedure;
-            //myCommand.CommandText = "alterar_pw";
-
-
-            //myCommand.Connection = myConn;
-            //myConn.Open();
-            //myCommand.ExecuteNonQuery();
-            //int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
-
-            //myConn.Close();
-
-            //if (repostaSP == 0)
-            //{
-            //    lbl_mensagem.Text = "A palavra-passe atual é inválida";
-
-
-            //}
-
-            //else
-            //{
-            //    lbl_mensagem.Text = "Palavra-passe alterada com sucesso!";
-            //}
-
-        }
+       
 
         public static string EncryptString(string Message)
         {
@@ -213,115 +124,153 @@ namespace Roteirizacao
         protected void btnUpload_Click(object sender, EventArgs e)
         {
 
-        
-                string imgContentType = FileUpload1.PostedFile.ContentType;
+
+            string imgContentType = FileUpload1.PostedFile.ContentType;
 
 
-                Stream imgStream = FileUpload1.PostedFile.InputStream;
+            Stream imgStream = FileUpload1.PostedFile.InputStream;
 
-                int imgLen = FileUpload1.PostedFile.ContentLength;
+            int imgLen = FileUpload1.PostedFile.ContentLength;
 
-                byte[] imgBinaryData = new byte[imgLen];
+            byte[] imgBinaryData = new byte[imgLen];
 
-              
-                imgStream.Read(imgBinaryData, 0, imgLen);
 
-                string query = " SELECT utilizadorid FROM utilizador WHERE username = '" + Session["util"] + "' OR email='" + Session["util"] + "';";
+            imgStream.Read(imgBinaryData, 0, imgLen);
 
+            string query = " SELECT utilizadorid FROM utilizador WHERE username = '" + Session["util"] + "' OR email='" + Session["util"] + "';";
+
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+            SqlCommand myCommand = new SqlCommand();
+
+            myConn.Open();
+
+            SqlCommand Command = new SqlCommand(query, myConn);
+
+            SqlDataReader itemsReader = Command.ExecuteReader();
+
+            while (itemsReader.Read())
+            {
+
+                utilizadorid = itemsReader.GetInt32(0);
+
+            }
+
+            itemsReader.Close();
+
+            myCommand.Parameters.AddWithValue("@contentType", imgContentType);
+            myCommand.Parameters.AddWithValue("@ficheiro", imgBinaryData);
+            myCommand.Parameters.AddWithValue("@utilizadorid", utilizadorid);
+
+
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "inserir_imagem";
+
+
+            myCommand.Connection = myConn;
+
+            myCommand.ExecuteNonQuery();
+            myConn.Close();
+
+            Response.Redirect("config_utilizador.aspx");
+
+
+        }
+
+      
+
+        protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+
+            if (e.CommandName.Equals("btn_salvardados"))
+            {
                 SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-                SqlCommand myCommand = new SqlCommand();
 
+                SqlCommand myCommand = new SqlCommand();
                 myConn.Open();
 
-                SqlCommand Command = new SqlCommand(query, myConn);
+                myCommand.Parameters.AddWithValue("@username", ((TextBox)e.Item.FindControl("tb_username")).Text);
+                myCommand.Parameters.AddWithValue("@nome", ((TextBox)e.Item.FindControl("tb_nome")).Text);
+                myCommand.Parameters.AddWithValue("@apelido", ((TextBox)e.Item.FindControl("tb_apelido")).Text);
+                myCommand.Parameters.AddWithValue("@email", ((TextBox)e.Item.FindControl("tb_email")).Text);
+                myCommand.Parameters.AddWithValue("@morada", ((TextBox)e.Item.FindControl("tb_morada")).Text);
+                myCommand.Parameters.AddWithValue("@cidade", ((TextBox)e.Item.FindControl("tb_cidade")).Text);
+                myCommand.Parameters.AddWithValue("@pais", ((TextBox)e.Item.FindControl("tb_pais")).Text);
+                myCommand.Parameters.AddWithValue("@cod_postal", ((TextBox)e.Item.FindControl("tb_postcod")).Text);
 
-                SqlDataReader itemsReader = Command.ExecuteReader();
-
-                while (itemsReader.Read())
-                {
-                   
-                    utilizadorid = itemsReader.GetInt32(0);
-
-                }
-
-                itemsReader.Close();
-
-                myCommand.Parameters.AddWithValue("@contentType", imgContentType);
-                myCommand.Parameters.AddWithValue("@ficheiro", imgBinaryData);
-                myCommand.Parameters.AddWithValue("@utilizadorid", utilizadorid);
-
+                SqlParameter valor = new SqlParameter();
+                valor.ParameterName = "@retorno";
+                valor.Direction = ParameterDirection.Output;
+                valor.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(valor);
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "inserir_imagem";
+                myCommand.CommandText = "atualizar_dados";
 
 
                 myCommand.Connection = myConn;
 
                 myCommand.ExecuteNonQuery();
+
+                int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+
+                if (repostaSP == 1)
+                {
+                    
+                    Response.Redirect("config_utilizador.aspx");
+                }
+
+
+
                 myConn.Close();
 
-            Response.Redirect("config_utilizador.aspx");
-            
-            
+            }
         }
 
-        protected void btn_salvardados_Click(object sender, EventArgs e)
+        protected void btn_salvar_Click1(object sender, EventArgs e)
         {
-             //SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-             //SqlCommand myCommand = new SqlCommand();
 
-             //myCommand.Parameters.AddWithValue("@utilizador", Session["util"].ToString());
-             //myCommand.Parameters.AddWithValue("@username", tb_user.Value);
-             //myCommand.Parameters.AddWithValue("@nome", tb_nome.Value);
-             //myCommand.Parameters.AddWithValue("@apelido", tb_apelido.Value);
-             //myCommand.Parameters.AddWithValue("@email", tb_email.Value);
-             //myCommand.Parameters.AddWithValue("@morada", tb_morada.Value);
-             //myCommand.Parameters.AddWithValue("@cidade", tb_cidade.Value);
-             //myCommand.Parameters.AddWithValue("@pais", tb_pais.Value);
-             //myCommand.Parameters.AddWithValue("@code_postal", tb_postcod.Value);
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+            SqlCommand myCommand = new SqlCommand();
+            myConn.Open();
 
 
-           //SqlParameter valor = new SqlParameter();
-           //  valor.ParameterName = "@retorno";
-           //  valor.Direction = ParameterDirection.Output;
-           //  valor.SqlDbType = SqlDbType.Int;
-           //  myCommand.Parameters.Add(valor);
+            myCommand.Parameters.AddWithValue("@utilizador", Session["util"].ToString());
+            myCommand.Parameters.AddWithValue("@pw_atual", EncryptString(tb_senhaatual.Text));
+            myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tb_novasenha.Text));
+
+            SqlParameter valor = new SqlParameter();
+            valor.ParameterName = "@retorno";
+            valor.Direction = ParameterDirection.Output;
+            valor.SqlDbType = SqlDbType.Int;
+            myCommand.Parameters.Add(valor);
+
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "alterar_pw";
 
 
-            // SqlParameter valor2 = new SqlParameter();
-            // valor2.ParameterName = "@retorno_user";
-            // valor2.Direction = ParameterDirection.Output;
-            // valor2.SqlDbType = SqlDbType.Int;
-            // myCommand.Parameters.Add(valor2);
+            myCommand.Connection = myConn;
 
+            myCommand.ExecuteNonQuery();
 
-             //myCommand.CommandType = CommandType.StoredProcedure;
-             //myCommand.CommandText = "alterar_dados";
+            int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
 
+     
+            if (repostaSP == 1)
+            {
 
-            // myCommand.Connection = myConn;
-            // myConn.Open();
-            // myCommand.ExecuteNonQuery();
-
-            // int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
-            // int respostaUserSP = Convert.ToInt32(myCommand.Parameters["@retorno_user"].Value);
-
-
-            //myConn.Close();
-
-            // if (repostaSP == 0)
-            // {
-            //     lbl_mensagem.Text = "A palavra-passe atual é inválida";
-            // }
-
-            // else
-            // {
-            //     lbl_mensagem.Text = "Palavra-passe alterada com sucesso!";
-            // }
-
-
+                tb_novasenha.Text = "";
+                tb_senhaatual.Text = "";
+               
+            }
+            myConn.Close();
 
         }
-
     }
+
+
+
+  
 }
+
+
+

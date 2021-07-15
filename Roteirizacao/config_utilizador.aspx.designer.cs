@@ -87,13 +87,13 @@ namespace Roteirizacao
         protected global::System.Web.UI.WebControls.Button btnUpload;
 
         /// <summary>
-        /// Controle btn_salvardados.
+        /// Controle lbl_mensagem2.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_salvardados;
+        protected global::System.Web.UI.WebControls.Label lbl_mensagem2;
 
         /// <summary>
         /// Controle tb_senhaatual.

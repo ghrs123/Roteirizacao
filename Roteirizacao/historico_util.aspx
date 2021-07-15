@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-    <link href="assets/css/app.css" rel="stylesheet" />
+      <link href="assets/css/app.css" rel="stylesheet" />
 
     <title>Histórico | Roteirização</title>
     <link href="estilo.css" rel="stylesheet" />
@@ -49,7 +49,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                                <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click1" />
+                                <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"    ID="btn_sair" runat="server" Text="Sair" style=" width: 40px;" OnClick="btn_sair_Click1" />
                             </a>
                         </li>
                     </ul>
@@ -141,13 +141,14 @@
                                                                             <tr>
                                                                                 <th style="width: 5%;"></th>
                                                                                 <th style="width: 5%;">Id</th>
-                                                                                <th style="width: 15%">Produto</th>
-                                                                                <th style="width: 15%;">Origem</th>
-                                                                                <th style="width: 15%">Destino</th>
-                                                                                <th style="width: 15%">Data</th>
+                                                                                <th style="width: 12%">Produto</th>
+                                                                                 <th style="width: 10%">Quantidade Kg</th>
+                                                                                <th style="width: 8%;">Origem</th>
+                                                                                <th style="width: 8%">Destino</th>
+                                                                                <th style="width: 8%">Data</th>
                                                                                 <!--<th style="width:15.83%">Distância (Km)</th>-->
-                                                                                <th style="width: 10%">€ por Km</th>
-                                                                                <th style="width: 20%">Matrícula do Veículo</th>
+                                                                                <th style="width: 6%">Custo €</th>
+                                                                                <th style="width: 13%">Matrícula do Veículo</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -159,11 +160,12 @@
                                                                                 </td>
                                                                                 <td>1</td>
                                                                                 <td>Banana</td>
-                                                                                <td>Lisboa</td>
+                                                                                <td>2000</td>
+                                                                                <td>Viana do Castelo</td>
                                                                                 <td>Porto</td>
                                                                                 <td class="d-none d-md-table-cell">20-05-2019</td>
                                                                                 <!--<td>315</td>-->
-                                                                                <td>60</td>
+                                                                                <td>100000</td>
                                                                                 <td>FH-65-GJ</td>
                                                                             </tr>
                                                                             <tr class="">

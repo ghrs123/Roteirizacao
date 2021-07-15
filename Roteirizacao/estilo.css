@@ -71,7 +71,9 @@ inpunt{
     display: block;
 }
 
-
+.row-content{
+    width: 1300px;
+}
 
 .form .registar {
     padding-left: 60px;
@@ -82,7 +84,7 @@ inpunt{
     border-end-start-radius: 20px;
     border-start-end-radius: 20px;
     background: #F5F5F5;
-    box-shadow:  5px 5px 3px #bfe3f2;
+    box-shadow: 5px 5px 3px #bfe3f2;
 }
 
     /*.form .registar:hover {*/
@@ -127,4 +129,9 @@ inpunt{
     border-start-end-radius: 20px;
     background: #F5F5F5;
     box-shadow: 5px 5px 3px #bfe3f2;
+}
+
+.form-check-input{
+    position: relative;
+    width: 20px;
 }

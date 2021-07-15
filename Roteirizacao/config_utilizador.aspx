@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <title>Configuração | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="estilo.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="config_utilizador.aspx">
@@ -48,7 +49,7 @@
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
                                 <i class="align-middle" data-feather="log-out"></i>
-                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" style=" width: 40px;" Text="Sair" OnClick="btn_sair_Click" />
                             </a>
                         </li>
 
@@ -137,52 +138,63 @@
                                                         <div class="col-md-8">
 
                                                             <div class="form-group">
-                                                                <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" Width="100%">
+                                                                <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" OnItemCommand="DataList1_ItemCommand" Width="100%">
                                                                     <ItemTemplate>
+                                                                            <div class="card-body">
 
-                                                                        <div class="card-body">
+                                                                                <div class="form-row">
 
-                                                                            <div class="form-row">
+                                                                                    <div class="form-group col-md-12">
+                                                                                        <label for="tb_user">Username</label>
+                                                                                        <asp:TextBox ID="tb_username" runat="server" class="form-control" Text='<%# Eval("username") %>'></asp:TextBox>
+                                                                                    </div>
 
-                                                                                <div class="form-group col-md-12">
-                                                                                    <label for="inputUsername">Username</label>
-                                                                                    <input type="text" class="form-control" id="tb_user" runat="server" value='<%# Eval("username") %>' />
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="tb_nome">Nome</label>
+                                                                                        <asp:TextBox ID="tb_nome" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:TextBox>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="inputLastName">Apelido</label>
+                                                                                    
+                                                                                        <asp:TextBox ID="tb_apelido" runat="server" class="form-control" Text='<%# Eval("apelido") %>'></asp:TextBox>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="inputEmail4">Email</label>
+                                                                                
+                                                                                    <asp:TextBox ID="tb_email" runat="server" class="form-control" Text='<%# Eval("email") %>'></asp:TextBox>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="inputAddress">Morada</label>
+                                                                                   
+                                                                                    <asp:TextBox ID="tb_morada" runat="server" class="form-control" Text='<%# Eval("morada") %>'></asp:TextBox>
                                                                                 </div>
 
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label for="inputFirstName">Nome</label>
-                                                                                    <input type="text" class="form-control" id="tb_nome" runat="server" value='<%# Eval("nome") %>' />
-                                                                                </div>
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label for="inputLastName">Apelido</label>
-                                                                                    <input type="text" class="form-control" id="tb_apelido" runat="server" value='<%# Eval("apelido") %>' />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="inputEmail4">Email</label>
-                                                                                <input type="email" class="form-control" id="tb_email" runat="server" value='<%# Eval("email") %>' />
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="inputAddress">Morada</label>
-                                                                                <input type="text" class="form-control" id="tb_morada" runat="server" value='<%# Eval("morada") %>' />
-                                                                            </div>
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="inputCity">Cidade</label>
+                                                                                        <asp:TextBox ID="tb_cidade" runat="server" class="form-control" Text='<%# Eval("cidade") %>'></asp:TextBox>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="inputCity">Pais</label>
+                                                                                      
+                                                                                        <asp:TextBox ID="tb_pais" runat="server" class="form-control" Text='<%# Eval("pais") %>'></asp:TextBox>
+                                                                                    </div>
 
-                                                                            <div class="form-row">
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label for="inputCity">Cidade</label>
-                                                                                    <input type="text" class="form-control" runat="server" id="tb_cidade" value='<%# Eval("cidade") %>' />
+                                                                                    <div class="form-group col-md-2">
+                                                                                        <label for="inputZip">Código Postal</label>
+                                                                                     
+                                                                                        <asp:TextBox ID="tb_postcod" runat="server" class="form-control" Text='<%# Eval("cod_postal") %>'></asp:TextBox>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="form-group col-md-6">
-                                                                                    <label for="inputCity">Pais</label>
-                                                                                    <input type="text" class="form-control" runat="server" id="tb_pais" value='<%# Eval("pais") %>' />
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-2">
-                                                                                    <label for="inputZip">Código Postal</label>
-                                                                                    <input type="text" class="form-control" runat="server" id="tb_postcod" value='<%# Eval("cod_postal") %>' />
-                                                                                </div>
-                                                                            </div>
                                                                         </div>
+
+                                                                        <div>
+                                                                            <asp:Button ID="btn_salvardados" type="submit" Text="Salvar Alterações" runat="server" class="btn btn-primary" CommandName="btn_salvardados" ></asp:Button>
+
+                                                                        </div>
+                                                                        
+                                                                      
                                                                     </ItemTemplate>
                                                                 </asp:DataList>
                                                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
@@ -196,6 +208,7 @@
                                                         <!-- Upload Foto-->
                                                         <div class="col-md-4">
                                                             <div class="text-center">
+
                                                                 <asp:Image ID="Image2" runat="server" class="rounded-circle img-responsive mt-2" Width="128" Height="128" />
                                                                 <div class="mt-2">
                                                                     <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -203,16 +216,16 @@
                                                                 <small>Para melhores resultados, use uma imagem pelo menos 128px por 128px no formato . jpg</small>
 
                                                                 <div class=" mb-5">
-                                                                    <asp:Button ID="btnUpload" type="submit" Text="Upload" runat="server" class="btn btn-primary" OnClick="btnUpload_Click" Width="80px"></asp:Button>
+                                                                    <asp:Button ID="btnUpload" type="submit" Text="Upload" runat="server" class="btn btn-primary" CommandName="update" OnClick="btnUpload_Click" Width="80px"></asp:Button>
                                                                 </div>
+
+                                                                <asp:Label ID="lbl_mensagem2" runat="server" Text="ASdsd"></asp:Label>
                                                             </div>
                                                         </div>
 
                                                         <!--Fim  Upload Foto-->
                                                     </div>
-                                                    <div>
-                                                        <asp:Button ID="btn_salvardados" type="submit" Text="Salvar Alterações" runat="server" class="btn btn-primary" OnClick="btn_salvardados_Click"></asp:Button>
-                                                    </div>
+
 
                                                 </div>
 
@@ -244,7 +257,7 @@
 													<input type="password" class="form-control" id="inputPasswordNew2">
 												</div>
 												 Verificação de senha -->
-                                                    <asp:Button ID="btn_salvar" class="btn btn-primary" runat="server" Text="Salvar Alterações" OnClick="btn_salvar_Click" />
+                                                    <asp:Button ID="btn_salvar" class="btn btn-primary" runat="server" Text="Salvar Alterações" OnClick="btn_salvar_Click1" />
                                                     <div>
                                                         <asp:Label ID="lbl_mensagem" runat="server" Text=""></asp:Label>
                                                     </div>

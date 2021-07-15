@@ -37,7 +37,7 @@ namespace Roteirizacao
         //[System.Web.Http.Cors.EnableCors(origins: "*", headers: "Origin, X-Requested-With, Content-Type, Accept", methods: "POST,GET,PUT,DELETE", SupportsCredentials = true)]
 
 
-        HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
+             HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
             HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET,POST");
             HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "X-Custom-Header");
             HttpContext.Current.Response.AddHeader("Access-Control-Allow-Credentials", "true");
@@ -56,10 +56,12 @@ namespace Roteirizacao
          
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
 
 
-      
 
+        }
     }
 
 

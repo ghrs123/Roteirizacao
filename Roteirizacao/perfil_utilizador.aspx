@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <title>Perfil | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="estilo.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -44,8 +45,8 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                                <i class="align-middle" data-feather="log-out"></i>
-                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                                <i class="align-middle sair" data-feather="log-out"></i>
+                                <asp:Button class="align-middle " ID="btn_sair" runat="server" Text="Sair" style=" width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>
@@ -83,7 +84,7 @@
                                     <a class="dropdown-item" href="https://localhost:44399/config_utilizador.aspx"><i class="align-middle mr-1"></i>Configuração</a>
                                     <div class="dropdown-divider"></div>
                                     <div class="dropdown-item" style="text-align: center;">
-                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton>
+                                        <asp:LinkButton type="submit" Font-Underline="false" ForeColor="#6E7B8B" class="align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click"  PostBackUrl="~/principal.aspx" Width="20px">Sair</asp:LinkButton>
 
                                     </div>
 
@@ -197,10 +198,9 @@
                                                                         <h5 class="card-title mb-0">Minha Foto</h5>
                                                                     </div>
                                                                     <div class="card-body text-center">
-                                                                       <%-- <asp:Image ID="Image1" runat="server" ImageUrl="data:image/png;base64,"<%# "ImageHandler.ashx?ImgID="+ Eval("id") %>'     class="img-fluid rounded-circle mb-2" Width="128" Height="128" />--%>
-                                                                        <%--<img src="img/avatars/avatar-4.jpg" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />--%>
+                                                                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# String.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String((byte[])Eval("ficheiro")) ) %>'     class="img-fluid rounded-circle mb-2" Width="128" Height="128" />
                                                                         <h5 class="card-title mb-0">
-                                                                            <asp:Label ID="lbl_name" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
+                                                                         <asp:Label ID="lbl_name" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
                                                                     </div>
                                                                 </div>
                                                                 <hr />
@@ -214,7 +214,9 @@
                                         </asp:DataList>
 
                                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>" 
-                                            SelectCommand="SELECT * FROM utilizador INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid WHERE username = @util">
+                                            SelectCommand="SELECT * FROM utilizador INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid 
+                                            INNER JOIN imagem ON imagem.utilizadorid = utilizador.utilizadorid
+                                            WHERE username = @util">
                                              <SelectParameters>
                                                  <asp:SessionParameter Name="util" SessionField="util" Type="String" />
                                                 </SelectParameters>

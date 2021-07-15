@@ -50,7 +50,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                               <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                               <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" style=" width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>

@@ -16,6 +16,14 @@
     <script src="assets/js/cnv.js"></script>
     <link href="estilo.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function getJSON() {
+            var result = document.getElementById("teste").innerHTML;
+          
+           <%-- document.getElementById("<%=hidden.ClientID%>").value = result;--%>
+            console.log("Resultado: " + result);
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server" method="post">
@@ -194,12 +202,18 @@
                            
                             <div class="rotas">
                                 <p>Rotas por veículo</p>
-                            
-                                <div id="resultado" class="mb-5"></div>
+                            <asp:HiddenField ID="hidden"  runat="server"/>
+                                <div id="resultado" class="mb-5">
+                                    <label id="teste">ATEC</label>
+                                    
+                                   
+
+                                </div>
                                 <div id="rtime" style="background-color: chartreuse;"></div>
                                 <div id="zmin" style="background-color: chartreuse;"></div>
                                 
                             </div>
+                                 <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="getJSON()" />
                                 <div class="mapa" style ="position: relative;">
                                     <div id="map"></div>
                                 </div>
