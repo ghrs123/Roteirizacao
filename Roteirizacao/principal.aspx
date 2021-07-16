@@ -16,14 +16,7 @@
     <script src="assets/js/cnv.js"></script>
     <link href="estilo.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        function getJSON() {
-            var result = document.getElementById("teste").innerHTML;
 
-           <%-- document.getElementById("<%=hidden.ClientID%>").value = result;--%>
-            console.log("Resultado: " + result);
-        }
-    </script>
 </head>
 <body>
     <form id="form1" runat="server" method="post">
@@ -162,7 +155,7 @@
                                             </th>
                                             <th class="text-center">Capacidade (kg)
                                             </th>
-                                            <th class="text-center">Custo R$/km
+                                            <th class="text-center">Custo €/km
                                             </th>
                                         </tr>
                                     </thead>
@@ -187,25 +180,26 @@
                                 <a id="add_truck" class="btn btn-primary  pull-left">Adicionar Veículo</a>&nbsp												
 			                    <!--input type="submit" class="btn btn-primary"-->
 
-                                <a id='delete_truck' class="btn btn-danger pull-center ">Remover Veículo</a>
-                                <a id='enviar' runat="server" class="btn btn-success pull-center ">ROTEIRIZAR</a>&nbsp
+                                <a id='delete_truck' class="btn btn-danger pull-center" >Remover Veículo</a>
+                                <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" onclientclick="SetName()" OnClick="enviar_Click" style="width: 120px;" />
+                              <%--  <a id='enviar' runat="server" class="btn btn-success pull-center" onclientclick="SetName()">ROTEIRIZAR</a>&nbsp--%>
 				                <a id='send' runat="server" class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
 
 
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
-                                    <asp:HiddenField ID="hidden" runat="server" />
-                                    <div id="resultado" class="mb-5">
-                                        <label id="teste">ATEC</label>
-
-
-
+                                     <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>
+                                    <div id="resultado" style="background-color: chartreuse;">
+                                       
                                     </div>
-                                    <div id="rtime" style="background-color: chartreuse;"></div>
-                                    <div id="zmin" style="background-color: chartreuse;"></div>
+                                    <div id="rtime" style="background-color: chartreuse;">
+                                        <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
+                                    </div>
+                                    <div id="zmin" style="background-color: chartreuse;">
+                                        <asp:Label ID="lbl_zmin" runat="server" Text=""></asp:Label>
+                                    </div>
 
                                 </div>
-                                <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="getJSON()" />
                                 <div class="mapa" style="position: relative;">
                                     <div id="map"></div>
                                 </div>
@@ -726,20 +720,10 @@
                         var trucks = res.trucks;
 
 
-
                         var dataa = { origin, routes, trucks };
 
                         data = JSON.stringify(dataa);
 
-
-                        // http://localhost:44399
-                        //$.ajax({
-                        //     url: 'http://localhost/calc',
-                        //    type: 'POST',
-                        //    dataType: 'jsonp',
-                        //   data: data,
-                        //     headers: {'Access-Control-Allow-Origin':'http://localhost:44399' },
-                        //    success: function (result) {
 
 
                         $.post('http://localhost:4120/calc', { data: data }, function (result) {
@@ -748,12 +732,15 @@
 
                                 console.log("Server responded with ", result);
 
-                                //str = str.replace(/^"(.*)"$/, '$1');
+                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
 
-                                $("#resultado").text(JSON.stringify(result.routesByVehicles));
 
-                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
-                                $("#zmin").text("Custo mínimo de Transporte (R$) : " + new Intl.NumberFormat("de-DE").format(result.z));
+                                document.getElementById("lbl_nome").innerText = JSON.stringify(result.routesByVehicles);
+
+                                document.getElementById("lbl_rtime").innerText = ("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
+                                document.getElementById("lbl_zmin").innerText = ("Custo mínimo de Transporte (R$) : " + new Intl.NumberFormat("de-DE").format(result.z));
+                                //$("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
+                                //$("#zmin").text("Custo mínimo de Transporte (R$) : " + new Intl.NumberFormat("de-DE").format(result.z));
                                 //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
 
                                 var c = 0;
@@ -809,13 +796,7 @@
                                                             strokeOpacity: 0.8,
                                                             strokeColor: colourArray[c]
                                                         },
-                                                        /*markerOptions:{
-                                                            icon:{
-                                                                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                                                                scale: 3,
-                                                                strokeColor: colourArray[c]
-                                                            }
-                                                        }*/
+
                                                     });
 
                                                     // Display the route on the map.
@@ -830,7 +811,7 @@
 
                                 }
 
-                                // $('#cover-spin').hide();
+
 
                             }
                             else {
@@ -839,126 +820,6 @@
 
 
                         });
-
-
-                        // $.post('http://localhost:4120/calc', { data: data }, function (result) {
-
-                        //onclick="$('#cover-spin').show(0)"
-
-                        /*envio
-                        {"origin":"almada-portugal","routes":[{"pickup":"braga-portugal","destination":"lisboa-portugal","products":[{"name":"banana","qty":"1200"}]}],"trucks":[{"id":"3/4","capacity":"6000","cost":"62"}]}
-                        */
-
-                        //if (result) {
-
-
-                        //    console.log("Server responded with ", result);
-
-                        //    //str = str.replace(/^"(.*)"$/, '$1');
-
-                        //    $("#resultado").text(JSON.stringify(result.routesByVehicles));
-
-                        //    $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
-                        //    $("#zmin").text("Custo mínimo de Transporte (R$) : " + new Intl.NumberFormat("de-DE").format(result.z));
-                        //    //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
-
-                        //    var c = 0;
-
-
-                        //    for (var veiculo in result.routesByVehicles) {
-                        //        var rotas = result.routesByVehicles[veiculo].rotas
-
-
-                        //        var waypoints = [];
-                        //        var start;
-                        //        var end;
-                        //        start = rotas.splice(0, 1)[0];
-                        //        end = rotas.splice(-1, 1)[0];
-
-                        //        for (var loc in rotas) {
-
-                        //            waypoints.push({ location: rotas[loc], stopover: true });
-
-
-                        //        }
-
-
-
-                        //        var request = {
-                        //            origin: start,
-                        //            destination: end,
-                        //            waypoints: waypoints,
-                        //            travelMode: google.maps.TravelMode.DRIVING
-                        //        };
-
-                        //        // Pass the directions request to the directions service.
-
-
-
-                        //        directionsService
-                        //            .route(
-                        //                request,
-                        //                function (
-                        //                    response,
-                        //                    status) {
-                        //                    if (status == google.maps.DirectionsStatus.OK) {
-
-                        //                        directionsDisplay = new google.maps.DirectionsRenderer;
-
-                        //                        directionsDisplay.setMap(map);
-
-                        //                        directionsDisplay.setOptions({
-                        //                            preserveViewport: true,
-                        //                            suppressInfoWindows: false,
-                        //                            polylineOptions: {
-                        //                                strokeWeight: 4,
-                        //                                strokeOpacity: 0.8,
-                        //                                strokeColor: colourArray[c]
-                        //                            },
-                        //                            /*markerOptions:{
-                        //                                icon:{
-                        //                                    path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                        //                                    scale: 3,
-                        //                                    strokeColor: colourArray[c]
-                        //                                }
-                        //                            }*/
-                        //                        });
-
-                        //                        // Display the route on the map.
-                        //                        directionsDisplay
-                        //                            .setDirections(response);
-
-                        //                        c = c + 1;
-                        //                    }
-                        //                });
-
-
-
-                        //    }
-
-                        //    // $('#cover-spin').hide();
-
-                        //}
-                        //else
-                        //    console.log("no response");
-
-                        // });
-
-
-
-                        //$.getJSON('/calc',data,	function(result) {, 
-                        //	if (result!="nok") {
-
-                        //		console.log("recebido");
-
-                        //}
-                        //else{
-
-                        //		console.log("recebido");
-                        //	}
-
-
-                        //})
 
 
 

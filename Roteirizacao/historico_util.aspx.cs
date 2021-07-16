@@ -4,10 +4,14 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 
 namespace Roteirizacao
 {
@@ -62,5 +66,47 @@ namespace Roteirizacao
             Session.Abandon();
             Response.Redirect("principal.aspx");
         }
+
+     
+
+
+        protected void rptViagem_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("btnPdf"))
+            {
+                
+                Response.Clear();
+                Response.AddHeader("Content-Disposition", "attachment; filename=pdf.pdf");
+
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.ContentType = "application/pdf";
+
+                /*
+                 historicoid
+                    descricao
+                    quantidade
+                    origem
+                    localcoleta
+                    localentrega
+                    data
+                    custo
+                    matricula
+
+                 */
+                //string conteudo = $"<h1>Histórico de Viagens</h1><br/><b>Nome:</b> {tb_nome.Text}<br/><b>Morada:</b> {tb_morada.Text}";
+                //StringReader sr = new StringReader(conteudo);
+
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
+                HTMLWorker parser = new HTMLWorker(pdfDoc);
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+
+                pdfDoc.Open();
+                //parser.Parse(sr);
+                pdfDoc.Close();
+                Response.Write(pdfDoc);
+                Response.End();
+            }
+        }
     }
+
 }

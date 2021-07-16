@@ -50,7 +50,8 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                               <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" style=" width: 40px;" OnClick="btn_sair_Click" />
+                                <i class="align-middle" data-feather="log-out"></i>
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" Style="width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>
@@ -81,13 +82,14 @@
                                     <span class="text-dark">Christina Mason</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="https://localhost:44399/perfil_utilizador.aspx"><i class="align-middle mr-1" ></i>Perfil</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/perfil_utilizador.aspx"><i class="align-middle mr-1"></i>Perfil</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://localhost:44399/historico_util.aspx"><i class="align-middle mr-1" ></i>Histórico</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/historico_util.aspx"><i class="align-middle mr-1"></i>Histórico</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://localhost:44399/config_utilizador.aspx"><i class="align-middle mr-1" ></i>Configuração</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/config_utilizador.aspx"><i class="align-middle mr-1"></i>Configuração</a>
                                     <div class="dropdown-divider"></div>
-                                    <div class="dropdown-item" style="text-align: center;"><asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>                               
+                                    <div class="dropdown-item" style="text-align: center;">
+                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>
                                 </div>
                             </li>
                         </ul>
@@ -173,14 +175,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-center" style="display: none;">#
-                                            </th>
-                                            <th class="text-center">Referência do veículo
-                                            </th>
-                                            <th class="text-center">Capacidade (kg)
-                                            </th>
-                                            <th class="text-center">Custo R$/km
-                                            </th>
+                                            <th class="text-center" style="display: none;">#</th>
+                                            <th class="text-center">Referência do veículo</th>
+                                            <th class="text-center">Capacidade (kg)</th>
+                                            <th class="text-center">Custo  €/km</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -212,7 +210,10 @@
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
 
-                                    <div id="resultado" class="mb-5"></div>
+                                    <div id="resultado" class="mb-5">
+                                        <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>
+                                       <%-- <label id="lbl_resultado"></label>--%>
+                                    </div>
                                     <div id="rtime" style="background-color: chartreuse;"></div>
                                     <div id="zmin" style="background-color: chartreuse;"></div>
 
@@ -671,7 +672,7 @@
 
 
                 if (t <= 100) { //LIMITADO À TRES CAMINHÕES SOMENTE
-                    $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo R$/km'  class='form-control input-md'></td>");
+                    $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo €/km'  class='form-control input-md'></td>");
 
                     $('#tab_trucks').append('<tr id="truck' + (t + 1) + '"></tr>');
                     t++;
@@ -722,14 +723,6 @@
                         data = JSON.stringify(dataa);
 
 
-                        // http://localhost:44399
-                        //$.ajax({
-                        //     url: 'http://localhost/calc',
-                        //    type: 'POST',
-                        //    dataType: 'jsonp',
-                        //   data: data,
-                        //     headers: {'Access-Control-Allow-Origin':'http://localhost:44399' },
-                        //    success: function (result) {
 
 
                         $.post('http://localhost:4120/calc', { data: data }, function (result) {
@@ -737,13 +730,13 @@
                             if (result) {
 
                                 console.log("Server responded with ", result);
-
-
-
-                                $("#resultado").text(JSON.stringify(result.routesByVehicles));
+                                var data = JSON.stringify(result.routesByVehicles);
+                               
+                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
+                                $("#resultado").text(data);
 
                                 $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
-                                $("#zmin").text("Custo mínimo de Transporte (R$) : " + new Intl.NumberFormat("de-DE").format(result.z));
+                                $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
                                 //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
 
                                 var c = 0;

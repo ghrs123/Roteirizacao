@@ -39,7 +39,7 @@ namespace Roteirizacao
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor enviar;
+        protected global::System.Web.UI.WebControls.Button enviar;
 
         /// <summary>
         /// Controle send.
@@ -51,21 +51,30 @@ namespace Roteirizacao
         protected global::System.Web.UI.HtmlControls.HtmlAnchor send;
 
         /// <summary>
-        /// Controle hidden.
+        /// Controle lbl_nome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidden;
+        protected global::System.Web.UI.WebControls.Label lbl_nome;
 
         /// <summary>
-        /// Controle Button1.
+        /// Controle lbl_rtime.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label lbl_rtime;
+
+        /// <summary>
+        /// Controle lbl_zmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_zmin;
     }
 }

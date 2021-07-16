@@ -148,7 +148,7 @@
                                                                     </SelectParameters>
                                                                 </asp:SqlDataSource>
 
-                                                                <asp:Repeater runat="server" ID="rptViagem">
+                                                                <asp:Repeater runat="server" ID="rptViagem"  OnItemCommand="rptViagem_ItemCommand">
 
                                                                     <HeaderTemplate>
                                                                         <div class="card">
@@ -177,7 +177,8 @@
                                                                         <tr>
                                                                             <td>
                                                                                 <label class="form-check">
-                                                                                    <input class="form-check-input" type="checkbox" value="" />
+                                                                                    <asp:TextBox ID="TextBox1" runat="server" type="checkbox" class="form-check-input"></asp:TextBox>
+                                                                                    <%--<input class="form-check-input" type="checkbox" value="" />--%>
                                                                                 </label>
                                                                             </td>
                                                                             <td><%# Eval("historicoid") %></td>
@@ -187,7 +188,6 @@
                                                                             <td><%# Eval("localcoleta") %></td>
                                                                             <td><%# Eval("localentrega") %></td>
                                                                             <td"><td><%# Eval("data") %></td></td>
-                                                                            <!--<td>315</td>-->
                                                                             <td><%# Eval("custo") %></td>
                                                                             <td><%# Eval("matricula") %></td>
                                                                         </tr>
@@ -200,55 +200,8 @@
                                                                     </FooterTemplate>
                                                                 </asp:Repeater>
 
-
-                                                                <%-- <tr class="">
-                                                                                <td>
-                                                                                    <label class="form-check">
-                                                                                        <input class="form-check-input" type="checkbox" value="" />
-                                                                                    </label>
-                                                                                </td>
-                                                                                <td>2</td>
-                                                                                <td>Pera</td>
-                                                                                <td>Lisboa</td>
-                                                                                <td>Porto</td>
-                                                                                <td class="d-none d-md-table-cell">20-05-2019</td>
-                                                                                <!--<td>315</td>-->
-                                                                                <td>60</td>
-                                                                                <td>FH-65-GJ</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <label class="form-check">
-                                                                                        <input class="form-check-input" type="checkbox" value="" />
-                                                                                    </label>
-                                                                                </td>
-                                                                                <td>3</td>
-                                                                                <td>Uva</td>
-                                                                                <td>Lisboa</td>
-                                                                                <td>Porto</td>
-                                                                                <td class="d-none d-md-table-cell">20-05-2019</td>
-                                                                                <!--<td>315</td>-->
-                                                                                <td>60</td>
-                                                                                <td>FH-65-GJ</td>
-                                                                            </tr>
-                                                                            <tr class="">
-                                                                                <td>
-                                                                                    <label class="form-check">
-                                                                                        <input class="form-check-input" type="checkbox" value="" />
-                                                                                    </label>
-                                                                                </td>
-                                                                                <td>4</td>
-                                                                                <td>Maça</td>
-                                                                                <td>Lisboa</td>
-                                                                                <td>Porto</td>
-                                                                                <td class="d-none d-md-table-cell">20-05-2019</td>
-                                                                                <!--<td>315</td>-->
-                                                                                <td>60</td>
-                                                                                <td>FH-65-GJ</td>
-                                                                            </tr>--%>
-
                                                                 <div class="btn_salvar col-md-3">
-                                                                    <button type="submit" class="btn btn-primary">Salvar em PDF</button>
+                                                                    <asp:Button ID="btnPdf" runat="server" class="btn btn-primary" Text="Salvar em PDF" />
                                                                 </div>
                                                             </div>
 
