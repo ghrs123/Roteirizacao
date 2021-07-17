@@ -122,6 +122,7 @@
                                             </th>
                                             <th class="text-center">Demanda (kg)
                                             </th>
+                                    
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -138,7 +139,7 @@
                                     </tbody>
                                 </table>
                                 <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
-			                    <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>
+                                   <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>
                                 <a id="delete_prod" class="btn btn-danger pull-right">Remover Produto/Entrega</a>
                                 <!--<a id='delete_row' class="pull-right btn btn-default">Remover Entrega</a>-->
                                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="tab_trucks">
@@ -180,17 +181,16 @@
                                 <a id="add_truck" class="btn btn-primary  pull-left">Adicionar Veículo</a>&nbsp												
 			                    <!--input type="submit" class="btn btn-primary"-->
 
-                                <a id='delete_truck' class="btn btn-danger pull-center" >Remover Veículo</a>
-                                <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" onclientclick="SetName()" OnClick="enviar_Click" style="width: 120px;" />
-                              <%--  <a id='enviar' runat="server" class="btn btn-success pull-center" onclientclick="SetName()">ROTEIRIZAR</a>&nbsp--%>
-				                <a id='send' runat="server" class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
+                                <a id='delete_truck' class="btn btn-danger pull-center">Remover Veículo</a>
+                                <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" OnClientClick="SetName()" OnClick="enviar_Click" Style="width: 120px; color: black;" />
+                                <%--  <a id='enviar' runat="server" class="btn btn-success pull-center" onclientclick="SetName()">ROTEIRIZAR</a>&nbsp--%>
+                                <a id='send' runat="server" class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
 
 
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
-                                     <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>
                                     <div id="resultado" style="background-color: chartreuse;">
-                                       
                                     </div>
                                     <div id="rtime" style="background-color: chartreuse;">
                                         <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
@@ -276,13 +276,12 @@
 
         }
 
-
-
+     
         function addressLookup() {
 
             var options = {
                 componentRestrictions: {
-                    country: 'pt'
+                    country: 'PT'
                 }
             };
 
@@ -295,7 +294,7 @@
                 document.getElementById('dest0'), options);
 
 
-
+          
             google.maps.event.addListener(autocomplete, 'place_changed',
                 function () {
 
@@ -303,24 +302,7 @@
                     // fillInAddress();
 
                 });
-            // });
-
-
-            var address = document.getElementsByClassName('dest');
-
-            for (var i = 0; i < address.length; i++) {
-                new google.maps.places.Autocomplete(address[i], options);
-
-            }
-
-
-
-
-
-
-
-
-        }
+     
 
 
         function slugify(text) {

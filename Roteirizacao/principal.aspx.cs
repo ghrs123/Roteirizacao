@@ -79,26 +79,31 @@ namespace Roteirizacao
 
 
 
-        public partial class Root
+      
+
+        public class Cargas
         {
-            [JsonProperty("veiculo")]
-        
-            public long Veiculo { get; set; }
-
-            [JsonProperty("rotas")]
-            public string[] Rotas { get; set; }
-
-            [JsonProperty("cargas")]
-            public Cargas[] Cargas { get; set; }
+            Cargas carga = new Cargas()
+            {
+                Carga = "",
+                qty = 1,
+            };
+            public string Carga { get; set; }
+            public int qty { get; set; }
         }
 
-        public partial class Cargas
+        public class Root
         {
-            [JsonProperty("Carga")]
-            public string Carga { get; set; }
+            Root root = new Root()
+            {
+                veiculo = "",
+                rotas = new List<string>(),
+                listaCargas = new List<Cargas>(),
+            };
 
-            [JsonProperty("qty")]
-            public long Qty { get; set; }
+            public string veiculo { get; set; }
+            public List<string> rotas { get; set; }
+            public List<Cargas> listaCargas { get; set; }
         }
 
         protected void enviar_Click(object sender, EventArgs e)
@@ -114,8 +119,8 @@ namespace Roteirizacao
             //{
             //    Console.WriteLine(i);
             //}
-
             Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(lbl_nome.Text);
+          
 
             // Console.WriteLine(myDeserializedClass);
 

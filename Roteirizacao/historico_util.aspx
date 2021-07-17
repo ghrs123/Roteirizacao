@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="historico_util.aspx.cs" Inherits="Roteirizacao.historico_util" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="historico_util.aspx.cs" Inherits="Roteirizacao.historico_util" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -80,7 +80,7 @@
 
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />-->
-                                    <span class="text-dark">Christina Mason</span>
+                                    <span class="text-dark">Menu</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="https://localhost:44399/perfil_utilizador.aspx"><i class="align-middle mr-1"></i>Perfil</a>
@@ -114,7 +114,7 @@
 
                                                 <!-- /.panel-heading -->
                                                 <div class="row row-content">
-                                                    <div class="col-12">
+                                                    <div class="hirtorico">
 
                                                         <ul class="nav nav-tabs">
                                                             <li class="nav-item">
@@ -133,6 +133,7 @@
 
                                                         <div class="tab-content">
                                                             <div role="tabpanel" class="tab-pane fade show active" id="peter">
+
                                                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
                                                                     SelectCommand="SELECT historico_viagem.historicoid ,produto.descricao, quantidade, origem,localcoleta, localentrega,[data] 'data', custo, matricula
                                                                         FROM historico_viagem 
@@ -148,61 +149,87 @@
                                                                     </SelectParameters>
                                                                 </asp:SqlDataSource>
 
-                                                                <asp:Repeater runat="server" ID="rptViagem"  OnItemCommand="rptViagem_ItemCommand">
+                                                                <div class="card container">
+                                                                    <div class="card-header">
+                                                                        <h7 class="card-subtitle text-muted">Informações sobre as rotas</h7>
+                                                                    </div>
+                                                                    <asp:Panel ID="Panel1" runat="server">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                   <%-- <th align="center"></th>--%>
+                                                                                    <th align="center">Id</th>
+                                                                                    <th align="center">Produto</th>
+                                                                                    <th align="center">Quantidade Kg</th>
+                                                                                    <th align="center">Origem</th>
+                                                                                    <th align="center">Local Coleta</th>
+                                                                                    <th align="center">Local de entrega</th>
+                                                                                    <th align="center">Data</th>
+                                                                                    <!--<th style="width:15.83%">Distância (Km)</th>-->
+                                                                                    <th align="center">Custo €</th>
+                                                                                    <th align="center">Matrícula do Veículo</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
 
-                                                                    <HeaderTemplate>
-                                                                        <div class="card">
-                                                                            <div class="card-header">
-                                                                                <h7 class="card-subtitle text-muted">Informações sobre as rotas</h7>
-                                                                            </div>
-                                                                            <table class="table">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th style="width: 5%;"></th>
-                                                                                        <th style="width: 5%;">Id</th>
-                                                                                        <th style="width: 12%">Produto</th>
-                                                                                        <th style="width: 10%">Quantidade Kg</th>
-                                                                                        <th style="width: 8%;">Origem</th>
-                                                                                         <th style="width: 10%">Local Coleta</th>
-                                                                                        <th style="width: 10%">Local de entrega</th>
-                                                                                        <th style="width: 8%">Data</th>
-                                                                                        <!--<th style="width:15.83%">Distância (Km)</th>-->
-                                                                                        <th style="width: 6%">Custo €</th>
-                                                                                        <th style="width: 13%">Matrícula do Veículo</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                    </HeaderTemplate>
-                                                                    <ItemTemplate>
-                                                                        <tr>
-                                                                            <td>
-                                                                                <label class="form-check">
-                                                                                    <asp:TextBox ID="TextBox1" runat="server" type="checkbox" class="form-check-input"></asp:TextBox>
-                                                                                    <%--<input class="form-check-input" type="checkbox" value="" />--%>
-                                                                                </label>
-                                                                            </td>
-                                                                            <td><%# Eval("historicoid") %></td>
-                                                                            <td><%# Eval("descricao") %></td>
-                                                                            <td><%# Eval("quantidade") %></td>
-                                                                            <td><%# Eval("origem") %></td>
-                                                                            <td><%# Eval("localcoleta") %></td>
-                                                                            <td><%# Eval("localentrega") %></td>
-                                                                            <td"><td><%# Eval("data") %></td></td>
-                                                                            <td><%# Eval("custo") %></td>
-                                                                            <td><%# Eval("matricula") %></td>
-                                                                        </tr>
-                                                                    </ItemTemplate>
-                                                                    <FooterTemplate>
-                                                                        </tbody>
-                                                                    </table>
+                                                                                <asp:Repeater runat="server" ID="rptViagem" OnItemCommand="rptViagem_ItemCommand">
+                                                                                    <ItemTemplate>
+                                                                                        <tr>
+                                                                                            <td align="center">
+                                                                                                <%--<asp:Label ID="lblHistoricoId" runat="server" Text='<%# Eval("historicoid") %>'></asp:Label>--%>
+                                                                                                 <%# DataBinder.Eval(Container.DataItem, "historicoid") %>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                               <%-- <asp:Label ID="lblDescricao" runat="server" Text='<%# Eval("descricao") %>'></asp:Label></td>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "descricao") %>
+                                                                                                </td>
+                                                                                            <td align="center">
+                                                                                               <%-- <asp:Label ID="lblQuantidade" runat="server" Text='<%# Eval("quantidade") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "quantidade") %>
+                                                                                            </td>
 
+                                                                                            <td align="center">
+                                                                                               <%-- <asp:Label ID="lblOrigem" runat="server" Text='<%# Eval("origem") %>'></asp:Label>--%>
+                                                                                                 <%# DataBinder.Eval(Container.DataItem, "origem") %>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                               <%-- <asp:Label ID="lblLocalColeta" runat="server" Text='<%# Eval("localcoleta") %>'></asp:Label>--%>
+                                                                                                 <%# DataBinder.Eval(Container.DataItem, "localcoleta") %>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                                <%--<asp:Label ID="lblLocalEntrega" runat="server" Text='<%# Eval("localentrega") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "localentrega") %>
+                                                                                            </td>
+                                                                                              
+                                                                                            <td align="center">
+                                                                                               <%-- <asp:Label ID="lblData" runat="server" Text='<%# Eval("data") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "data") %>
+                                                                                            </td>
+                                                                                                 
+                                                                                            <td align="center">
+                                                                                               <%-- <asp:Label ID="lblCusto" runat="server" Text='<%# Eval("custo") %>'></asp:Label>--%>
+                                                                                                 <%# DataBinder.Eval(Container.DataItem, "custo") %>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                                <%--<asp:Label ID="lblMatricula" runat="server" Text='<%# Eval("matricula") %>'></asp:Label>--%>
+                                                                                                   <%# DataBinder.Eval(Container.DataItem, "matricula") %>
+                                                                                            </td>
+                                                                                             
+                                                                                            </tr>
+                                                                                    </ItemTemplate>
+                                                                                    <FooterTemplate> 
+                                                                                   </FooterTemplate>
+                                                                                </asp:Repeater>
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </asp:Panel>
+                                                                    <div class="btn_salvar col-md-3">
+                                                                           <asp:Button ID="btnPdf" runat="server" class="btn btn-primary" Text="Salvar em PDF" OnClick="btnPdf_Click" />
+                                                                      </div>
                                                                 </div>
-                                                                    </FooterTemplate>
-                                                                </asp:Repeater>
 
-                                                                <div class="btn_salvar col-md-3">
-                                                                    <asp:Button ID="btnPdf" runat="server" class="btn btn-primary" Text="Salvar em PDF" />
-                                                                </div>
+                                                               
                                                             </div>
 
                                                             <div role="tabpanel" class="tab-pane fade" id="danny">

@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 40;
+    bottom: 40px;
     margin: 6px; 
     border: 1px solid #D2E6F0;
     border-radius: 3px;
@@ -131,7 +131,23 @@ inpunt{
     box-shadow: 5px 5px 3px #bfe3f2;
 }
 
-.form-check-input{
-    position: relative;
-    width: 20px;
+.chk button{
+    width: 15px;
+ 
 }
+
+.hirtorico {
+    width: 89%;
+    margin-left: -10px;
+}
+.table {
+    width: 100%;
+}
+    .table thead tr th {
+        background-color: #6C6C6C;
+        line-height: 200%;
+        color: White;
+        width: auto;
+        font-size: 10pt;
+        font-family: Arial;
+    }
