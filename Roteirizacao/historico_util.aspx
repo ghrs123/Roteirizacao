@@ -98,7 +98,7 @@
                     </div>
                 </nav>
 
-                <main class="content">
+                <main class="content fundo">
                     <div class="container-fluid p-0">
 
                         <h1 class="h3 mb-3">Registos</h1>
@@ -113,8 +113,8 @@
                                             <div class="panel panel-default">
 
                                                 <!-- /.panel-heading -->
-                                                <div class="row row-content">
-                                                    <div class="hirtorico">
+                                                <div class="row-content">
+                                                    <div class="coluna">
 
                                                         <ul class="nav nav-tabs">
                                                             <li class="nav-item">

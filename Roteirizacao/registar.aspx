@@ -10,8 +10,7 @@
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <title>Registar | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />  
     <link rel="stylesheet" href="assets/css/animate.css" />
     <link href="estilo.css" rel="stylesheet" />
 </head>
@@ -31,24 +30,43 @@
                                 <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
                             </a>
                         </li>
+                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="https://localhost:44399/login.aspx">
+                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Login</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
             <div class="main">
-                <nav class="navbar navbar-expand navbar-light navbar-bg">
+                  <nav class="navbar navbar-expand navbar-light navbar-bg">
                     <a class="sidebar-toggle d-flex">
                         <i class="hamburger align-self-center"></i>
                     </a>
+
                     <div class="form-inline d-none d-sm-inline-block">
                         <div class="input-group input-group-navbar">
                             <input type="hidden" class="form-control" aria-label="Search" />
+                            <h3>Roteirização</h3>
                         </div>
                     </div>
-                    <div class="navbar-collapse collapse">
+
+                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown">
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                                     <i class="align-middle" data-feather="settings"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light align-middle" href="https://localhost:44399/registar.aspx">
+                                    <span class="text-dark">Cadastre-se</span>
+                                </a>
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light" href="#">
+                                    <span class="text-dark">Contacto</span>
+                                </a>
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
+                                    <span class="text-dark">Login</span>
                                 </a>
                             </li>
                         </ul>

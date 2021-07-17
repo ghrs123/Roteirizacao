@@ -74,7 +74,7 @@
 
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />-->
-                                    <span class="text-dark">Christina Mason</span>
+                                    <span class="text-dark">Menu</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="https://localhost:44399/perfil_utilizador.aspx"><i class="align-middle mr-1"></i>Perfil</a>
@@ -94,7 +94,7 @@
                     </div>
                 </nav>
 
-                <main class="content">
+                <main class="content fundo">
                     <div class="container-fluid p-0">
                         <!--<h1 class="h3 mb-3">Profile</h1>-->
                         <div class="row">

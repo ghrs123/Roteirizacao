@@ -11,7 +11,6 @@
     <title>Login | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/animate.css" />
     <link href="estilo.css" rel="stylesheet" />
 
@@ -25,11 +24,21 @@
                         <span class="align-middle">Roteirização</span>
                     </a>
                     <ul class="sidebar-nav">
-                        <li class="sidebar-header">Login
+                        <li class="sidebar-header">Paginas
                         </li>
                         <li class="sidebar-item active">
-                            <a class="sidebar-link" href="https://localhost:44399/principal.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                            <a class="sidebar-link" href="https://localhost:44399/login.aspx">
+                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sidebar-link" href="https://localhost:44399/registar.aspx">
+                                <i class="align-middle" data-feather="book-open"></i><span class="align-middle">Cadastre-se</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sidebar-link" href="https://localhost:44399/registar.aspx">
+                                <i class="align-middle" data-feather="phone"></i><span class="align-middle">Contacto</span>
                             </a>
                         </li>
                     </ul>
@@ -40,26 +49,30 @@
                     <a class="sidebar-toggle d-flex">
                         <i class="hamburger align-self-center"></i>
                     </a>
-                    <div class="form-inline d-none d-sm-inline-block">
-                        <div class="input-group input-group-navbar">
-                            <input type="hidden" class="form-control" placeholder="" aria-label="Search" />
-                        </div>
-                    </div>
+
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
-                            <li class="nav-item dropdown">
-                                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                                    <i class="align-middle" data-feather="settings"></i>
+
+                            <li class="nav-item">
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light align-middle" href="https://localhost:44399/registar.aspx">
+                                    <span class="text-dark">Cadastre-se</span>
+                                </a>
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light" href="#">
+                                    <span class="text-dark">Contacto</span>
+                                </a>
+                                <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
+                                    <span class="text-dark">Login</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </nav>
+
                 <main class="content fundo">
                     <div class="container-fluid p-0">
                         <h1 class="h3 mb-3" style="color: white;">Login</h1>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-8 col-sm-8">
                                 <div class="cards">
                                     <div class="card">
                                         <!--Login-->
@@ -70,13 +83,16 @@
                                                 <label for="password">Password:</label>
                                                 <p><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua Senha?</a></p>
                                                 <input type="password" id="tb_password" runat="server" />
-                                                <div id="lower">
-                                                      <asp:Button ID="btn_login" runat="server" Text="login" OnClick="btn_login_Click" />
-                                                    <asp:Button ID="btn_registar" runat="server" Text="Registar" OnClick="btn_registar_Click" />
-                                                  
+                                                <div id="lower" style="height: 90px;">
+                                                    <div class="ml-1">
+                                                        <asp:Button ID="btn_login" runat="server" Text="login" OnClick="btn_login_Click" />
+                                                        <asp:Button ID="btn_registar" runat="server" Text="Registar" OnClick="btn_registar_Click" />
+                                                    </div>
+                                                        <asp:Label ID="lbl_mensagem" runat="server" Text="" Style="display: inline-block; text-align: center; margin-left: 50px; margin-top: 1em;"></asp:Label>
                                                 </div>
-                                                <asp:Label ID="lbl_mensagem" runat="server" Text=""></asp:Label>
+
                                             </div>
+
                                         </div>
                                         <!--Fim Login-->
                                     </div>

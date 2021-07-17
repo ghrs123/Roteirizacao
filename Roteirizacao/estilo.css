@@ -13,7 +13,9 @@
     width: 100%
 }
 
-
+.navbar {
+    box-shadow: none;
+}
 
 #cover-spin {
     position: fixed;
@@ -71,9 +73,7 @@ inpunt{
     display: block;
 }
 
-.row-content{
-    width: 1300px;
-}
+
 
 .form .registar {
     padding-left: 60px;
@@ -96,12 +96,15 @@ inpunt{
 
   
     .fundo {
-        color: black;
-        font-family: Roboto;
+       
         background: #6377e9;
         background: -webkit-linear-gradient(to left, #2310cf, #1F1C18);
         background: linear-gradient(to left, #4682B4, #1F1C18);
     }
+
+.h3{
+    color: white;
+}
 .rotas{
     background: white;
 }
@@ -140,14 +143,17 @@ inpunt{
     width: 89%;
     margin-left: -10px;
 }
-.table {
+.coluna {
+    width: auto;
+}
+
+.table{
     width: 100%;
 }
-    .table thead tr th {
-        background-color: #6C6C6C;
-        line-height: 200%;
-        color: White;
-        width: auto;
-        font-size: 10pt;
-        font-family: Arial;
-    }
+.table thead tr th {
+    background-color: #6C6C6C;
+    line-height: 200%;
+    color: White;
+    width: auto;
+    font-size: 10pt;
+}

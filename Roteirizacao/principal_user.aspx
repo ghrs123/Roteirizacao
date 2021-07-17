@@ -14,7 +14,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-1XQsZgfFm92nBllJAJ8P4a31xYaYGs4&libraries=places,geometry&signed_in=true"></script>
     <script src="assets/js/cnv.js"></script>
-    <link href="estilo.css" rel="stylesheet" />
+<link href="estilo.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -80,7 +80,7 @@
 
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />-->
-                                    <span class="text-dark">Christina Mason</span>
+                                    <span class="text-dark">Menu</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="https://localhost:44399/perfil_utilizador.aspx"><i class="align-middle mr-1"></i>Perfil</a>

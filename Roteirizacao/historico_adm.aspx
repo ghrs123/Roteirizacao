@@ -4,24 +4,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+       <title>Histórico | Roteirização</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-    <title>Histórico | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="assets/js/cnv.js"></script>
+    <link href="estilo.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="wrapper">
-            <nav id="sidebar" class="sidebar">
+              <nav id="sidebar" class="sidebar">
+                
                 <div class="sidebar-content js-simplebar">
-                    <a class="sidebar-brand" href="https://localhost:44399/index.aspx">
+                    <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
                         <span class="align-middle">Roteirização</span>
                     </a>
-
                     <ul class="sidebar-nav">
                         <li class="sidebar-header">Paginas
                         </li>
@@ -36,19 +38,19 @@
                             </a>
                         </li>
                         <li class="sidebar-item active">
-                            <a class="sidebar-link" href="https://localhost:44399/historico_adm.aspx">
-                                <i class="align-middle" data-feather="book"></i><span class="align-middle">Histórico</span>
+                            <a class="sidebar-link " href="https://localhost:44399/historico_adm.aspx">
+                                <i class="align-middle " data-feather="book"></i><span class="align-middle">Histórico</span>
                             </a>
                         </li>
-                         <li class="sidebar-item ">
+                        <li class="sidebar-item ">
                             <a class="sidebar-link" href="https://localhost:44399/config_adm.aspx">
                                 <i class="align-middle" data-feather="settings"></i><span class="align-middle">Configuração</span>
                             </a>
                         </li>
-
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                               <i class="align-middle" data-feather="log-out"></i><asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                                <i class="align-middle" data-feather="log-out"></i>
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" Style="width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>
@@ -63,36 +65,36 @@
 
                     <div class="form-inline d-none d-sm-inline-block">
                         <div class="input-group input-group-navbar">
-                            <input type="hidden" class="form-control" placeholder="" aria-label="Search"/>
+                            <input type="hidden" class="form-control" aria-label="Search" />
                         </div>
                     </div>
 
-                    <div class="navbar-collapse collapse">
+                   <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
-
-
                             <li class="nav-item dropdown">
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                                     <i class="align-middle" data-feather="settings"></i>
                                 </a>
+
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                                    <!--<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> -->
-                                    <span class="text-dark">Charles Hall</span>
+                                    <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />-->
+                                    <span class="text-dark">Menu</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1" data-feather="user"></i>Perfil</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1"></i>Perfil</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1" data-feather="settings"></i>Configuração</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/historico_adm.aspx"><i class="align-middle mr-1"></i>Histórico</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1"></i>Configuração</a>
+                                    <div class="dropdown-divider"></div>
                                     <div class="dropdown-item" style="text-align: center;">
-                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton>
-                                    </div>
+                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
-
-                <main class="content">
+                <main class="content fundo">
                     <div class="container-fluid p-0">
                         <h1 class="h3 mb-3">Administração</h1>
                         <div class="row">
@@ -105,8 +107,8 @@
                                             <div class="panel panel-default">
 
                                                 <!-- /.panel-heading -->
-                                                <div class="row row-content">
-                                                    <div class="col-12">
+                                                <div class="row-content">
+                                                    <div class="coluna ">
 
                                                         <ul class="nav nav-tabs">
                                                             <li class="nav-item">
@@ -294,15 +296,15 @@
                                                 <!-- /.panel-body -->
                                             </div>
                                         </div>
-                                        <div class="card-body">
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
-
+            </div>
+            </div>
                 <footer class="footer">
                     <div class="container-fluid">
                         <div class="row text-muted">
@@ -330,79 +332,77 @@
                         </div>
                     </div>
                 </footer>
-            </div>
-        </div>
-
-        <script>
-            $(function () {
-                // Line chart
-                new Chart(document.getElementById("chartjs-line"), {
-                    type: "line",
-                    data: {
-                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                        datasets: [{
-                            label: "Custo ($)",
-                            fill: true,
-                            backgroundColor: "transparent",
-                            borderColor: window.theme.primary,
-                            data: [2115, 1562, 1584, 1892, 1487, 2223, 2966, 2448, 2905, 6000, 2917, 3327]
-                        }, {
-                            label: "Utilizadores",
-                            fill: true,
-                            backgroundColor: "transparent",
-                            borderColor: "#adb5bd",
-                            borderDash: [4, 4],
-                            data: [958, 724, 629, 883, 915, 1214, 1476, 1212, 1554, 2128, 1466, 1827]
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: false
-                        },
-                        tooltips: {
-                            intersect: false
-                        },
-                        hover: {
-                            intersect: true
-                        },
-                        plugins: {
-                            filler: {
-                                propagate: false
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                reverse: true,
-                                gridLines: {
-                                    color: "rgba(0,0,0,0.05)"
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    stepSize: 500
+      
+                <script>
+                    $(function () {
+                        // Line chart
+                        new Chart(document.getElementById("chartjs-line"), {
+                            type: "line",
+                            data: {
+                                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                datasets: [{
+                                    label: "Custo ($)",
+                                    fill: true,
+                                    backgroundColor: "transparent",
+                                    borderColor: window.theme.primary,
+                                    data: [2115, 1562, 1584, 1892, 1487, 2223, 2966, 2448, 2905, 6000, 2917, 3327]
+                                }, {
+                                    label: "Utilizadores",
+                                    fill: true,
+                                    backgroundColor: "transparent",
+                                    borderColor: "#adb5bd",
+                                    borderDash: [4, 4],
+                                    data: [958, 724, 629, 883, 915, 1214, 1476, 1212, 1554, 2128, 1466, 1827]
+                                }]
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false
                                 },
-                                display: true,
-                                borderDash: [5, 5],
-                                gridLines: {
-                                    color: "rgba(0,0,0,0)",
-                                    fontColor: "#fff"
+                                tooltips: {
+                                    intersect: false
+                                },
+                                hover: {
+                                    intersect: true
+                                },
+                                plugins: {
+                                    filler: {
+                                        propagate: false
+                                    }
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        reverse: true,
+                                        gridLines: {
+                                            color: "rgba(0,0,0,0.05)"
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        ticks: {
+                                            stepSize: 500
+                                        },
+                                        display: true,
+                                        borderDash: [5, 5],
+                                        gridLines: {
+                                            color: "rgba(0,0,0,0)",
+                                            fontColor: "#fff"
+                                        }
+                                    }]
                                 }
-                            }]
-                        }
-                    }
-                });
-            });
-        </script>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-        <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-        <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+                            }
+                        });
+                    });
+                </script>
+   <%--                <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>--%>
+                <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+                <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+                <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+                <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-
-        <script src="assets/js/vendor.js"></script>
-        <script src="assets/js/app.js"></script>
-
+                <script src="assets/js/vendor.js"></script>
+                <script src="assets/js/app.js"></script>
     </form>
 </body>
 </html>

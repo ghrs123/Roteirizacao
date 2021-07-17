@@ -7,16 +7,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+     <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="estilo.css" rel="stylesheet" />
     <title>Perfil | Roteirização</title>
-    <link href="assets/css/app.css" rel="stylesheet" />
 
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="wrapper">
             <nav id="sidebar" class="sidebar">
+                
                 <div class="sidebar-content js-simplebar">
-                    <a class="sidebar-brand" href="https://localhost:44399/index.aspx">
+                    <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
                         <span class="align-middle">Roteirização</span>
                     </a>
                     <ul class="sidebar-nav">
@@ -27,14 +29,14 @@
                                 <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
                             </a>
                         </li>
-                        <li class="sidebar-item active">
+                        <li class="sidebar-item  active">
                             <a class="sidebar-link" href="https://localhost:44399/perfil_adm.aspx">
                                 <i class="align-middle" data-feather="user"></i><span class="align-middle">Perfil</span>
                             </a>
                         </li>
-                        <li class="sidebar-item ">
-                            <a class="sidebar-link" href="https://localhost:44399/historico_adm.aspx">
-                                <i class="align-middle" data-feather="book"></i><span class="align-middle">Histórico</span>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link " href="https://localhost:44399/historico_adm.aspx">
+                                <i class="align-middle " data-feather="book"></i><span class="align-middle">Histórico</span>
                             </a>
                         </li>
                         <li class="sidebar-item ">
@@ -44,7 +46,8 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                               <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                                <i class="align-middle" data-feather="log-out"></i>
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" Style="width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>
@@ -52,13 +55,14 @@
             </nav>
 
             <div class="main">
-                <nav class="navbar navbar-expand navbar-light navbar-bg">
+                 <nav class="navbar navbar-expand navbar-light navbar-bg">
                     <a class="sidebar-toggle d-flex">
                         <i class="hamburger align-self-center"></i>
                     </a>
+
                     <div class="form-inline d-none d-sm-inline-block">
                         <div class="input-group input-group-navbar">
-                            <input type="hidden" class="form-control" placeholder="" aria-label="Search">
+                            <input type="hidden" class="form-control" aria-label="Search" />
                         </div>
                     </div>
 
@@ -66,27 +70,28 @@
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown">
                                 <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                                    <i class="align-middle" data-feather="settings"></i>
+                                    <i class="align-middle" data-feather="aperture"></i>
                                 </a>
+
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                                    <!--<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> -->
-                                    <span class="text-dark">Charles Hall</span>
+                                    <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />-->
+                                    <span class="text-dark">Menu</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1" data-feather="user"></i>Perfil</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1" ></i>Perfil</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1" data-feather="settings"></i>Configuração</a>
-                                    <div class="dropdown-item" style="text-align: center;">
-                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton>
-
-                                    </div>
+                                    <a class="dropdown-item" href="https://localhost:44399/historico_adm.aspx"><i class="align-middle mr-1" ></i>Histórico</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1" ></i>Configuração</a>
+                                    <div class="dropdown-divider"></div>
+                                  <div class="dropdown-item" style="text-align: center;"><asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>                           
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
 
-                <main class="content">
+                          <main class="content fundo">
                     <div class="container-fluid p-0">
                         <!--<h1 class="h3 mb-3">Profile</h1>-->
                         <div class="row">
@@ -100,7 +105,6 @@
                             <div class="col-md-10 col-xl-10">
                                 <div class="card">
                                     <div class="card-header">
-
                                         <h1 class="card-title mb-0">Perfil</h1>
                                     </div>
                                     <div class="card-body h-100">
@@ -109,112 +113,111 @@
 
                                         <!-- Conteudo perfil -->
 
-                                        <div class="content">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="cardd">
+                                        <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" Width="100%">
+                                            <ItemTemplate>
 
-                                                        <div class="card-body">
-                                                            <div class="form">
-                                                                <div class="row">
-                                                                    <!--<div class="col-md-5 pr-1">
-													 <div class="form-group">
-														<label>Companhia (disabled)</label>
-														<input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-													  </div>
-													  
-													</div>-->
-                                                                    <div class="col-md-5 px-1">
-                                                                        <div class="form-group">
-                                                                            <label>Username</label>
-                                                                            <input type="text" class="form-control" placeholder="" value="cadmin123">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-7 pl-1">
-                                                                        <div class="form-group">
-                                                                            <label for="exampleInputEmail1">Email</label>
-                                                                            <input type="email" class="form-control" placeholder="admin@mail.com">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6 pr-1">
-                                                                        <div class="form-group">
-                                                                            <label>Nome</label>
-                                                                            <input type="text" class="form-control" placeholder="" value="Carlos">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 pl-1">
-                                                                        <div class="form-group">
-                                                                            <label>Apelido</label>
-                                                                            <input type="text" class="form-control" placeholder="" value="marques">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <label>Morada</label>
-                                                                            <input type="text" class="form-control" placeholder="" value="Rua x, nº, Ap.">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-4 pr-1">
-                                                                        <div class="form-group">
-                                                                            <label>Cidade</label>
-                                                                            <input type="text" class="form-control" placeholder="" value="Lisboa">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4 px-1">
-                                                                        <div class="form-group">
-                                                                            <label>País</label>
-                                                                            <input type="text" class="form-control" placeholder="" value="Portugal">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-4 pl-1">
-                                                                        <div class="form-group">
-                                                                            <label>Código Postal</label>
-                                                                            <input type="number" class="form-control" placeholder="2300-269">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                <div class="content-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="cardd">
 
+                                                                <div class="card-body">
+                                                                    <div class="form">
+                                                                        <div class="row">
+                                                                            <div class="col-md-5 px-1">
+                                                                                <div class="form-group">
+                                                                                    <label>Username</label>
+                                                                                    <asp:Label ID="tb_user" runat="server" class="form-control" Text='<%# Eval("username") %>'></asp:Label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-7 pl-1">
+                                                                                <div class="form-group">
+                                                                                    <label for="exampleInputEmail1">Email</label>
+                                                                                    <asp:Label ID="tb_email" runat="server" class="form-control" Text='<%# Eval("email") %>'></asp:Label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pr-1">
+                                                                                <div class="form-group">
+                                                                                    <label>Nome</label>
+                                                                                    <asp:Label ID="lbl_nome" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6 pl-1">
+                                                                                <div class="form-group">
+                                                                                    <label>Apelido</label>
+                                                                                    <asp:Label ID="lbl_apelido" runat="server" class="form-control" Text='<%# Eval("apelido") %>'></asp:Label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Morada</label>
+                                                                                    <asp:Label ID="lbl_morada" runat="server" class="form-control" Text='<%# Eval("morada") %>'></asp:Label>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4 pr-1">
+                                                                                <div class="form-group">
+                                                                                    <label>Cidade</label>
+                                                                                    <asp:Label ID="lbl_cidade" runat="server" class="form-control" Text='<%# Eval("cidade") %>'></asp:Label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4 px-1">
+                                                                                <div class="form-group">
+                                                                                    <label>País</label>
+                                                                                    <asp:Label ID="lbl_pais" runat="server" class="form-control" Text='<%# Eval("pais") %>'></asp:Label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4 pl-1">
+                                                                                <div class="form-group">
+                                                                                    <label>Código Postal</label>
+                                                                                    <asp:Label ID="lbl_cod_postal" runat="server" class="form-control" Text='<%# Eval("cod_postal") %>'></asp:Label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="card card-user">
+
+                                                                <div class="card-body">
+
+                                                                    <div class="card-header">
+                                                                        <h5 class="card-title mb-0">Minha Foto</h5>
+                                                                    </div>
+                                                                    <div class="card-body text-center">
+                                                                        <asp:Image ID="Image1" runat="server" ImageUrl='<%# String.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String((byte[])Eval("ficheiro")) ) %>' class="img-fluid rounded-circle mb-2" Width="128" Height="128" />
+                                                                        <h5 class="card-title mb-0">
+                                                                            <asp:Label ID="lbl_name" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:Label>
+                                                                    </div>
+                                                                </div>
+                                                                <hr />
+                                                                <div class="button-container pb-6">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="card card-user">
+                                            </ItemTemplate>
+                                        </asp:DataList>
 
-                                                        <div class="card-body">
-
-                                                            <div class="card-header">
-                                                                <h5 class="card-title mb-0">Minha Foto</h5>
-                                                            </div>
-                                                            <div class="card-body text-center">
-                                                                <img src="img/avatars/avatar.jpg" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                                                                <h5 class="card-title mb-0">Carlos Marques</h5>
-
-                                                            </div>
-                                                        </div>
-                                                        <hr>
-                                                        <div class="button-container pb-6">
-                                                            <!--<button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-												  <i class="fab fa-facebook-f"></i>
-												</button>
-												<button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-												  <i class="fab fa-twitter"></i>
-												</button>
-												<button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-												  <i class="fab fa-google-plus-g"></i>
-												</button>
-											-->
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
+                                            SelectCommand="SELECT * FROM utilizador INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid 
+                                            INNER JOIN imagem ON imagem.utilizadorid = utilizador.utilizadorid
+                                            WHERE username = @util">
+                                            <SelectParameters>
+                                                <asp:SessionParameter Name="util" SessionField="util" Type="String" />
+                                            </SelectParameters>
+                                        </asp:SqlDataSource>
 
                                         <!-- Fim  Conteudo perfil -->
 

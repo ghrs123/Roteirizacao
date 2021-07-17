@@ -1,26 +1,25 @@
-﻿w<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="principal_adm.aspx.cs" Inherits="Roteirizacao.principal_adm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="principal_adm.aspx.cs" Inherits="Roteirizacao.principal_adm" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title>Roteirização </title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <link href="assets/css/app.css" rel="stylesheet" />
-
-    <title>Roteirização  </title>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-1XQsZgfFm92nBllJAJ8P4a31xYaYGs4&libraries=places,geometry&signed_in=true"></script>
     <script src="assets/js/cnv.js"></script>
     <link href="estilo.css" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-1XQsZgfFm92nBllJAJ8P4a31xYaYGs4&libraries=places,geometry&signed_in=true"></script>  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server" method="post">
         <div class="wrapper">
-           <nav id="sidebar" class="sidebar">
+          <nav id="sidebar" class="sidebar">
+                
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
                         <span class="align-middle">Roteirização</span>
@@ -50,16 +49,16 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                               <i class="align-middle" data-feather="log-out"></i> <asp:Button class="align-middle"   ID="btn_sair" runat="server" Text="Sair" OnClick="btn_sair_Click" />
+                                <i class="align-middle" data-feather="log-out"></i>
+                                <asp:Button class="align-middle" ID="btn_sair" runat="server" Text="Sair" Style="width: 40px;" OnClick="btn_sair_Click" />
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-
             <div class="main">
-               <nav class="navbar navbar-expand navbar-light navbar-bg">
+              <nav class="navbar navbar-expand navbar-light navbar-bg">
                     <a class="sidebar-toggle d-flex">
                         <i class="hamburger align-self-center"></i>
                     </a>
@@ -79,16 +78,17 @@
 
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
                                     <!-- <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" />-->
-                                    <span class="text-dark">Christina Mason</span>
+                                    <span class="text-dark">Menu</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1" ></i>Perfil</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1"></i>Perfil</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://localhost:44399/historico_adm.aspx"><i class="align-middle mr-1" ></i>Histórico</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/historico_adm.aspx"><i class="align-middle mr-1"></i>Histórico</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1" ></i>Configuração</a>
+                                    <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1"></i>Configuração</a>
                                     <div class="dropdown-divider"></div>
-                                  <div class="dropdown-item" style="text-align: center;"><asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>                           
+                                    <div class="dropdown-item" style="text-align: center;">
+                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>
                                 </div>
                             </li>
                         </ul>
@@ -175,8 +175,7 @@
                                     </thead>
                                     <tbody>
                                         <tr id='truck0'>
-                                            <td style="display: none;">1
-                                            </td>
+                                            <td style="display: none;">1</td>
                                             <td>
                                                 <input type="text" id='id0' name='id' class=" form-control input-md" placeholder="Referência do veículo" />
                                             </td>
@@ -197,15 +196,11 @@
                                 <a id='delete_truck' class="btn btn-danger pull-center ">Remover Veículo</a>
                                 <a id='enviar' class="btn btn-success pull-center ">ROTEIRIZAR</a>&nbsp
 				                <a id='send' class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
-
-
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
-
                                     <div id="resultado" class="mb-5"></div>
                                     <div id="rtime" style="background-color: chartreuse;"></div>
                                     <div id="zmin" style="background-color: chartreuse;"></div>
-
                                 </div>
                                 <div class="mapa" style="position: relative;">
                                     <div id="map"></div>

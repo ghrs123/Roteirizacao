@@ -23,43 +23,46 @@ namespace Roteirizacao
 
         protected void btn_recuperar_Click(object sender, EventArgs e)
         {
-            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            SqlCommand myCommand = new SqlCommand();
+            
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                SqlCommand myCommand = new SqlCommand();
 
-            myCommand.Parameters.AddWithValue("@email", tb_email.Value);
+                myCommand.Parameters.AddWithValue("@email", tb_email.Value);
 
-            SqlParameter valor = new SqlParameter();
-            valor.ParameterName = "@retorno_pw";
-            valor.Direction = ParameterDirection.Output;
-            valor.SqlDbType = SqlDbType.VarChar;
-            valor.Size = 30;
-            myCommand.Parameters.Add(valor);
-
-
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "recuperar";
+                SqlParameter valor = new SqlParameter();
+                valor.ParameterName = "@retorno_pw";
+                valor.Direction = ParameterDirection.Output;
+                valor.SqlDbType = SqlDbType.VarChar;
+                valor.Size = 30;
+                myCommand.Parameters.Add(valor);
 
 
-            myCommand.Connection = myConn;
-            myConn.Open();
-            myCommand.ExecuteNonQuery();
-            string respostaSP = myCommand.Parameters["@retorno_pw"].Value.ToString();
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "recuperar";
 
 
-            myConn.Close();
+                myCommand.Connection = myConn;
+                myConn.Open();
+                myCommand.ExecuteNonQuery();
+                string respostaSP = myCommand.Parameters["@retorno_pw"].Value.ToString();
 
-            if (respostaSP == "")
-            {
-                lbl_mensagem.Text = "Esse endereço de email não está registado";
 
-            }
+                myConn.Close();
 
-            else
-            {
+                if (respostaSP == "")
+                {
+                    lbl_mensagem.Text = "Esse endereço de email não está registado";
 
-                lbl_mensagem.Text = $"A sua plavra-passe é {DecryptString(respostaSP)}";
-            }
+                }
 
+                else
+                {
+
+                    lbl_mensagem.Text = $"A sua plavra-passe é {DecryptString(respostaSP)}";
+                }
+
+            
+            
         }
 
         public static string DecryptString(string Message)
