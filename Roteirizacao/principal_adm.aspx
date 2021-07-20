@@ -117,34 +117,20 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_logic">
-                                    <thead>
+                                       <thead>
                                         <tr>
-                                            <th class="text-center" style="display: none;">#</th>
-                                            <th class="text-center">Local de Coleta</th>
-                                            <th class="text-center">Local de Entrega</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id='pickup1'>
-                                            <td class="text-center" style="display: none;">1</td>
-                                            <td>
-                                                <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Coleta" />
-                                            </td>
-                                            <td>
-                                                <input type="text" name='dest1' id='dest1' class="form-control input-md dest" placeholder="Local de Entrega" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center" style="display: none;">#</th>
-                                            <th class="text-center">Produto</th>
-                                            <th class="text-center">Demanda (kg)</th>
+                                            <th class="text-center" style="display: none;">#
+                                            </th>
+                                            <th class="text-center">Produto
+                                            </th>
+                                            <th class="text-center">Demanda (kg)
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr id='addr1'>
-                                            <td class="text-center" style="display: none;">1</td>
+                                            <td class="text-center" style="display: none;">1
+                                            </td>
                                             <td>
                                                 <input type="text" name='prod1' id='prod1' class=" form-control input-md" placeholder="Produto" />
                                             </td>
@@ -153,6 +139,29 @@
                                             </td>
                                         </tr>
                                     </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="display: none;">#
+                                            </th>
+                                            <th class="text-center">Local de Coleta
+                                            </th>
+                                            <th class="text-center">Local de Entrega
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='pickup1'>
+                                            <td class="text-center" style="display: none;">1
+                                            </td>
+                                            <td>
+                                                <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Coleta" />
+                                            </td>
+                                            <td>
+                                                <input type="text" name='dest1' id='dest1' class="form-control input-md dest" placeholder="Local de Entrega" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                 
                                 </table>
                                 <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
 			                    <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>

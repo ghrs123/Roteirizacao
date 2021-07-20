@@ -146,14 +146,14 @@ inpunt{
 .coluna {
     width: auto;
 }
-
-.table{
+/*
+.table {
     width: 100%;
-}
+}*/
+
 .table thead tr th {
     background-color: #6C6C6C;
     line-height: 200%;
     color: White;
-    width: auto;
     font-size: 10pt;
 }

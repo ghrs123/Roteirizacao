@@ -119,6 +119,28 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_logic">
+                                       <thead>
+                                        <tr>
+                                            <th class="text-center" style="display: none;">#
+                                            </th>
+                                            <th class="text-center">Produto
+                                            </th>
+                                            <th class="text-center">Demanda (kg)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id='addr1'>
+                                            <td class="text-center" style="display: none;">1
+                                            </td>
+                                            <td>
+                                                <input type="text" name='prod1' id='prod1' class=" form-control input-md" placeholder="Produto" />
+                                            </td>
+                                            <td>
+                                                <input runat="server" type="number" step="1" min="1" max="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="display: none;">#
@@ -141,28 +163,7 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center" style="display: none;">#
-                                            </th>
-                                            <th class="text-center">Produto
-                                            </th>
-                                            <th class="text-center">Demanda (kg)
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id='addr1'>
-                                            <td class="text-center" style="display: none;">1
-                                            </td>
-                                            <td>
-                                                <input type="text" name='prod1' id='prod1' class=" form-control input-md" placeholder="Produto" />
-                                            </td>
-                                            <td>
-                                                <input runat="server" type="number" step="1" min="1" max="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                 
                                 </table>
                                 <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
 			                    <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>

@@ -35,14 +35,17 @@ namespace Roteirizacao
 
 
 
-            string query = " SELECT historico_viagem.historicoid ,produto.descricao, quantidade, origem,localcoleta, localentrega, convert(char(10), data, 103) 'data', custo, matricula" +
-                    " FROM historico_viagem" +
-                    " JOIN carregar ON carregar.historicoid = historico_viagem.historicoid" +
-                    " JOIN produto ON carregar.produtoid = produto.produtoid" +
-                    " JOIN camiao ON carregar.camiaoid = camiao.camiaoid" +
-                    " JOIN utilizador ON utilizador.utilizadorid = camiao.utilizadorid" +
-                    " JOIN rota ON rota.historicoid = historico_viagem.historicoid" +
-                    " WHERE username ='" + Session["util"] + "' OR email ='" + Session["util"] + "';";
+            string query = " SELECT historicoid , descricao, peso_carga, origem,localColeta, localEntrega, convert(char(10), data_viagem, 103) 'data',Cast(CONVERT(DECIMAL(10,2),custoKm) as nvarchar) AS custoKm, matricula" +
+                " FROM historico_viagem" +
+                " JOIN camiao ON historico_viagem.camiaoid = camiao.camiaoid" +
+                " JOIN carregar ON carregar.camiaoid = camiao.camiaoid" +
+                " JOIN produto ON produto.produtoid = carregar.produtoid" +
+                " JOIN rota ON rota.rotaid = carregar.rotaid" +
+                " JOIN entrega ON entrega.rotaid = rota.rotaid" +
+                " JOIN coleta ON coleta.rotaid = rota.rotaid" +
+                " INNER JOIN utilizador ON utilizador.utilizadorid = historico_viagem.utilizadorid" +
+                " WHERE utilizador.username = '" + Session["util"] + "' OR email ='" + Session["util"] + "';";
+
             SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
             myConn.Open();
 
@@ -165,28 +168,29 @@ namespace Roteirizacao
                         Doc.SetPageSize(new Rectangle(600, 300));
                         Doc.NewPage();
                         rptViagem.Items[i].RenderControl(hw);
-                      
+
                         repeaterTable = "<table>" +
                                             "<thead>" +
                                                 "<tr>" +
-                                                    "<th> Id </ th >" +
+                                                    "<th> Id </th >" +
                                                     "<th> Produto </th>" +
-                                                    "<t> Quantidade Kg </ th > " +
-                                                    "<th> Origem </ th > " +
-                                                    "<th> Local Coleta </ th >" +
-                                                    "<th> Local de entrega</ th >" +
-                                                    "<th> Data </ th >" +
-                                                    "<th> Custo €</ th >" +
-                                                    "<th> Matrícula do Veículo </ th >." +
-                                                  "</tr > " +
+                                                    "<th> Peso Kg </th > " +
+                                                    "<th> Origem </th > " +
+                                                    "<th> Local Coleta</th >" +
+                                                    "<th> Local de entrega</th >" +
+                                                    "<th> Data</th >" +
+                                                    "<th> Custo por Km</th >" +
+                                                    "<th> Matrícula do Veículo</th >." +
+                                                 "</tr> " +
                                              "</thead >" +
                                              "<tbody>" +
                                              sw.ToString() +
-                                             "</ tbody ></ table >";
+                                             "</ tbody >" +
+                                          "</ table >";
 
                     }
                 }
-               
+
 
                 StringWriter stringWriter = new StringWriter();
                 HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
@@ -194,7 +198,7 @@ namespace Roteirizacao
                 Panel1.RenderControl(htmlTextWriter);
 
                 StringReader stringReader = new StringReader(repeaterTable.ToString());
-                
+
                 htmlparser.Parse(stringReader);
                 Doc.Close();
                 Response.Write(Doc);

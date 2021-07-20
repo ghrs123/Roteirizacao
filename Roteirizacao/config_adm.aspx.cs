@@ -210,7 +210,6 @@ namespace Roteirizacao
             SqlCommand myCommand = new SqlCommand();
             myConn.Open();
 
-
             myCommand.Parameters.AddWithValue("@utilizador", Session["util"].ToString());
             myCommand.Parameters.AddWithValue("@pw_atual", EncryptString(tb_senhaatual.Text));
             myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tb_novasenha.Text));

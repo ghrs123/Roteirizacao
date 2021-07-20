@@ -134,20 +134,7 @@
                                                         <div class="tab-content">
                                                             <div role="tabpanel" class="tab-pane fade show active" id="peter">
 
-                                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
-                                                                    SelectCommand="SELECT historico_viagem.historicoid ,produto.descricao, quantidade, origem,localcoleta, localentrega,[data] 'data', custo, matricula
-                                                                        FROM historico_viagem 
-                                                                        JOIN carregar ON carregar.historicoid = historico_viagem.historicoid
-                                                                        JOIN produto ON carregar.produtoid = produto.produtoid
-                                                                        JOIN camiao ON carregar.camiaoid = camiao.camiaoid
-                                                                        JOIN utilizador ON utilizador.utilizadorid = camiao.utilizadorid
-                                                                        JOIN rota ON rota.historicoid = historico_viagem.historicoid
-                                                                        WHERE username = @util">
-
-                                                                    <SelectParameters>
-                                                                        <asp:SessionParameter Name="util" SessionField="util" Type="String" />
-                                                                    </SelectParameters>
-                                                                </asp:SqlDataSource>
+                                                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"></asp:SqlDataSource>
 
                                                                 <div class="card container">
                                                                     <div class="card-header">
@@ -157,16 +144,16 @@
                                                                         <table class="table">
                                                                             <thead>
                                                                                 <tr>
-                                                                                   <%-- <th align="center"></th>--%>
+                                                                                    <%-- <th align="center"></th>--%>
                                                                                     <th align="center">Id</th>
                                                                                     <th align="center">Produto</th>
-                                                                                    <th align="center">Quantidade Kg</th>
+                                                                                    <th align="center">Peso Kg</th>
                                                                                     <th align="center">Origem</th>
                                                                                     <th align="center">Local Coleta</th>
                                                                                     <th align="center">Local de entrega</th>
                                                                                     <th align="center">Data</th>
                                                                                     <!--<th style="width:15.83%">Distância (Km)</th>-->
-                                                                                    <th align="center">Custo €</th>
+                                                                                    <th align="center">Custo por Km</th>
                                                                                     <th align="center">Matrícula do Veículo</th>
                                                                                 </tr>
                                                                             </thead>
@@ -177,59 +164,59 @@
                                                                                         <tr>
                                                                                             <td align="center">
                                                                                                 <%--<asp:Label ID="lblHistoricoId" runat="server" Text='<%# Eval("historicoid") %>'></asp:Label>--%>
-                                                                                                 <%# DataBinder.Eval(Container.DataItem, "historicoid") %>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "historicoid") %>
                                                                                             </td>
                                                                                             <td align="center">
-                                                                                               <%-- <asp:Label ID="lblDescricao" runat="server" Text='<%# Eval("descricao") %>'></asp:Label></td>--%>
+                                                                                                <%-- <asp:Label ID="lblDescricao" runat="server" Text='<%# Eval("descricao") %>'></asp:Label></td>--%>
                                                                                                 <%# DataBinder.Eval(Container.DataItem, "descricao") %>
-                                                                                                </td>
+                                                                                            </td>
                                                                                             <td align="center">
-                                                                                               <%-- <asp:Label ID="lblQuantidade" runat="server" Text='<%# Eval("quantidade") %>'></asp:Label>--%>
-                                                                                                <%# DataBinder.Eval(Container.DataItem, "quantidade") %>
+                                                                                                <%-- <asp:Label ID="lblQuantidade" runat="server" Text='<%# Eval("quantidade") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "peso_carga") %>
                                                                                             </td>
 
                                                                                             <td align="center">
-                                                                                               <%-- <asp:Label ID="lblOrigem" runat="server" Text='<%# Eval("origem") %>'></asp:Label>--%>
-                                                                                                 <%# DataBinder.Eval(Container.DataItem, "origem") %>
+                                                                                                <%-- <asp:Label ID="lblOrigem" runat="server" Text='<%# Eval("origem") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "origem") %>
                                                                                             </td>
                                                                                             <td align="center">
-                                                                                               <%-- <asp:Label ID="lblLocalColeta" runat="server" Text='<%# Eval("localcoleta") %>'></asp:Label>--%>
-                                                                                                 <%# DataBinder.Eval(Container.DataItem, "localcoleta") %>
+                                                                                                <%-- <asp:Label ID="lblLocalColeta" runat="server" Text='<%# Eval("localcoleta") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "localColeta") %>
                                                                                             </td>
                                                                                             <td align="center">
                                                                                                 <%--<asp:Label ID="lblLocalEntrega" runat="server" Text='<%# Eval("localentrega") %>'></asp:Label>--%>
-                                                                                                <%# DataBinder.Eval(Container.DataItem, "localentrega") %>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "localEntrega") %>
                                                                                             </td>
-                                                                                              
+
                                                                                             <td align="center">
-                                                                                               <%-- <asp:Label ID="lblData" runat="server" Text='<%# Eval("data") %>'></asp:Label>--%>
+                                                                                                <%-- <asp:Label ID="lblData" runat="server" Text='<%# Eval("data") %>'></asp:Label>--%>
                                                                                                 <%# DataBinder.Eval(Container.DataItem, "data") %>
                                                                                             </td>
-                                                                                                 
+
                                                                                             <td align="center">
-                                                                                               <%-- <asp:Label ID="lblCusto" runat="server" Text='<%# Eval("custo") %>'></asp:Label>--%>
-                                                                                                 <%# DataBinder.Eval(Container.DataItem, "custo") %>
+                                                                                                <%-- <asp:Label ID="lblCusto" runat="server" Text='<%# Eval("custo") %>'></asp:Label>--%>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "custoKm") %>
                                                                                             </td>
                                                                                             <td align="center">
                                                                                                 <%--<asp:Label ID="lblMatricula" runat="server" Text='<%# Eval("matricula") %>'></asp:Label>--%>
-                                                                                                   <%# DataBinder.Eval(Container.DataItem, "matricula") %>
+                                                                                                <%# DataBinder.Eval(Container.DataItem, "matricula") %>
                                                                                             </td>
-                                                                                             
-                                                                                            </tr>
+
+                                                                                        </tr>
                                                                                     </ItemTemplate>
-                                                                                    <FooterTemplate> 
-                                                                                   </FooterTemplate>
+                                                                                    <FooterTemplate>
+                                                                                    </FooterTemplate>
                                                                                 </asp:Repeater>
                                                                             </tbody>
                                                                         </table>
 
                                                                     </asp:Panel>
                                                                     <div class="btn_salvar col-md-3">
-                                                                           <asp:Button ID="btnPdf" runat="server" class="btn btn-primary" Text="Salvar em PDF" OnClick="btnPdf_Click" />
-                                                                      </div>
+                                                                        <asp:Button ID="btnPdf" runat="server" class="btn btn-primary" Text="Salvar em PDF" OnClick="btnPdf_Click" />
+                                                                    </div>
                                                                 </div>
 
-                                                               
+
                                                             </div>
 
                                                             <div role="tabpanel" class="tab-pane fade" id="danny">

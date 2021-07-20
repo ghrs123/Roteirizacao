@@ -55,7 +55,7 @@ namespace Roteirizacao
             int respostaPerfilSP = Convert.ToInt32(myCommand.Parameters["@retorno_perfil"].Value);
 
             myConn.Close();
-
+          
 
             if (repostaSP == 1)
             {
