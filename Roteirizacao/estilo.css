@@ -1,4 +1,10 @@
-﻿
+﻿body{
+    margin-top: 0;
+
+}
+
+
+
 #map {
     background: white;
     position: absolute;
@@ -14,9 +20,9 @@
 }
 
 .navbar {
-    box-shadow: none;
+  /*  box-shadow: none;
     top: 12px;
-    left: 2px;
+    left: 2px;*/
 }
 
 #cover-spin {
@@ -162,4 +168,10 @@ inpunt{
 
 .form-group #tb_pw input{
     width: 90px;
+}
+
+form {
+    margin: 0 auto;
+    margin-top: 0px;
+   
 }
