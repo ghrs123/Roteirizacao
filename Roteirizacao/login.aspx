@@ -14,17 +14,10 @@
     <link rel="stylesheet" href="assets/css/animate.css" />
     <link href="estilo.css" rel="stylesheet" />
 
-    <style type="text/css">
-        .auto-style1 {
-            left: -142px;
-            top: -270px;
-        }
-    </style>
-
 </head>
-<body style="height: 412px">
+<body>
     <form id="form1" runat="server">
-        <div class="wrapper" style="z-index: -1">
+        <div class="wrapper">
             <nav id="sidebar" class="sidebar">
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
@@ -34,8 +27,8 @@
                         <li class="sidebar-header">Paginas
                         </li>
                         <li class="sidebar-item active">
-                            <a class="sidebar-link" href="https://localhost:44399/principal.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                            <a class="sidebar-link" href="https://localhost:44399/login.aspx">
+                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Login</span>
                             </a>
                         </li>
                         <li>
@@ -79,7 +72,7 @@
                     <div class="container-fluid p-0">
                         <h1 class="h3 mb-3" style="color: white;">Login</h1>
                         <div class="row">
-                            <div class="auto-style1">
+                            <div class="col-md-8 col-sm-8">
                                 <div class="cards">
                                     <div class="card">
                                         <!--Login-->

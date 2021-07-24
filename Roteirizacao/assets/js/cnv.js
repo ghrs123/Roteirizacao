@@ -6,8 +6,8 @@
 			directionsDisplay = new google.maps.DirectionsRenderer;
 
 			var myOptions = {
-				center: new google.maps.LatLng(38.736946, -9.140560),
-				zoom : 8,
+				center : new google.maps.LatLng(-22.3577, -47.3849),
+				zoom : 5,
 				mapTypeId : google.maps.MapTypeId.ROADMAP
 			};
 			map = new google.maps.Map(document.getElementById("map"), myOptions);
@@ -39,7 +39,7 @@
 				marker = new google.maps.Marker({
 					position : latLng,
 					map : map,
-					title : "€ " + data.properties.CustoR$,
+					title : "R$ " + data.properties.CustoR$,
 					icon : "/images/toll-both1.png"
 
 				});
@@ -53,7 +53,7 @@
 							+ data.properties.Praça + '<br>Rodovia: '
 							+ data.properties.Rodovia + '<br>Sentido: '
 							+ data.properties.Sentido + '<br>km: '
-							+ data.properties.km + '<br><b>Preço: €</b>'
+							+ data.properties.km + '<br><b>Preço: R$</b>'
 							+ '<b>' + tPrice + '</b>'
 				});
 

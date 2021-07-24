@@ -15,8 +15,6 @@
 
 .navbar {
     box-shadow: none;
-    top: 12px;
-    left: 2px;
 }
 
 #cover-spin {
@@ -158,8 +156,4 @@ inpunt{
     line-height: 200%;
     color: White;
     font-size: 10pt;
-}
-
-.form-group #tb_pw input{
-    width: 90px;
 }

@@ -24,15 +24,6 @@ namespace Roteirizacao
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Controle btnRegistarRota.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistarRota;
-
-        /// <summary>
         /// Controle qty1.
         /// </summary>
         /// <remarks>
@@ -48,25 +39,25 @@ namespace Roteirizacao
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor enviar;
+        protected global::System.Web.UI.WebControls.Button enviar;
 
         /// <summary>
-        /// Controle lblnome2.
+        /// Controle send.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblnome2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor send;
 
         /// <summary>
-        /// Controle tb_resp.
+        /// Controle lbl_nome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden tb_resp;
+        protected global::System.Web.UI.WebControls.Label lbl_nome;
 
         /// <summary>
         /// Controle lbl_rtime.

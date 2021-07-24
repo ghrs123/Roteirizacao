@@ -58,41 +58,8 @@ namespace Roteirizacao
                 else
                 {
 
-                try
-                {
-                    MailMessage mail = new MailMessage();
-                    SmtpClient sc = new SmtpClient();
-
-
-                    string passEnc = EncryptString(tb_email.Value);
-
-
-                    mail.From = new MailAddress("gusinho3@gmail.com");
-
-                    mail.To.Add(new MailAddress(tb_email.Value));
-                    mail.Subject = "Ativação da Conta";
-
-                    mail.IsBodyHtml = true;
-
-                    mail.Body = $"Para ativar sua conta, clique aqui <a href='https://localhost:44399/ativacao.aspx?user={passEnc}'>aqui</a>";
-
-                    sc.Host = "smtp.gmail.com";
-                    sc.Port = 587;
-                    sc.UseDefaultCredentials = true;
-                    sc.Credentials = new NetworkCredential("gusinho3@gmail.com", "rrkubvswoakzrwcm");
-                    sc.EnableSsl = true;
-                    sc.Send(mail);
-
-
-
+                    lbl_mensagem.Text = $"A sua plavra-passe é {DecryptString(respostaSP)}";
                 }
-                catch (Exception ex)
-                {
-                    Response.Write(ex.Message);
-                }
-
-                //lbl_mensagem.Text = $"A sua plavra-passe é {DecryptString(respostaSP)}";
-            }
 
             
             
@@ -143,53 +110,6 @@ namespace Roteirizacao
 
             // Step 6. Return the decrypted string in UTF8 format
             return UTF8.GetString(Results);
-        }
-
-
-        public static string EncryptString(string Message)
-        {
-            string Passphrase = "formacao";
-            byte[] Results;
-            System.Text.UTF8Encoding UTF8 = new System.Text.UTF8Encoding();
-
-            // Step 1. We hash the passphrase using MD5
-            // We use the MD5 hash generator as the result is a 128 bit byte array
-            // which is a valid length for the TripleDES encoder we use below
-
-            MD5CryptoServiceProvider HashProvider = new MD5CryptoServiceProvider();
-            byte[] TDESKey = HashProvider.ComputeHash(UTF8.GetBytes(Passphrase));
-
-            // Step 2. Create a new TripleDESCryptoServiceProvider object
-            TripleDESCryptoServiceProvider TDESAlgorithm = new TripleDESCryptoServiceProvider();
-
-            // Step 3. Setup the encoder
-            TDESAlgorithm.Key = TDESKey;
-            TDESAlgorithm.Mode = CipherMode.ECB;
-            TDESAlgorithm.Padding = PaddingMode.PKCS7;
-
-            // Step 4. Convert the input string to a byte[]
-            byte[] DataToEncrypt = UTF8.GetBytes(Message);
-
-            // Step 5. Attempt to encrypt the string
-            try
-            {
-                ICryptoTransform Encryptor = TDESAlgorithm.CreateEncryptor();
-                Results = Encryptor.TransformFinalBlock(DataToEncrypt, 0, DataToEncrypt.Length);
-            }
-            finally
-            {
-                // Clear the TripleDes and Hashprovider services of any sensitive information
-                TDESAlgorithm.Clear();
-                HashProvider.Clear();
-            }
-
-            // Step 6. Return the encrypted string as a base64 encoded string
-
-            string enc = Convert.ToBase64String(Results);
-            enc = enc.Replace("+", "KKK");
-            enc = enc.Replace("/", "JJJ");
-            enc = enc.Replace("\\", "III");
-            return enc;
         }
     }
 }
