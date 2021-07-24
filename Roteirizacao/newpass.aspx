@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Roteirizacao.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="newpass.aspx.cs" Inherits="Roteirizacao.newpass" %>
 
 <!DOCTYPE html>
 
@@ -8,23 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-    <title>Login | Roteirização</title>
+    <title>Nova Palavra-Passe | Roteirização</title>
     <link href="assets/css/app.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
     <link href="estilo.css" rel="stylesheet" />
-
-    <style type="text/css">
-        .auto-style1 {
-            left: -142px;
-            top: -270px;
-        }
-    </style>
-
 </head>
-<body style="height: 412px">
+<body>
     <form id="form1" runat="server">
-        <div class="wrapper" style="z-index: -1">
+        <div class="wrapper">
             <nav id="sidebar" class="sidebar">
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
@@ -74,41 +64,72 @@
                         </ul>
                     </div>
                 </nav>
-
                 <main class="content fundo">
-                    <div class="container-fluid p-0">
-                        <h1 class="h3 mb-3" style="color: white;">Login</h1>
-                        <div class="row">
-                            <div class="auto-style1">
-                                <div class="cards">
-                                    <div class="card">
-                                        <!--Login-->
-                                        <div id="container" class="login">
-                                            <div class="form">
-                                                <label for="tb_user">Username:</label>
-                                                <input type="name" id="tb_user" runat="server" />
-                                                <label for="password">Password:</label>
-                                                <p><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua Senha?</a></p>
-                                                <input type="password" id="tb_password" runat="server" />
-                                                <div id="lower" style="height: 90px;">
-                                                    <div class="ml-1">
-                                                        <asp:Button ID="btn_login" runat="server" Text="login" OnClick="btn_login_Click" />
-                                                        <asp:Button ID="btn_registar" runat="server" Text="Registar" OnClick="btn_registar_Click" />
-                                                    </div>
-                                                        <asp:Label ID="lbl_mensagem" runat="server" Text="" Style="display: inline-block; text-align: center; margin-left: 50px; margin-top: 1em;"></asp:Label>
-                                                </div>
+                    <div class="container-fluid p-0" style="text-align: center;">
+                        <h1 class="h3 mb-3">Redefinição de Palavra-Passe</h1>
+                    </div>
+                    <div class="col-md-6 col-xl-6" style="margin: 0 auto;">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="camiao" role="tabpanel">
 
+                                <div class="card">
+                                    <div class="card-header">
+
+                                        <h5 class="card-title mb-0">Minhas Informações</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form">
+                                            <div class="row">
+                                                <div class="col-md-8" style="margin: 0 auto; top: 0px; left: 0px;">
+                                                    <div class="card-body">
+                                                    </div>
+
+
+
+                                                    <%--     
+                                                                    </ItemTemplate>
+                                                                </asp:DataList>
+                                                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
+                                                                    SelectCommand="SELECT * FROM utilizador INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid WHERE username = @util">
+                                                                    <SelectParameters>
+                                                                        <asp:SessionParameter Name="util" SessionField="util" Type="String" />
+                                                                    </SelectParameters>
+                                                                </asp:SqlDataSource>--%>
+                                                </div>
                                             </div>
 
+
                                         </div>
-                                        <!--Fim Login-->
+
+
                                     </div>
+
                                 </div>
                             </div>
+
                         </div>
+
+                        <div class="form ">
+                            <div class="form-group">
+                                <label for="inputPasswordCurrent">Senha Atual</label>
+                                <asp:TextBox ID="TextBox3" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control"></asp:TextBox>
+                            </div>
+                            <div class="form-group ">
+                                <label for="inputPasswordNew">Nova Senha</label>
+                                <asp:TextBox ID="TextBox4" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPasswordNew2">Confirmar Nova Palavra-Passe</label>
+                                <asp:TextBox ID="TextBox5" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" type="password" class="form-control"></asp:TextBox>
+                            </div>
+                            <asp:Button ID="Button2" class="btn btn-primary" runat="server" Text="Salvar Alterações" />
+                            <div>
+                                <asp:Label ID="lbl_mensagem" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
-
                 <footer class="footer">
                     <div class="container-fluid">
                         <div class="row text-muted">
@@ -139,7 +160,5 @@
             </div>
         </div>
     </form>
-    <script src="assets/js/vendor.js"></script>
-    <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
 
 </head>
 <body>
-    <form id="form1" runat="server" method="post">
+    <form id="form1" runat="server" method="post" >
         <div class="wrapper">
             <nav id="sidebar" class="sidebar">
                 <div class="sidebar-content js-simplebar">
@@ -42,6 +42,12 @@
                                 <i class="align-middle" data-feather="phone"></i><span class="align-middle">Contacto</span>
                             </a>
                         </li>
+                        <li>
+                             <a class="nav-link " href="#">
+                              <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" />
+                          </a>
+                        </li>
+                       
                     </ul>
                 </div>
             </nav>
@@ -58,15 +64,15 @@
                         </div>
                     </div>
 
-                      <div class="navbar-collapse collapse">
+                    <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown">
-                             <%--   <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                                <%--   <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
                                     <i class="align-middle" data-feather="settings"></i>
                                 </a>--%>
-                            <%--</li>
+                                <%--</li>
                             <li class="nav-item">--%>
-                               
+
                                 <a class="nav-link d-none d-sm-inline-block btn btn-light align-middle" href="https://localhost:44399/registar.aspx">
                                     <span class="text-dark">Cadastre-se</span>
                                 </a>
@@ -76,7 +82,8 @@
                                 <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
                                     <span class="text-dark">Login</span>
                                 </a>
-                              
+                                
+                               
                             </li>
                         </ul>
                     </div>
@@ -87,6 +94,7 @@
                             <!--form method="post" action="/calc"-->
 
                             <div class="form principal">
+
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_origin">
                                     <thead>
                                         <tr>
@@ -104,7 +112,7 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_logic">
-                                       <thead>
+                                    <thead>
                                         <tr>
                                             <th class="text-center" style="display: none;">#
                                             </th>
@@ -122,7 +130,8 @@
                                                 <input type="text" name='prod1' id='prod1' class=" form-control input-md" placeholder="Produto" />
                                             </td>
                                             <td>
-                                                <input runat="server" type="number" step="1" min="1" max="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
+                                               <%-- step="1" min="1" max="5"--%>
+                                                <input runat="server" type="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -148,7 +157,7 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                 
+
                                 </table>
                                 <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
                                    <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>
@@ -183,7 +192,8 @@
                                                 <input type="text" id='cap0' name='cap' class=" form-control input-md" placeholder="Capacidade (kg)" />
                                             </td>
                                             <td>
-                                                <input type='number' step='1' min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='Custo R$/km' />
+                                             <%--   //step='1' min='1' max='5'--%>
+                                                <input type='number'  onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='Custo R$/km' />
                                             </td>
                                         </tr>
                                         <tr id='truck1'></tr>
@@ -192,31 +202,22 @@
                                 <a id="add_truck" class="btn btn-primary  pull-left">Adicionar Veículo</a>&nbsp												
 			                    <!--input type="submit" class="btn btn-primary"-->
                                 <a id='delete_truck' class="btn btn-danger pull-center">Remover Veículo</a>
-                                <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" OnClientClick="SetName()" OnClick="enviar_Click" Style="width: 120px; color: black;" />
-                                <a id='send' runat="server" class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
+
+                              <%-- <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" OnClick="enviar_Click" Style="width: 120px; color: black;" />--%>
+                                 <a id='enviar' runat="server" class="btn btn-warning pull-center" disble="true">ROTEIRIZAR</a>
+                               <%-- <a id='send' runat="server" class="btn btn-warning pull-center">RECOMEÇAR</a>--%>
+                                
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
-                                  <%--  <table>
-                                        <tr>
-                                            <td>Veículo(s): </td>
-                                        </tr>
-                                         <tr>
-                                            <td>Rota(s): </td>
-                                        </tr>
-                                         <tr>
-                                            <td>Carga(s): </td>
-                                             <td>Peso: </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tempos</td>
-                                        </tr>
-                                         <tr>
-                                            <td></td>
-                                        </tr>
-                                    </table>--%>
-                                    <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>
+
                                     <div id="resultado" text="" style="background-color: chartreuse;">
                                     </div>
+                                         
+                                
+                                   <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
+                                    <label id="lblnome2" runat="server"></label>
+                        
+                                    <input type="hidden" id="tb_resp" runat="server" />
                                     <div id="rtime" style="background-color: chartreuse;">
                                         <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
                                     </div>
@@ -269,10 +270,8 @@
     <script src="assets/js/app.js"></script>
     <script>
 
-
         jQuery.support.cors = true;
         function clearOverlays() {
-
 
 
             while (markers.length) {
@@ -290,7 +289,6 @@
 
         function removeChar(id) {
 
-
             var a = document.getElementById("qty1").value;
             //console.log(a);
             a = a.replace(/\s+/g, "").replace(/[^\w\-]+/g, "").replace(/\-\-+/g, "").replace(/^-+/, "").replace(/-+$/, "");
@@ -298,11 +296,7 @@
             //console.log(a);
             document.getElementById("qty1").innerHTML = a;
 
-
-
         }
-
-
 
         function addressLookup() {
 
@@ -320,8 +314,6 @@
             var autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('dest0'), options);
 
-
-
             google.maps.event.addListener(autocomplete, 'place_changed',
                 function () {
 
@@ -331,7 +323,6 @@
                 });
             // });
 
-
             var address = document.getElementsByClassName('dest');
 
             for (var i = 0; i < address.length; i++) {
@@ -339,9 +330,7 @@
 
             }
 
-
         }
-
 
         function slugify(text) {
 
@@ -359,14 +348,12 @@
                 .replace(/-+$/, "");
         }
 
-
         function Product(name, qty) {
             this.name = name;
             this.qty = qty;
             // property and method definitions
 
         };
-
 
         function Routes(_pickup, _destination) {
 
@@ -411,18 +398,13 @@
 
             Routes.prototype.setProducts = function (name, qty) {
 
-
-
                 this.products.push(new Product(name, qty));
-
-
 
 
             }
 
 
         };
-
 
         function Trucks(id, capacity, cost) {
             this.id = id;
@@ -453,14 +435,9 @@
 
             $origin = slugify($('#origin').val());
 
-
             for (var i = 1; i <= numRows; i++) {
 
-
-
                 var checkType = $('#pickupplace' + (i)).val();
-
-
 
                 if (typeof checkType != "undefined") {
 
@@ -491,8 +468,6 @@
                     route.setProducts(product, quantity);
 
                 }
-
-
 
             }
 
@@ -526,14 +501,11 @@
 
             }
 
-
-
             var data = { $origin, routes, trucks };
 
             callback(data);
 
         };
-
 
         var ndest = 2;
         var i = 1; //product counter
@@ -541,7 +513,6 @@
 
 
         var colourArray = ['navy', 'green', 'fuchsia', 'red', 'white', 'lime', 'maroon', 'purple', 'aqua', 'black', 'grey', 'silver', 'olive', 'blue', 'yellow', 'teal'];
-
 
         $(document).ready(function () {
 
@@ -584,9 +555,6 @@
 
             });
 
-
-
-
             $("#delete_row").click(function () {
                 if (d > 1) {
 
@@ -606,9 +574,6 @@
 
                 ndest--;
             });
-
-
-
 
             ////product////////////////////
 
@@ -670,26 +635,19 @@
 
             ////product//////////////////// 
 
-
-
             var t = 1;
-
-
 
             $("#add_truck").click(function () {
 
 
                 if (t <= 100) { //LIMITADO À TRES CAMINHÕES SOMENTE
-                    $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo €/km'  class='form-control input-md'></td>");
+                    $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number'  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo €/km'  class='form-control input-md'></td>");
 
                     $('#tab_trucks').append('<tr id="truck' + (t + 1) + '"></tr>');
                     t++;
 
                 }
             });
-
-
-
 
             $("#delete_truck").click(function () {
                 if (t > 1) {
@@ -698,13 +656,14 @@
                 }
             });
 
+            var resp = false;
+            var data2 = "";
 
 
 
             $("#enviar").click(function (e) {
 
                 e.preventDefault();
-
 
                 loadMap();
 
@@ -717,23 +676,15 @@
                 getFormData(function (res) {
                     if (res) {
 
-
                         //console.log("enviar", res);
 
                         var origin = res.$origin;
                         var routes = res.routes;
                         var trucks = res.trucks;
 
-
-
                         var dataa = { origin, routes, trucks };
 
                         data = JSON.stringify(dataa);
-
-
-
-                        /*  http://localhost:4120/calc */
-                        /*http://209.124.64.153:4120/calc */
 
                         $.post('http://localhost:4120/calc', { data: data }, function (result) {
 
@@ -741,16 +692,12 @@
 
                                 console.log("Server responded with ", result);
                                 var data = JSON.stringify(result.routesByVehicles);
-                               
-                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
-                                $("#resultado").text(data);
 
-                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
-                                $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
-                                //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
+                                resp = true;
+                                data2 = JSON.stringify(result.routesByVehicles);
 
+                             
                                 var c = 0;
-
 
                                 for (var veiculo in result.routesByVehicles) {
                                     var rotas = result.routesByVehicles[veiculo].rotas
@@ -768,8 +715,6 @@
 
 
                                     }
-
-
 
                                     var request = {
                                         origin: start,
@@ -814,7 +759,19 @@
 
 
                                 }
-
+                              <%--  /*<%= ResolveUrl("~/principal.aspx/GetData") %>*/--%>
+                           
+                               $.post(' <%= ResolveUrl("/principal.aspx/GetData") %>', { data: data2 }, function (result) {
+                                    if (result) {
+                                        console.log(data2);
+                                        alert(data2);
+                                        alert("Post efetuado");
+                                        //alert(result.d);
+                                    } else {
+                                        alert(error);
+                                         
+                                    }
+                                });
 
 
                             }
@@ -822,6 +779,116 @@
                                 console.log("no response");
                             }
 
+                        });
+
+                       
+
+                    }
+
+                    else
+                        console.log("não foi possível calcular");
+
+                });
+
+                getFormData(function (res) {
+                    if (res) {
+
+
+                        //console.log("enviar", res);
+
+                        var origin = res.$origin;
+                        var routes = res.routes;
+                        var trucks = res.trucks;
+
+                        var dataa = { origin, routes, trucks };
+
+                        data = JSON.stringify(dataa);
+
+                        $.post('http://localhost:4120/calc', { data: data }, function (result) {
+
+                            if (result) {
+
+                                console.log("Server responded with ", result);
+                                var data = JSON.stringify(result.routesByVehicles);
+
+                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
+                                //$("#resultado").text(data);
+                                document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+
+                                document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
+                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
+                                $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
+                                //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
+
+                                //resp = true;
+                                //data2 = JSON.stringify(result.routesByVehicles);
+
+                                var c = 0;
+
+                                for (var veiculo in result.routesByVehicles) {
+                                    var rotas = result.routesByVehicles[veiculo].rotas
+
+
+                                    var waypoints = [];
+                                    var start;
+                                    var end;
+                                    start = rotas.splice(0, 1)[0];
+                                    end = rotas.splice(-1, 1)[0];
+
+                                    for (var loc in rotas) {
+
+                                        waypoints.push({ location: rotas[loc], stopover: true });
+
+
+                                    }
+
+                                    var request = {
+                                        origin: start,
+                                        destination: end,
+                                        waypoints: waypoints,
+                                        travelMode: google.maps.TravelMode.DRIVING
+                                    };
+
+                                    // Pass the directions request to the directions service.
+
+                                    directionsService
+                                        .route(
+                                            request,
+                                            function (
+                                                response,
+                                                status) {
+                                                if (status == google.maps.DirectionsStatus.OK) {
+
+                                                    directionsDisplay = new google.maps.DirectionsRenderer;
+
+                                                    directionsDisplay.setMap(map);
+
+                                                    directionsDisplay.setOptions({
+                                                        preserveViewport: true,
+                                                        suppressInfoWindows: false,
+                                                        polylineOptions: {
+                                                            strokeWeight: 4,
+                                                            strokeOpacity: 0.8,
+                                                            strokeColor: colourArray[c]
+                                                        },
+
+                                                    });
+
+                                                    // Display the route on the map.
+                                                    directionsDisplay
+                                                        .setDirections(response);
+
+                                                    c = c + 1;
+                                                }
+                                            });
+
+
+
+                                }
+                            }
+                            else {
+                                console.log("no response");
+                            }
 
                         });
 
@@ -832,13 +899,35 @@
 
                 });
 
-
-
             });
 
+            ///*--------*/
+            //if (resp == true) {
+            //    function Rquest(json) {
+            //        $.ajax({
 
+            //            //URL da página com o WebMethod 
+            //            url: "https://localhost:44399/principal.aspx/GetData",
+            //            //Enviar os parâmetros
+            //            data: json,
+            //            type: "POST",
+            //            dataType: "json",
+            //            contentType: "application/json; charset=utf-8",
+            //            success: function (result) {
+            //                console.log(data);
+            //                alert(json);
+            //                alert(result.d);
+            //            },
+            //            error: function (req, status, error) {
+            //                alert(error);
+            //                //alert(req.responseText);
+            //            }
+            //        });
+            //    }
+            //}
+
+            ///*--------*/
         });
-
 
 
     </script>

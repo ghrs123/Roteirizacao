@@ -10,12 +10,33 @@ using System.Data.SqlClient;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using System.IO;
+using System.Web.UI.DataVisualization.Charting;
 using iTextSharp.text.pdf;
+//using System.Web;
+//using System.Web.Services;
+//using System.Web.UI;
+//using System.Web.UI.WebControls;
+
+
 
 namespace Roteirizacao
 {
     public partial class historico_adm : System.Web.UI.Page
     {
+
+        private static DataTable GetData(string query)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter(query, con))
+                {
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    return dt;
+                }
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["util"] == null)
@@ -25,6 +46,10 @@ namespace Roteirizacao
                 Response.Redirect("principal.aspx");
 
             }
+
+          
+
+
 
             //string query = " SELECT historicoid , descricao, peso_carga, origem,localColeta, localEntrega, convert(char(10), data_viagem, 103) 'data',Cast(CONVERT(DECIMAL(10,2),custoKm) as nvarchar) AS custoKm, matricula" +
             //    " FROM historico_viagem" +

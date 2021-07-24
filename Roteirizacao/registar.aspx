@@ -75,7 +75,7 @@
                 <main class="content fundo">
                     <div class="content">
                         <div class="form">
-                            <div class="registar row" style="width: 530px;">
+                            <div class="registar row" style="width:630px;">
                                 <!--
                                                     <div class="col-md-5 pr-1">
 													 <div class="form-group">
@@ -84,7 +84,7 @@
 													  </div>			  
 													</div>
                                                     -->
-                                <div class="col-md-10 pl-1">
+                                <div class="col-md-12 pl-1">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input id="tb_email" runat="server" type="email" class="form-control" placeholder="" />
@@ -93,22 +93,23 @@
                                 <div class="col-md-5 px-1">
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input id="tb_user" runat="server" type="text" class="form-control" placeholder="" value="" />
+                                       
+                                       <input id="tb_user" runat="server" type="text" name="username" title="" pattern="[A-Za-z0-9]+" class="form-control" placeholder="" value="" />
                                     </div>
                                 </div>
                                 <div class="col-md-5 px-1">
                                     <div class="form-group">
                                         <label>Senha</label>
-                                        <input id="tb_pw" runat="server" type="text" class="form-control" placeholder="" value="" />
+                                        <input id="tb_pw" runat="server" type="password" title="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control" styrle="width: 80px;" />
                                     </div>
                                 </div>
-                                <div class="col-md-5 pr-1">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label>Nome</label>
                                         <input id="tb_nome" runat="server" type="text" class="form-control" placeholder="" value="" />
                                     </div>
                                 </div>
-                                <div class="col-md-5 pl-1">
+                                <div class="col-md-6 pl-1">
                                     <div class="form-group">
                                         <label>Apelido</label>
                                         <input id="tb_apelido" runat="server" type="text" class="form-control" placeholder="" value="" />
@@ -117,7 +118,7 @@
                                  
                                 <div class="col-md-4 pl-1 mb-4">
                                     <div class="form-group">
-                                        <asp:Label ID="lbl_mensagem" runat="server" type="text" Text="Label Mensagem">sadasd</asp:Label>
+                                        <asp:Label ID="lbl_mensagem" runat="server" type="text" Text="Label Mensagem"></asp:Label>
                                     </div>
                                     
                                 </div>

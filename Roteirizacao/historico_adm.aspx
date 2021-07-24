@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="historico_adm.aspx.cs" Inherits="Roteirizacao.historico_adm" EnableEventValidation="false" %>
 
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -125,7 +127,7 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="peter">
                                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
-                                        SelectCommand="SELECT historico_viagem.historicoid, produto.descricao, carregar.peso_carga, rota.origem, coleta.localColeta, entrega.localEntrega, CONVERT (char(10), historico_viagem.data_viagem, 103) AS 'data', CAST(CONVERT (DECIMAL(10 , 2), camiao.custoKm) AS nvarchar) AS custoKm, camiao.matricula 
+                                        SelectCommand=" SELECT historico_viagem.historicoid, produto.descricao, carregar.peso_carga, rota.origem, coleta.localColeta, entrega.localEntrega, CONVERT (char(10), historico_viagem.data_viagem, 103) AS 'data', CAST(CONVERT (DECIMAL(10 , 2), camiao.custoKm) AS nvarchar) AS custoKm, camiao.matricula 
                                                             FROM historico_viagem 
                                                             INNER JOIN camiao ON historico_viagem.camiaoid = camiao.camiaoid 
                                                             INNER JOIN carregar ON carregar.camiaoid = camiao.camiaoid 
@@ -240,9 +242,7 @@
                                         SelectCommand="SELECT utilizador.utilizadorid, utilizador.nome, utilizador.apelido, utilizador.email, dados_utilizador.pais, dados_utilizador.cidade, dados_utilizador.morada, dados_utilizador.cod_postal 
                                                         FROM utilizador 
                                                         INNER JOIN dados_utilizador ON dados_utilizador.utilizadorid = utilizador.utilizadorid 
-                                                        ">
-
-                                    </asp:SqlDataSource>
+                                                        "></asp:SqlDataSource>
 
                                     <div class="card container">
                                         <div class="card-header">
@@ -262,7 +262,7 @@
                                                             <th align="center" class="auto-style1">Código-Postal</th>
                                                             <th align="center" class="auto-style1">Morada</th>
                                                             <th align="center" class="auto-style1">Opção</th>
-                                                           
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -285,19 +285,19 @@
                                                                         <asp:TextBox ID="tb_pais" runat="server" Text='' Style="width: 100%;"></asp:TextBox>
                                                                     </td>
                                                                     <td align="center">
-                                                                      
-                                                                        <asp:TextBox ID="tb_cidade" runat="server" Text='' Style="width: 100%;"></asp:TextBox>                                                    
+
+                                                                        <asp:TextBox ID="tb_cidade" runat="server" Text='' Style="width: 100%;"></asp:TextBox>
                                                                     </td>
                                                                     <td align="center">
                                                                         <asp:TextBox ID="tb_cod_postal" runat="server" Text='' Style="width: 100%;"></asp:TextBox>
                                                                     </td>
                                                                     <td align="center">
-                                                                
-                                                                        <asp:TextBox ID="tb_morada" runat="server" Text='' Style="width: 100%"></asp:TextBox> 
+
+                                                                        <asp:TextBox ID="tb_morada" runat="server" Text='' Style="width: 100%"></asp:TextBox>
                                                                     </td>
                                                                     <td class="table-action" style="float: left; display: inline;">
                                                                         <asp:Button ID="btnEdit" runat="server" class="align-middle btn btn-warning " Text="Editar" CommandName="btnEdit" Style="width: 65%;" />
-                                                                       <asp:Button ID="btnDelete" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDelete" Style="width: 65%;" />
+                                                                        <asp:Button ID="btnDelete" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDelete" Style="width: 65%;" />
                                                                     </td>
                                                                 </tr>
 
@@ -315,10 +315,58 @@
                                             <h6 class="card-subtitle text-muted">Painel Mensal de Custos e Utilizadores </h6>
                                         </div>
                                         <div class="card-body">
-                                            <div class="chart">
-                                                <canvas id="chartjs-line"></canvas>
-                                            </div>
+                                        
+                                            <asp:Chart ID="Chart1" runat="server" Width="600px" Height="500px" BackGradientStyle="LeftRight" DataSourceID="SqlDataSource3">
+                                                <Titles>
+                                                    <asp:Title ShadowOffset="3" Name="Items" Text="Custos Mensais" />
+                                                </Titles>
+                                                <Legends>
+                                                    <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default"
+                                                        LegendStyle="Row" />
+                                                </Legends>
+                                                <Series>
+                                                    <asp:Series ChartArea="ChartArea1" IsXValueIndexed="True" Legend="Default" Name="Series1" XValueMember="Mês" YValueMembers="Custo Total">
+                                                    </asp:Series>
+                                                </Series>
+                                                <ChartAreas>
+                                                    <asp:ChartArea Name="ChartArea1" BorderWidth="0" >
+                                                        <AxisY Title="Custo Total">
+                                                        </AxisY>
+                                                        <AxisX Title="Meses">
+                                                        </AxisX>
+                                                        <Area3DStyle Enable3D="True" />
+                                                    </asp:ChartArea>
+                                                </ChartAreas>
+                                            </asp:Chart>
+
+                                            <asp:Chart ID="Chart2" runat="server" Width="400px" Height="400px" BackGradientStyle="LeftRight" DataSourceID="SqlDataSource4">
+                                                <Series>
+                                                    <asp:Series Name="Camião Eixo Sestavado" XValueMember="descricao" XValueType="Single" YValueMembers="quilometragem" IsValueShownAsLabel="True"></asp:Series>
+                                                    <asp:Series ChartArea="ChartArea1" Name="Camião Truck" ChartType="Pie">
+                                                    </asp:Series>
+                                                    <asp:Series ChartArea="ChartArea1" Name="Carreta Simples " ChartType="Pie">
+                                                    </asp:Series>
+                                                </Series>
+                                                <ChartAreas>
+                                                    <asp:ChartArea Name="ChartArea1">
+                                                        <Area3DStyle Enable3D="True" />
+                                                    </asp:ChartArea>
+                                                </ChartAreas>
+                                                <Titles>
+                                                    <asp:Title Name="Title1" Text="Controle de Manutenção (10000)">
+                                                    </asp:Title>
+                                                </Titles>
+                                                <BorderSkin SkinStyle="Raised" />
+                                            </asp:Chart>
+                                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>" SelectCommand="SELECT DATEPART(MONTH, historico_viagem.data_viagem) AS 'Mês', SUM(camiao.custoKm) AS 'Custo Total' FROM historico_viagem INNER JOIN camiao ON camiao.camiaoid = historico_viagem.camiaoid GROUP BY DATEPART(MONTH, historico_viagem.data_viagem)"></asp:SqlDataSource>
+                                            <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>" SelectCommand="select  COUNT(quilometragem) 'quilometragem', descricao
+from camiao
+INNER JOIN tipo_camiao ON tipo_camiao.tipo_camiaoid = camiao.tipocamiaoid
+WHERE quilometragem &gt; 50000
+GROUP BY  descricao"></asp:SqlDataSource>
                                         </div>
+
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -359,70 +407,8 @@
             </div>
         </footer>
 
-        <script>
-            $(function () {
-                // Line chart
-                new Chart(document.getElementById("chartjs-line"), {
-                    type: "line",
-                    data: {
-                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                        datasets: [{
-                            label: "Custo ($)",
-                            fill: true,
-                            backgroundColor: "transparent",
-                            borderColor: window.theme.primary,
-                            data: [2115, 1562, 1584, 1892, 1487, 2223, 2966, 2448, 2905, 6000, 2917, 3327]
-                        }, {
-                            label: "Utilizadores",
-                            fill: true,
-                            backgroundColor: "transparent",
-                            borderColor: "#adb5bd",
-                            borderDash: [4, 4],
-                            data: [958, 724, 629, 883, 915, 1214, 1476, 1212, 1554, 2128, 1466, 1827]
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: false
-                        },
-                        tooltips: {
-                            intersect: false
-                        },
-                        hover: {
-                            intersect: true
-                        },
-                        plugins: {
-                            filler: {
-                                propagate: false
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                reverse: true,
-                                gridLines: {
-                                    color: "rgba(0,0,0,0.05)"
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    stepSize: 500
-                                },
-                                display: true,
-                                borderDash: [5, 5],
-                                gridLines: {
-                                    color: "rgba(0,0,0,0)",
-                                    fontColor: "#fff"
-                                }
-                            }]
-                        }
-                    }
-                });
-            });
-        </script>
-        <%--                <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>--%>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+      
+
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

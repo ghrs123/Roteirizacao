@@ -1,40 +1,43 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Http;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Globalization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Configuration;
+using Newtonsoft.Json.Linq;
+using System.Web.Http.Cors;
+using System.Web.Script.Serialization;
+using System.ServiceModel.Web;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.Serialization;
+using System.Configuration;
+using System.Xml;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Data.OleDb;
+using System.IO;
+using System.Linq;
 using System.Text;
-using System.Web.Http.Cors;
-using ServiceStack.Text;
-using Confluent.Kafka;
-using Config = Confluent.Kafka.Config;
-using System.Web.Script.Serialization;
-using Newtonsoft.Json.Linq;
+using System.Dynamic;
+using System.Web.Helpers;
+using System.Web.WebPages;
+using System.Web.Razor;
+using System.Collections.ObjectModel;
 
 namespace Roteirizacao
 {
 
+
+
     public partial class principal : System.Web.UI.Page
     {
+        private static readonly HttpClient _Client = new HttpClient();
 
         [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
 
-        [WebMethod]
+
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             EnableCorsAttribute cors = new EnableCorsAttribute("https://localhost:44399/principal.aspx", "*", "GET, POST");
@@ -51,60 +54,38 @@ namespace Roteirizacao
             HttpContext.Current.Request.Headers.Add("Access-Control-Allow-Methods", "POST");
             HttpContext.Current.Request.Headers.Add("Access-Control-Allow-Credentials", "true");
 
-            //HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            //HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Headers", "X-Custom-Header");
-            //HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Methods", "POST");
-            //HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Credentials", "true");
-
-            JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-
-           //dynamic resultado = serializer.DeserializeObject(lbl_nome.Text);
+           
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+           // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>();
 
 
-            var package = new Package
+            if (!Page.IsPostBack)
             {
-                Name = "Newtonsoft.json",
-                Version = "12.0.3",
-                Author = "Newtonsoft"
 
-            };
-
-
+            }
 
          
+
+           
+
+            //dynamic resultado = serializer.DeserializeObject(lbl_nome.Text);
+            string xpto = tb_resp.Value;
+
+
         }
 
+        [WebMethod]
+        public static string GetData(string objRoot)
+        {
+            string resposta = objRoot;
+          //  Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(objRoot);
+           return resposta;
+            
+          
+        }
 
-
-
-
-
+       
       
-
-        public class Cargas
-        {
-            Cargas carga = new Cargas()
-            {
-                Carga = "",
-                qty = 1,
-            };
-            public string Carga { get; set; }
-            public int qty { get; set; }
-        }
-
-        public class Root
-        {
-            Root root = new Root()
-            {
-                veiculo = "",
-                rotas = new List<string>(),
-                listaCargas = new List<Cargas>(),
-            };
-
-            public string veiculo { get; set; }
-            public List<string> rotas { get; set; }
-            public List<Cargas> listaCargas { get; set; }
-        }
 
         protected void enviar_Click(object sender, EventArgs e)
         {
@@ -119,7 +100,9 @@ namespace Roteirizacao
             //{
             //    Console.WriteLine(i);
             //}
-            Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(lbl_nome.Text);
+
+         
+           // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(lblnome2.InnerText);
           
 
             // Console.WriteLine(myDeserializedClass);
@@ -131,8 +114,72 @@ namespace Roteirizacao
 
         }
 
+        protected void brtRecuperar_Click(object sender, EventArgs e)
+        {
+           //Response.Redirect("login.aspx");
+           
+           
+
+        }
+
+        protected void btnRegistarRota_Click(object sender, EventArgs e)
+        {
+            string xpto = tb_resp.Value;
+            //string str = xpto;
+            //JavaScriptSerializer j = new JavaScriptSerializer();
+            //object a = j.Deserialize(str, typeof(object));
+
+
+            // dynamic stuff = JsonConvert.DeserializeObject(xpto.ToString());
+            // Root flight = Newtonsoft.Json.JsonConvert.DeserializeObject<Root>(xpto);s
+
+            //  Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(xpto);
+
+            //JavaScriptSerializer oJS = new JavaScriptSerializer();
+            //Root oRootObject = new Root();
+            //oRootObject = oJS.Deserialize<Root>(xpto);
+            Root rt = new Root();
+            var dyn = JsonConvert.DeserializeObject<JObject>(xpto);
+
+            JProperty propAge = dyn.Properties().FirstOrDefault(i => i.Name == "veiculo");
+            if (propAge != null)
+            {
+                int age = int.Parse(propAge.Value.ToString());
+                Console.WriteLine("veiculo=" + rt.veiculo );
+            }
+
+            //or as a one-liner:
+            int myage = int.Parse(dyn.Properties().First(i => i.Name == "veiculo").Value.ToString());
+
+
+
+            string b = "";
+            //    for (int i = 0; i < ((object[])a).GetLength(0); i++)
+            //    {
+            //        for (int j = 0; j < ((object[])a).GetLength(1); j++)
+            //        {
+
+            //            ((object[])a)[i].Items[0].ToString();
+
+            //            ((object[])a)[i].Items[j].ToString();
+            //            ((object[])a)[i].Items[j].ToString();
+            //            //   var veiculo = ((object[])a)[i][0];
+            //        }
+
+
+
+            //}
+
+
+
+
+
+
+        }
+
 
     }
+
 }
 
 

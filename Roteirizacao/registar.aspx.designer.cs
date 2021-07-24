@@ -48,7 +48,7 @@ namespace Roteirizacao
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_pw;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword tb_pw;
 
         /// <summary>
         /// Controle tb_nome.
