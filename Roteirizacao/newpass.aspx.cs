@@ -7,59 +7,73 @@ using System.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Roteirizacao
 {
     public partial class newpass : System.Web.UI.Page
     {
-        private string email = "g_henrique19@hotmail.com";
+        private string email = "";
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             email = DecryptString(Request.QueryString["user"].ToString());
 
+          
         }
 
 
         protected void btnAlterar_Click(object sender, EventArgs e)
         {
 
-            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            SqlCommand myCommand = new SqlCommand();
-            myConn.Open();
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                SqlCommand myCommand = new SqlCommand();
+                myConn.Open();
 
-            myCommand.Parameters.AddWithValue("@utilizador", DecryptString(email.ToString()));
-            myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tbNewPass.Text));
-            
-            SqlParameter valor = new SqlParameter();
-            valor.ParameterName = "@retorno";
-            valor.Direction = ParameterDirection.Output;
-            valor.SqlDbType = SqlDbType.Int;
-            myCommand.Parameters.Add(valor);
+                myCommand.Parameters.AddWithValue("@utilizador", email.ToString());
+                myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tbNewPass.Text));
 
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "redefinir_pw";
+                SqlParameter valor = new SqlParameter();
+                valor.ParameterName = "@retorno";
+                valor.Direction = ParameterDirection.Output;
+                valor.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(valor);
 
-
-            myCommand.Connection = myConn;
-
-            myCommand.ExecuteNonQuery();
-
-            int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "redefinir_pw";
 
 
-            if (repostaSP == 1)
-            {
+                myCommand.Connection = myConn;
+
+                myCommand.ExecuteNonQuery();
+
+                int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+
+
+                if (repostaSP == 1)
+                {
+
+                    tbNewPass.Text = "";
+                    tbRepNewPass.Text = "";
+                    lbl_mensagem.Text = "Palavra-Passe redefinida";
+
+
+                }
+                else if (repostaSP == 0)
+                {
+
+                 lbl_mensagem.Text = "Não é possível redefinir a Palarva-Passe, tente novamente!!";
 
                 tbNewPass.Text = "";
-               tbRepNewPass.Text = "";
-                lbl_mensagem.Text = "Palavra-Passe redefinida";
-              
-
-            }else if(repostaSP == 0){
-
-                lbl_mensagem.Text = "Não é possível redefinir a Palarva-Passe, tente novamente!!";
+                tbRepNewPass.Text = "";
+               
             }
-            myConn.Close();
+                myConn.Close();
+            
+        
         }
 
 
@@ -153,8 +167,8 @@ namespace Roteirizacao
         }
 
 
-
+        
     }
-
+    
 
 }

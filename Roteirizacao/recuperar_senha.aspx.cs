@@ -99,6 +99,8 @@ namespace Roteirizacao
             
         }
 
+
+
         public static string DecryptString(string Message)
         {
             string Passphrase = "formacao";
@@ -146,7 +148,7 @@ namespace Roteirizacao
             return UTF8.GetString(Results);
         }
 
-
+        
         public static string EncryptString(string Message)
         {
             string Passphrase = "formacao";
