@@ -44,7 +44,7 @@ namespace Roteirizacao
                 " JOIN entrega ON entrega.rotaid = rota.rotaid" +
                 " JOIN coleta ON coleta.rotaid = rota.rotaid" +
                 " INNER JOIN utilizador ON utilizador.utilizadorid = historico_viagem.utilizadorid" +
-                " WHERE utilizador.username = '" + Session["util"] + "' OR email ='" + Session["util"] + "';";
+                " WHERE utilizador.username ='" + Session["util"] + "' OR email ='" + Session["util"] + "';";
 
             SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
             myConn.Open();

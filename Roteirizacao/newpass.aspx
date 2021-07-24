@@ -83,9 +83,6 @@
                                                 <div class="col-md-8" style="margin: 0 auto; top: 0px; left: 0px;">
                                                     <div class="card-body">
                                                     </div>
-
-
-
                                                     <%--     
                                                                     </ItemTemplate>
                                                                 </asp:DataList>
@@ -97,11 +94,7 @@
                                                                 </asp:SqlDataSource>--%>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
                                     </div>
 
                                 </div>
@@ -109,20 +102,16 @@
 
                         </div>
 
-                        <div class="form ">
-                            <div class="form-group">
-                                <label for="inputPasswordCurrent">Senha Atual</label>
-                                <asp:TextBox ID="TextBox3" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control"></asp:TextBox>
-                            </div>
+                        <div class="form " style="color: white;">    
                             <div class="form-group ">
-                                <label for="inputPasswordNew">Nova Senha</label>
-                                <asp:TextBox ID="TextBox4" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control"></asp:TextBox>
+                                <label for="tbNewPass">Nova Senha</label>
+                                <asp:TextBox ID="tbNewPass" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" Text="*" ControlToValidate="tbNewPass"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group">
-                                <label for="inputPasswordNew2">Confirmar Nova Palavra-Passe</label>
-                                <asp:TextBox ID="TextBox5" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" type="password" class="form-control"></asp:TextBox>
+                                <label for="tbRepNewPass">Confirmar Nova Palavra-Passe</label>
+                                <asp:TextBox ID="tbRepNewPass" runat="server" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" type="password" class="form-control"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" Text="*" ControlToValidate="tbRepNewPass"></asp:RequiredFieldValidator><asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="CompareValidator" ControlToCompare="tbNewPass" ControlToValidate="tbRepNewPass">*</asp:CompareValidator>
                             </div>
-                            <asp:Button ID="Button2" class="btn btn-primary" runat="server" Text="Salvar Alterações" />
+                            <asp:Button ID="btnAlterar" class="btn btn-primary" runat="server" Text="Salvar Alterações" Onclick="btnAlterar_Click" />
                             <div>
                                 <asp:Label ID="lbl_mensagem" runat="server" Text=""></asp:Label>
                             </div>

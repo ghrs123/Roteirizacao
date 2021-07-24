@@ -46,16 +46,15 @@ namespace Roteirizacao
                 myCommand.ExecuteNonQuery();
                 string respostaSP = myCommand.Parameters["@retorno_pw"].Value.ToString();
 
+            myConn.Close();
 
-                myConn.Close();
-
-                if (respostaSP == "")
+                if (respostaSP == "false")
                 {
                     lbl_mensagem.Text = "Esse endereço de email não está registado";
 
                 }
 
-                else
+                else if(respostaSP == "true")
                 {
 
                 try
@@ -70,19 +69,21 @@ namespace Roteirizacao
                     mail.From = new MailAddress("gusinho3@gmail.com");
 
                     mail.To.Add(new MailAddress(tb_email.Value));
-                    mail.Subject = "Ativação da Conta";
+                    mail.Subject = "Redifinição Palavra-Passe";
 
                     mail.IsBodyHtml = true;
 
-                    mail.Body = $"Para ativar sua conta, clique aqui <a href='https://localhost:44399/ativacao.aspx?user={passEnc}'>aqui</a>";
+                    mail.Body = $"<a href='https://localhost:44399/newpass.aspx?user={passEnc}'>Clique aqui para redefinir sua Palavra-Passe</a>";
 
                     sc.Host = "smtp.gmail.com";
                     sc.Port = 587;
                     sc.UseDefaultCredentials = true;
-                    sc.Credentials = new NetworkCredential("gusinho3@gmail.com", "rrkubvswoakzrwcm");
+                    sc.Credentials = new NetworkCredential("gusinho3@gmail.com", "odcbqairdhwrxmdy");
                     sc.EnableSsl = true;
                     sc.Send(mail);
 
+                    lbl_mensagem.Text = "Foi lhe enviado um email de recuperação.";
+                    Response.Redirect("recuperar_senha.aspx");
 
 
                 }
@@ -91,7 +92,7 @@ namespace Roteirizacao
                     Response.Write(ex.Message);
                 }
 
-                //lbl_mensagem.Text = $"A sua plavra-passe é {DecryptString(respostaSP)}";
+                
             }
 
             
