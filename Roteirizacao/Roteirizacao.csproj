@@ -444,7 +444,6 @@
     <Compile Include="ativacao.aspx.designer.cs">
       <DependentUpon>ativacao.aspx</DependentUpon>
     </Compile>
-    <Compile Include="base64.cs" />
     <Compile Include="branco.aspx.cs">
       <DependentUpon>branco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

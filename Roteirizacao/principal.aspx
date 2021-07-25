@@ -42,11 +42,7 @@
                                 <i class="align-middle" data-feather="phone"></i><span class="align-middle">Contacto</span>
                             </a>
                         </li>
-                        <li>
-                             <a class="nav-link " href="#">
-                              <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" />
-                          </a>
-                        </li>
+                       
                        
                     </ul>
                 </div>
@@ -659,8 +655,6 @@
             var resp = false;
             var data2 = "";
 
-
-
             $("#enviar").click(function (e) {
 
                 e.preventDefault();
@@ -901,32 +895,7 @@
 
             });
 
-            ///*--------*/
-            //if (resp == true) {
-            //    function Rquest(json) {
-            //        $.ajax({
-
-            //            //URL da página com o WebMethod 
-            //            url: "https://localhost:44399/principal.aspx/GetData",
-            //            //Enviar os parâmetros
-            //            data: json,
-            //            type: "POST",
-            //            dataType: "json",
-            //            contentType: "application/json; charset=utf-8",
-            //            success: function (result) {
-            //                console.log(data);
-            //                alert(json);
-            //                alert(result.d);
-            //            },
-            //            error: function (req, status, error) {
-            //                alert(error);
-            //                //alert(req.responseText);
-            //            }
-            //        });
-            //    }
-            //}
-
-            ///*--------*/
+         
         });
 
 

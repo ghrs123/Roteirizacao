@@ -123,55 +123,64 @@ namespace Roteirizacao
         int utilizadorid;
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            if (btnUpload.Text != null) { 
+                try
+                {
+                    string imgContentType = FileUpload1.PostedFile.ContentType;
+
+                    Stream imgStream = FileUpload1.PostedFile.InputStream;
+
+                    int imgLen = FileUpload1.PostedFile.ContentLength;
+
+                    byte[] imgBinaryData = new byte[imgLen];
 
 
-            string imgContentType = FileUpload1.PostedFile.ContentType;
+                    imgStream.Read(imgBinaryData, 0, imgLen);
+
+                    string query = " SELECT utilizadorid FROM utilizador WHERE username = '" + Session["util"] + "' OR email='" + Session["util"] + "';";
+
+                    SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                    SqlCommand myCommand = new SqlCommand();
+
+                    myConn.Open();
+
+                    SqlCommand Command = new SqlCommand(query, myConn);
+
+                    SqlDataReader itemsReader = Command.ExecuteReader();
+
+                    while (itemsReader.Read())
+                    {
+
+                        utilizadorid = itemsReader.GetInt32(0);
+
+                    }
+
+                    itemsReader.Close();
+
+                    myCommand.Parameters.AddWithValue("@contentType", imgContentType);
+                    myCommand.Parameters.AddWithValue("@ficheiro", imgBinaryData);
+                    myCommand.Parameters.AddWithValue("@utilizadorid", utilizadorid);
 
 
-            Stream imgStream = FileUpload1.PostedFile.InputStream;
-
-            int imgLen = FileUpload1.PostedFile.ContentLength;
-
-            byte[] imgBinaryData = new byte[imgLen];
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandText = "inserir_imagem";
 
 
-            imgStream.Read(imgBinaryData, 0, imgLen);
+                    myCommand.Connection = myConn;
 
-            string query = " SELECT utilizadorid FROM utilizador WHERE username = '" + Session["util"] + "' OR email='" + Session["util"] + "';";
+                    myCommand.ExecuteNonQuery();
+                    myConn.Close();
 
-            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            SqlCommand myCommand = new SqlCommand();
-
-            myConn.Open();
-
-            SqlCommand Command = new SqlCommand(query, myConn);
-
-            SqlDataReader itemsReader = Command.ExecuteReader();
-
-            while (itemsReader.Read())
-            {
-
-                utilizadorid = itemsReader.GetInt32(0);
+                    Response.Redirect("config_utilizador.aspx");
+                }
+                catch
+                {
+                    Response.Redirect("config_utilizador.aspx");
+                }
 
             }
 
-            itemsReader.Close();
 
-            myCommand.Parameters.AddWithValue("@contentType", imgContentType);
-            myCommand.Parameters.AddWithValue("@ficheiro", imgBinaryData);
-            myCommand.Parameters.AddWithValue("@utilizadorid", utilizadorid);
-
-
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "inserir_imagem";
-
-
-            myCommand.Connection = myConn;
-
-            myCommand.ExecuteNonQuery();
-            myConn.Close();
-
-            Response.Redirect("config_utilizador.aspx");
 
 
         }
@@ -228,42 +237,49 @@ namespace Roteirizacao
 
         protected void btn_salvar_Click1(object sender, EventArgs e)
         {
-
-            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-            SqlCommand myCommand = new SqlCommand();
-            myConn.Open();
-
-
-            myCommand.Parameters.AddWithValue("@utilizador", Session["util"].ToString());
-            myCommand.Parameters.AddWithValue("@pw_atual", EncryptString(tb_senhaatual.Text));
-            myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tb_novasenha.Text));
-
-            SqlParameter valor = new SqlParameter();
-            valor.ParameterName = "@retorno";
-            valor.Direction = ParameterDirection.Output;
-            valor.SqlDbType = SqlDbType.Int;
-            myCommand.Parameters.Add(valor);
-
-            myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "alterar_pw";
-
-
-            myCommand.Connection = myConn;
-
-            myCommand.ExecuteNonQuery();
-
-            int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
-
-     
-            if (repostaSP == 1)
+            try
             {
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                SqlCommand myCommand = new SqlCommand();
+                myConn.Open();
 
-                tb_novasenha.Text = "";
-                tb_senhaatual.Text = "";
-               
+
+                myCommand.Parameters.AddWithValue("@utilizador", Session["util"].ToString());
+                myCommand.Parameters.AddWithValue("@pw_atual", EncryptString(tb_senhaatual.Text));
+                myCommand.Parameters.AddWithValue("@pw_nova", EncryptString(tb_novasenha.Text));
+
+                SqlParameter valor = new SqlParameter();
+                valor.ParameterName = "@retorno";
+                valor.Direction = ParameterDirection.Output;
+                valor.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(valor);
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "alterar_pw";
+
+
+                myCommand.Connection = myConn;
+
+                myCommand.ExecuteNonQuery();
+
+                int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+
+
+                if (repostaSP == 1)
+                {
+
+                    tb_novasenha.Text = "";
+                    tb_senhaatual.Text = "";
+
+                }
+                myConn.Close();
+
             }
-            myConn.Close();
-
+            catch
+            {
+                lbl_mensagem.Text = "Preencha os campos!";
+            }
+          
         }
     }
 

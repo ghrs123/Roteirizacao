@@ -219,7 +219,7 @@
                                                                     <asp:Button ID="btnUpload" type="submit" Text="Upload" runat="server" class="btn btn-primary" CommandName="update" OnClick="btnUpload_Click" Width="80px"></asp:Button>
                                                                 </div>
 
-                                                                <asp:Label ID="lbl_mensagem2" runat="server" Text="ASdsd"></asp:Label>
+                                                                <asp:Label ID="lbl_mensagem2" runat="server" Text=""></asp:Label>
                                                             </div>
                                                         </div>
 
@@ -242,13 +242,13 @@
 
                                                 <div class="form ">
                                                     <div class="form-group">
-                                                        <label for="inputPasswordCurrent">Senha Atual</label>
-                                                        <asp:TextBox ID="tb_senhaatual" runat="server" class="form-control"></asp:TextBox>
+                                                        <label for="tb_senhaatual">Senha Atual</label>
+                                                        <asp:TextBox ID="tb_senhaatual" runat="server" type="passowrd" pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" class="form-control"></asp:TextBox>
                                                         <small><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua Senha?</a></small>
                                                     </div>
                                                     <div class="form-group ">
-                                                        <label for="inputPasswordNew">Nova Senha</label>
-                                                        <asp:TextBox ID="tb_novasenha" runat="server" class="form-control"></asp:TextBox>
+                                                        <label for="tb_novasenha">Nova Senha</label>
+                                                        <asp:TextBox ID="tb_novasenha" runat="server" type="passowrd"  pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" class="form-control"></asp:TextBox>
                                                     </div>
 
                                                     <!-- Verificação de senha 

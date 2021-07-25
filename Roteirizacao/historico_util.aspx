@@ -141,7 +141,7 @@
                                                                         <h7 class="card-subtitle text-muted">Informações sobre as rotas</h7>
                                                                     </div>
                                                                     <asp:Panel ID="Panel1" runat="server">
-                                                                        <table class="table">
+                                                                        <table class="table" style="width: 100%;">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <%-- <th align="center"></th>--%>

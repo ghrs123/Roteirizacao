@@ -91,8 +91,12 @@
                                                         <input id="tb_email" runat="server" type="email" class="form-control" placeholder=""/>
                                                        <div class="col-7">
                                                            <asp:Button ID="btn_recuperar" runat="server" Text="Recuperar" OnClick="btn_recuperar_Click"/>
+                                                           
 														</div> 
-                                                        <asp:Literal ID="lbl_mensagem" runat="server"></asp:Literal>
+                                                        <div class=""  style="font-size: 15px; display: block;">
+                                                            <asp:Label ID="lblMensagem" runat="server"   Text=""></asp:Label>                                            
+                                                        </div>
+                                                     
                                                     </div>
                                                 </div>
                                             </div>

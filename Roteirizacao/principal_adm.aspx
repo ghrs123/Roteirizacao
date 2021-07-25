@@ -207,10 +207,21 @@
 				                <a id='send' class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
-                                    <div id="resultado" class="mb-5"></div>
-                                    <div id="rtime" style="background-color: chartreuse;"></div>
-                                    <div id="zmin" style="background-color: chartreuse;"></div>
-                                </div>
+                                   
+                                    <div id="resultado" text="" style="background-color: chartreuse;">
+                                    </div>
+                                         
+                                
+                                   <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
+                                    <label id="lblnome2" runat="server"></label>
+                        
+                                    <input type="hidden" id="tb_resp" runat="server" />
+                                    <div id="rtime" style="background-color: chartreuse;">
+                                        <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
+                                    </div>
+                                    <div id="zmin" style="background-color: chartreuse;">
+                                        <asp:Label ID="lbl_zmin" runat="server" Text=""></asp:Label>
+                                    </div>
                                 <div class="mapa" style="position: relative;">
                                     <div id="map"></div>
                                 </div>
@@ -683,13 +694,12 @@
                 }
             });
 
-
-
+            var resp = false;
+            var data2 = "";
 
             $("#enviar").click(function (e) {
 
                 e.preventDefault();
-
 
                 loadMap();
 
@@ -702,46 +712,28 @@
                 getFormData(function (res) {
                     if (res) {
 
-
                         //console.log("enviar", res);
 
                         var origin = res.$origin;
                         var routes = res.routes;
                         var trucks = res.trucks;
 
-
-
                         var dataa = { origin, routes, trucks };
 
                         data = JSON.stringify(dataa);
-
-
-                        // http://localhost:44399
-                        //$.ajax({
-                        //     url: 'http://localhost/calc',
-                        //    type: 'POST',
-                        //    dataType: 'jsonp',
-                        //   data: data,
-                        //     headers: {'Access-Control-Allow-Origin':'http://localhost:44399' },
-                        //    success: function (result) {
-
 
                         $.post('http://localhost:4120/calc', { data: data }, function (result) {
 
                             if (result) {
 
                                 console.log("Server responded with ", result);
+                                var data = JSON.stringify(result.routesByVehicles);
 
+                                resp = true;
+                                data2 = JSON.stringify(result.routesByVehicles);
 
-
-                                $("#resultado").text(JSON.stringify(result.routesByVehicles));
-
-                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
-                                $("#zmin").text("Custo mínimo de Transporte (R$) : " + new Intl.NumberFormat("de-DE").format(result.z));
-                                //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
 
                                 var c = 0;
-
 
                                 for (var veiculo in result.routesByVehicles) {
                                     var rotas = result.routesByVehicles[veiculo].rotas
@@ -759,8 +751,6 @@
 
 
                                     }
-
-
 
                                     var request = {
                                         origin: start,
@@ -805,7 +795,19 @@
 
 
                                 }
+                              <%--  /*<%= ResolveUrl("~/principal.aspx/GetData") %>*/--%>
 
+                                $.post(' <%= ResolveUrl("/principal.aspx/GetData") %>', { data: data2 }, function (result) {
+                                    if (result) {
+                                        console.log(data2);
+                                        alert(data2);
+                                        alert("Post efetuado");
+                                        //alert(result.d);
+                                    } else {
+                                        alert(error);
+
+                                    }
+                                });
 
 
                             }
@@ -813,6 +815,116 @@
                                 console.log("no response");
                             }
 
+                        });
+
+
+
+                    }
+
+                    else
+                        console.log("não foi possível calcular");
+
+                });
+
+                getFormData(function (res) {
+                    if (res) {
+
+
+                        //console.log("enviar", res);
+
+                        var origin = res.$origin;
+                        var routes = res.routes;
+                        var trucks = res.trucks;
+
+                        var dataa = { origin, routes, trucks };
+
+                        data = JSON.stringify(dataa);
+
+                        $.post('http://localhost:4120/calc', { data: data }, function (result) {
+
+                            if (result) {
+
+                                console.log("Server responded with ", result);
+                                var data = JSON.stringify(result.routesByVehicles);
+
+                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
+                                //$("#resultado").text(data);
+                                document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+
+                                document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
+                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
+                                $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
+                                //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
+
+                                //resp = true;
+                                //data2 = JSON.stringify(result.routesByVehicles);
+
+                                var c = 0;
+
+                                for (var veiculo in result.routesByVehicles) {
+                                    var rotas = result.routesByVehicles[veiculo].rotas
+
+
+                                    var waypoints = [];
+                                    var start;
+                                    var end;
+                                    start = rotas.splice(0, 1)[0];
+                                    end = rotas.splice(-1, 1)[0];
+
+                                    for (var loc in rotas) {
+
+                                        waypoints.push({ location: rotas[loc], stopover: true });
+
+
+                                    }
+
+                                    var request = {
+                                        origin: start,
+                                        destination: end,
+                                        waypoints: waypoints,
+                                        travelMode: google.maps.TravelMode.DRIVING
+                                    };
+
+                                    // Pass the directions request to the directions service.
+
+                                    directionsService
+                                        .route(
+                                            request,
+                                            function (
+                                                response,
+                                                status) {
+                                                if (status == google.maps.DirectionsStatus.OK) {
+
+                                                    directionsDisplay = new google.maps.DirectionsRenderer;
+
+                                                    directionsDisplay.setMap(map);
+
+                                                    directionsDisplay.setOptions({
+                                                        preserveViewport: true,
+                                                        suppressInfoWindows: false,
+                                                        polylineOptions: {
+                                                            strokeWeight: 4,
+                                                            strokeOpacity: 0.8,
+                                                            strokeColor: colourArray[c]
+                                                        },
+
+                                                    });
+
+                                                    // Display the route on the map.
+                                                    directionsDisplay
+                                                        .setDirections(response);
+
+                                                    c = c + 1;
+                                                }
+                                            });
+
+
+
+                                }
+                            }
+                            else {
+                                console.log("no response");
+                            }
 
                         });
 
@@ -823,10 +935,7 @@
 
                 });
 
-
-
             });
-
 
         });
 

@@ -142,7 +142,7 @@
                                         <div class="card-body">
 
                                             <asp:Panel ID="Panel1" runat="server">
-                                                <table class="table">
+                                                <table class="table" style="width: 100%;">
                                                     <thead>
                                                         <tr>
                                                             <th align="center" class="auto-style1">Id</th>

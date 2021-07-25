@@ -49,6 +49,12 @@
                                 <i class="align-middle" data-feather="settings"></i><span class="align-middle">Configuração</span>
                             </a>
                         </li>
+                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="#">
+                              <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" clasa="btn btn-dark"  style="width:120px;"/>
+                              
+                          </a>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
                                 <i class="align-middle" data-feather="log-out"></i>
@@ -212,12 +218,22 @@
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
 
-                                    <div id="resultado" class="mb-5">
-                                        <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>
-                                       <%-- <label id="lbl_resultado"></label>--%>
+                                    <p>Rotas por veículo</p>
+
+                                    <div id="resultado" text="" style="background-color: chartreuse;">
                                     </div>
-                                    <div id="rtime" style="background-color: chartreuse;"></div>
-                                    <div id="zmin" style="background-color: chartreuse;"></div>
+                                         
+                                
+                                   <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
+                                    <label id="lblnome2" runat="server"></label>
+                        
+                                    <input type="hidden" id="tb_resp" runat="server" />
+                                    <div id="rtime" style="background-color: chartreuse;">
+                                        <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
+                                    </div>
+                                    <div id="zmin" style="background-color: chartreuse;">
+                                        <asp:Label ID="lbl_zmin" runat="server" Text=""></asp:Label>
+                                    </div>
 
                                 </div>
                                 <div class="mapa" style="position: relative;">
@@ -692,13 +708,12 @@
                 }
             });
 
-
-
+            var resp = false;
+            var data2 = "";
 
             $("#enviar").click(function (e) {
 
                 e.preventDefault();
-
 
                 loadMap();
 
@@ -711,21 +726,15 @@
                 getFormData(function (res) {
                     if (res) {
 
-
                         //console.log("enviar", res);
 
                         var origin = res.$origin;
                         var routes = res.routes;
                         var trucks = res.trucks;
 
-
-
                         var dataa = { origin, routes, trucks };
 
                         data = JSON.stringify(dataa);
-
-
-
 
                         $.post('http://localhost:4120/calc', { data: data }, function (result) {
 
@@ -733,16 +742,12 @@
 
                                 console.log("Server responded with ", result);
                                 var data = JSON.stringify(result.routesByVehicles);
-                               
-                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
-                                $("#resultado").text(data);
 
-                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
-                                $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
-                                //$("#zmin").text("Custo mínimo de Transporte (R$) : " + JSON.stringify(Number(result.z)));
+                                resp = true;
+                                data2 = JSON.stringify(result.routesByVehicles);
+
 
                                 var c = 0;
-
 
                                 for (var veiculo in result.routesByVehicles) {
                                     var rotas = result.routesByVehicles[veiculo].rotas
@@ -760,8 +765,6 @@
 
 
                                     }
-
-
 
                                     var request = {
                                         origin: start,
@@ -806,7 +809,19 @@
 
 
                                 }
+                              <%--  /*<%= ResolveUrl("~/principal.aspx/GetData") %>*/--%>
 
+                                $.post(' <%= ResolveUrl("/principal.aspx/GetData") %>', { data: data2 }, function (result) {
+                                    if (result) {
+                                        console.log(data2);
+                                        alert(data2);
+                                        alert("Post efetuado");
+                                        //alert(result.d);
+                                    } else {
+                                        alert(error);
+
+                                    }
+                                });
 
 
                             }
@@ -814,6 +829,116 @@
                                 console.log("no response");
                             }
 
+                        });
+
+
+
+                    }
+
+                    else
+                        console.log("não foi possível calcular");
+
+                });
+
+                getFormData(function (res) {
+                    if (res) {
+
+
+                        //console.log("enviar", res);
+
+                        var origin = res.$origin;
+                        var routes = res.routes;
+                        var trucks = res.trucks;
+
+                        var dataa = { origin, routes, trucks };
+
+                        data = JSON.stringify(dataa);
+
+                        $.post('http://localhost:4120/calc', { data: data }, function (result) {
+
+                            if (result) {
+
+                                console.log("Server responded with ", result);
+                                var data = JSON.stringify(result.routesByVehicles);
+
+                                //$("#resultado").text(JSON.stringify(result.routesByVehicles));
+                                //$("#resultado").text(data);
+                                document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+
+                                document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
+                                $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
+                                $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
+                                //$("#zmin").text("Custo mínimo de Transporte (€) : " + JSON.stringify(Number(result.z)));
+
+                                //resp = true;
+                                //data2 = JSON.stringify(result.routesByVehicles);
+
+                                var c = 0;
+
+                                for (var veiculo in result.routesByVehicles) {
+                                    var rotas = result.routesByVehicles[veiculo].rotas
+
+
+                                    var waypoints = [];
+                                    var start;
+                                    var end;
+                                    start = rotas.splice(0, 1)[0];
+                                    end = rotas.splice(-1, 1)[0];
+
+                                    for (var loc in rotas) {
+
+                                        waypoints.push({ location: rotas[loc], stopover: true });
+
+
+                                    }
+
+                                    var request = {
+                                        origin: start,
+                                        destination: end,
+                                        waypoints: waypoints,
+                                        travelMode: google.maps.TravelMode.DRIVING
+                                    };
+
+                                    // Pass the directions request to the directions service.
+
+                                    directionsService
+                                        .route(
+                                            request,
+                                            function (
+                                                response,
+                                                status) {
+                                                if (status == google.maps.DirectionsStatus.OK) {
+
+                                                    directionsDisplay = new google.maps.DirectionsRenderer;
+
+                                                    directionsDisplay.setMap(map);
+
+                                                    directionsDisplay.setOptions({
+                                                        preserveViewport: true,
+                                                        suppressInfoWindows: false,
+                                                        polylineOptions: {
+                                                            strokeWeight: 4,
+                                                            strokeOpacity: 0.8,
+                                                            strokeColor: colourArray[c]
+                                                        },
+
+                                                    });
+
+                                                    // Display the route on the map.
+                                                    directionsDisplay
+                                                        .setDirections(response);
+
+                                                    c = c + 1;
+                                                }
+                                            });
+
+
+
+                                }
+                            }
+                            else {
+                                console.log("no response");
+                            }
 
                         });
 
@@ -823,8 +948,6 @@
                         console.log("não foi possível calcular");
 
                 });
-
-
 
             });
 

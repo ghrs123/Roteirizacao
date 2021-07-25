@@ -106,15 +106,15 @@
                             <div class="form-group ">
                                 <label for="tbNewPass">Nova Senha</label> 
                             
-                                <asp:TextBox ID="tbNewPass" runat="server"  type="password" pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" title="9 Caracteres entre letras e números,1 Maiúscula, + ou / " class="form-control"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" Text="*" ControlToValidate="tbNewPass"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="tbNewPass" runat="server"  type="password" pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" title="9 Caracteres entre letras e números,1 Maiúscula, + ou / " class="form-control"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Preencher o campo" Text="*" ControlToValidate="tbNewPass"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group">
                                 <label for="tbRepNewPass">Confirmar Nova Palavra-Passe</label>
-                                <asp:TextBox ID="tbRepNewPass" runat="server" type="password" pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" title="9 Caracteres entre letras e números,1 Maiúscula, + ou / " class="form-control"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" Text="*" ControlToValidate="tbRepNewPass"></asp:RequiredFieldValidator><asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="CompareValidator" ControlToCompare="tbNewPass" ControlToValidate="tbRepNewPass">*</asp:CompareValidator>
+                                <asp:TextBox ID="tbRepNewPass" runat="server" type="password" pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" title="9 Caracteres entre letras e números,1 Maiúscula, + ou / " class="form-control"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Palavra-Passe diferente" Text="*" ControlToValidate="tbRepNewPass"></asp:RequiredFieldValidator><asp:CompareValidator ID="CompareValidator3" runat="server" ErrorMessage="CompareValidator" ControlToCompare="tbNewPass" ControlToValidate="tbRepNewPass">*</asp:CompareValidator>
                             </div>
                             <asp:Button ID="btnAlterar" class="btn btn-primary" runat="server" Text="Salvar Alterações" Onclick="btnAlterar_Click" />
                             <div>
-                                <asp:Label ID="lbl_mensagem" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lbl_mensagem" runat="server" Text="sadasd"></asp:Label>
                             </div>
                         </div>
 
