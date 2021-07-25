@@ -200,7 +200,7 @@
                                                 <input type="text" id='cap0' name='cap' class=" form-control input-md" placeholder="Capacidade (kg)" />
                                             </td>
                                             <td>
-                                                <input type='number' step='1' min='1' onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='Custo R$/km' />
+                                                <input type='number' step='1' min='1' onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='€/km' />
                                             </td>
                                         </tr>
                                         <tr id='truck1'></tr>
@@ -214,14 +214,8 @@
                                 <a id='enviar' class="btn btn-success pull-center ">ROTEIRIZAR</a>&nbsp
 				                <a id='send' class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
 
-
-                                <div class="rotas">
-                                    <p>Rotas por veículo</p>
-
-                                    <p>Rotas por veículo</p>
-
-                                    <div id="resultado" text="" style="background-color: chartreuse;">
-                                        <asp:Table ID="tblRotas" runat="server" class="table table-bordered table-hover table-condensed" style="width: 100%;">
+                                <div class="">
+                                     <asp:Table ID="tblRotas" runat="server" class="table table-bordered table-hover table-condensed" style="width: 100%; margin-bottom: 15px;">
 
                                            
                                         </asp:Table>
@@ -229,21 +223,28 @@
 
 
                                          </asp:GridView>
-                                    </div>
-                                         
-                                
-                                   <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
-                                    <label id="lblnome2" runat="server"></label>
-                        
-                                    <input type="hidden" id="tb_resp" runat="server" />
-                                    <div id="rtime" style="background-color: chartreuse;">
-                                        <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
-                                    </div>
-                                    <div id="zmin" style="background-color: chartreuse;">
-                                        <asp:Label ID="lbl_zmin" runat="server" Text=""></asp:Label>
-                                    </div>
 
                                 </div>
+                                <div class="rotas" style="margin-bottom: 15px;">
+                                    <p>Rotas por veículo</p>
+                                   
+                                    
+                                    <div id="rtime">
+                                        <asp:Label ID="lbl_rtime" runat="server" style="background-color: chartreuse;" Text=""></asp:Label>
+                                    </div>
+                                    <div id="zmin">
+                                        <asp:Label ID="lbl_zmin" runat="server" Text="" style="background-color: chartreuse;"></asp:Label>
+                                    </div>
+                                     
+                                     <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
+                                    <label id="lblnome2"  runat="server"></label>
+
+                                    <input type="hidden" id="tb_resp" runat="server" />
+
+                                </div>
+                                 <%-- <div id="resultado" text="" style="background-color: chartreuse; margin-top: 15px;" >
+                                        
+                                   </div>--%>
                                 <div class="mapa" style="position: relative;">
                                     <div id="map"></div>
                                 </div>
@@ -814,17 +815,16 @@
                                                 }
                                             });
 
-
-
                                 }
                               <%--  /*<%= ResolveUrl("~/principal.aspx/GetData") %>*/--%>
 
-                                $.post(' <%= ResolveUrl("~/principal.aspx") %>', { data: data2 }, function (result) {
+                                $.post(' <%= ResolveUrl("~/principal.aspx") %>', { data: data }, function (result) {
                                     if (result) {
-                                        console.log(data2);
-                                        alert(data2);
-                                        alert("Post efetuado");
+                                       // console.log(data);
+                                        
+                                        alert("Registe a rota para salvar os dados.");
                                         //alert(result.d);
+                                       
                                     } else {
                                         alert(error);
 
@@ -871,9 +871,11 @@
 
                                 //$("#resultado").text(JSON.stringify(result.routesByVehicles));
                                 //$("#resultado").text(data);
-                                document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
-
-                                document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
+                              
+                                //document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+                                //document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
+                                //document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
+                               
                                 $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
                                 $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
                                 //$("#zmin").text("Custo mínimo de Transporte (€) : " + JSON.stringify(Number(result.z)));

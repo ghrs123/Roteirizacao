@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Roteirizacao
 {
@@ -58,16 +59,25 @@ namespace Roteirizacao
 
             JavaScriptSerializer j = new JavaScriptSerializer();
 
-
             List<Root> ListaRotas = j.Deserialize<List<Root>>(xpto);
 
+            //GridView 
+            DataTable dataTable = new DataTable();
+            DataRow dataRow = null;
+            dataTable.Columns.Add("Veiculo");
+            dataTable.Columns.Add("Rotas");
+            dataTable.Columns.Add("Cargas");
+
+
+            ///End GridView
+            
 
             //quantity of items in the first line veiculo,carga and rota(s)
             for (int l = 0; l < ListaRotas.Count(); l++)
             {
                 //add a line
                 tblRotas.Rows.Add(new TableRow());
-
+                dataRow = dataTable.NewRow();
                 // for colunm
                 for (int c = 0; c < 3; c++)
                 {
@@ -76,46 +86,63 @@ namespace Roteirizacao
 
                     if (c == 0)
                     {
+
                         // tblRotas.Rows[l].Cells[c].Text = rota.veiculo.ToString();
                         //add ol veiculo
-                        tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].veiculo.ToString();
+                        //tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].veiculo.ToString();
+                        dataRow["Veiculo"] = ListaRotas[l].veiculo.ToString();
                     }
 
                     //if (l == Convert.ToInt32(ListaRotas[0].rotas[l].ToString()) && ListaRotas[0].rotas.Count() > 1)
                     //for colun rotas
                     if (c == 1)
                     {
+                        
                         for (int r = 0; r < ListaRotas[l].rotas.Count(); r++)
                         {
-                            tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[r].ToString();
-                           
+                            dataRow["Rotas"] += $"Ponto{r + 1}: " + ListaRotas[l].rotas[r].ToString() + " ";
+                            //tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[r].ToString();
+
                             //MessageBox.Show($"Rota{(r + 1)}:" + ListaRotas[0].rotas[r].ToString());
                             //rt += ListaRotas[i].rotas[r].ToString() + "   ";
                             ////Response.Write(ListaRotas[0].rotas[r].ToString());
 
                         }
-                     
+
                     }
                     //for colun of cargas
                     // if(l == Convert.ToInt32(ListaRotas[0].cargas[l].ToString()) && ListaRotas[0].cargas.Count() > 1)
                     if (c == 2)
                     {
+
                         for (int cg = 0; cg < ListaRotas[l].cargas.Count(); cg++)
                         {
+
                             //carga
-                            
 
-                            tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas[cg].Carga.ToString();
+                            dataRow["Cargas"] = tblRotas.Rows.Add(new TableRow());
 
-                            tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas[cg].qty.ToString();
+
+                            dataRow["Cargas"] += "Tipo de Carga:  "+ ListaRotas[l].cargas[cg].Carga.ToString() + " ";
+                            dataRow["Cargas"] += "\t<Quantidade: " + ListaRotas[l].cargas[cg].qty.ToString() + " ";
+
+                            //tblRotas.Rows[c].Cells[cg].Text = ListaRotas[c].cargas[cg].Carga.ToString();                          
+                            //tblRotas.Rows[c].Cells[cg].Text = ListaRotas[c].cargas[cg].qty.ToString();
+
+
+
+                            //tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas[cg].Carga.ToString();
+
+                            //tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas[cg].qty.ToString();
                         }
                     }
 
                 }
 
-
+                dataTable.Rows.Add(dataRow);
             }
-
+            grdRotas.DataSource = dataTable;
+            grdRotas.DataBind();
         }
 
 
@@ -201,7 +228,6 @@ namespace Roteirizacao
 
 
     }
-
 
 
 

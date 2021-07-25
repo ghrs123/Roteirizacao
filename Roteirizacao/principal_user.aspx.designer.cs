@@ -78,24 +78,6 @@ namespace Roteirizacao
         protected global::System.Web.UI.WebControls.GridView grdRotas;
 
         /// <summary>
-        /// lblnome2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblnome2;
-
-        /// <summary>
-        /// tb_resp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden tb_resp;
-
-        /// <summary>
         /// lbl_rtime control.
         /// </summary>
         /// <remarks>
@@ -112,5 +94,23 @@ namespace Roteirizacao
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_zmin;
+
+        /// <summary>
+        /// lblnome2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblnome2;
+
+        /// <summary>
+        /// tb_resp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden tb_resp;
     }
 }

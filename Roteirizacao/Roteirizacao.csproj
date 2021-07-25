@@ -383,6 +383,7 @@
     <Content Include="assets\js\flot\jquery.flot.threshold.js" />
     <Content Include="assets\js\flot\jquery.flot.time.js" />
     <Content Include="assets\js\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="assets\js\JavaScript.js" />
     <Content Include="assets\js\jquery.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\metisMenu.min.js" />
