@@ -47,6 +47,12 @@
                                 <i class="align-middle" data-feather="settings"></i><span class="align-middle">Configuração</span>
                             </a>
                         </li>
+                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="#">
+                                <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" clasa="btn btn-dark" Style="width: 120px;" />
+
+                            </a>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
                                 <i class="align-middle" data-feather="log-out"></i>
@@ -135,7 +141,7 @@
                                                 <input type="text" name='prod1' id='prod1' class=" form-control input-md" placeholder="Produto" />
                                             </td>
                                             <td>
-                                                <input runat="server" type="number" step="1" min="1" max="5" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
+                                                <input runat="server" type="number" step="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -163,9 +169,9 @@
                                     </tbody>
                                  
                                 </table>
-                                <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
-			                    <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>
-                                <a id="delete_prod" class="btn btn-danger pull-right">Remover Produto/Entrega</a>
+                                <a id="add_pickup_destination" class="btn btn-primary  pull-left" style="color: white;">Adicionar Entrega</a>&nbsp &nbsp
+			                    <a id="add_prod" class="btn btn-primary pull-center" style="color: white;">Adicionar Produto</a>
+                                <a id="delete_prod" class="btn btn-danger pull-right" style="color: white;">Remover Produto/Entrega</a>
                                 <!--<a id='delete_row' class="pull-right btn btn-default">Remover Entrega</a>-->
                                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="tab_trucks">
                                     <thead>
@@ -192,35 +198,40 @@
                                                 <input type="text" id='cap0' name='cap' class=" form-control input-md" placeholder="Capacidade (kg)" />
                                             </td>
                                             <td>
-                                                <input type='number' step='1' min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='Custo R$/km' />
+                                                <input type='number' step='1' min='1' onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='€/km' />
                                             </td>
                                         </tr>
                                         <tr id='truck1'></tr>
                                     </tbody>
                                 </table>
 
-                                <a id="add_truck" class="btn btn-primary  pull-left">Adicionar Veículo</a>&nbsp												
+                                <a id="add_truck" class="btn btn-primary  pull-left" style="color: white;">Adicionar Veículo</a>&nbsp												
 			                    <!--input type="submit" class="btn btn-primary"-->
 
-                                <a id='delete_truck' class="btn btn-danger pull-center ">Remover Veículo</a>
-                                <a id='enviar' class="btn btn-success pull-center ">ROTEIRIZAR</a>&nbsp
-				                <a id='send' class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
+                                <a id='delete_truck' class="btn btn-danger pull-center " style="color: white;">Remover Veículo</a>
+                                <a id='enviar' class="btn btn-success pull-center " style="color: white;">ROTEIRIZAR</a>&nbsp
+				                <a id='send' class="btn btn-warning pull-center" style="color: white;" onclick="window.location.reload();">RECOMEÇAR</a>
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
                                    
-                                    <div id="resultado" text="" style="background-color: chartreuse;">
+                                    <div id="resultado" text=""">
                                     </div>
-                                         
+                                                    
+                                <asp:Table ID="tblRotas" runat="server" class="table table-bordered table-hover table-condensed" Style="width: 100%; margin-bottom: 15px;">
+                                </asp:Table>
+                                <asp:GridView runat="server" ID="grdRotas" class="table table-bordered table-hover table-condensed">
+                                </asp:GridView>
+
                                 
                                    <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
                                     <label id="lblnome2" runat="server"></label>
                         
                                     <input type="hidden" id="tb_resp" runat="server" />
-                                    <div id="rtime" style="background-color: chartreuse;">
-                                        <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
+                                    <div id="rtime" style="color: white;">
+                                        <asp:Label ID="lbl_rtime" runat="server" style="color: white;" Text=""></asp:Label>
                                     </div>
-                                    <div id="zmin" style="background-color: chartreuse;">
-                                        <asp:Label ID="lbl_zmin" runat="server" Text=""></asp:Label>
+                                    <div id="zmin" style="color: white;">
+                                        <asp:Label ID="lbl_zmin" runat="server" style="color: white;" Text=""></asp:Label>
                                     </div>
                                 <div class="mapa" style="position: relative;">
                                     <div id="map"></div>
@@ -628,7 +639,7 @@
 
                             var $addproduct = $('<tr id="addr' + (i) + '"></tr>').appendTo('#tab_logic thead:last');
 
-                            $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Demanda (kg)'  class='form-control input-md'></td>"));
+                            $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1'  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Demanda (kg)'  class='form-control input-md'></td>"));
 
 
                         }
@@ -676,7 +687,7 @@
 
 
                 if (t <= 100) { //LIMITADO À TRES CAMINHÕES SOMENTE
-                    $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo R$/km'  class='form-control input-md'></td>");
+                    $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1'  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo R$/km'  class='form-control input-md'></td>");
 
                     $('#tab_trucks').append('<tr id="truck' + (t + 1) + '"></tr>');
                     t++;
@@ -799,9 +810,9 @@
 
                                 $.post(' <%= ResolveUrl("/principal.aspx/GetData") %>', { data: data2 }, function (result) {
                                     if (result) {
-                                        console.log(data2);
-                                        alert(data2);
-                                        alert("Post efetuado");
+                                      //  console.log(data2);
+                                      //  alert(data2);
+                                       // alert("Post efetuado");
                                         //alert(result.d);
                                     } else {
                                         alert(error);
@@ -849,7 +860,9 @@
 
                                 //$("#resultado").text(JSON.stringify(result.routesByVehicles));
                                 //$("#resultado").text(data);
-                                document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+                              
+
+                               // document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
 
                                 document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
                                 $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));

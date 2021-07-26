@@ -14,14 +14,14 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-1XQsZgfFm92nBllJAJ8P4a31xYaYGs4&libraries=places,geometry&signed_in=true"></script>
     <script src="assets/js/cnv.js"></script>
-<link href="estilo.css" rel="stylesheet" />
+    <link href="estilo.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server" method="post">
         <div class="wrapper">
             <nav id="sidebar" class="sidebar">
-                
+
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="https://localhost:44399/principal.aspx">
                         <span class="align-middle">Roteirização</span>
@@ -49,11 +49,11 @@
                                 <i class="align-middle" data-feather="settings"></i><span class="align-middle">Configuração</span>
                             </a>
                         </li>
-                         <li class="sidebar-item">
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
-                              <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" clasa="btn btn-dark"  style="width:120px;"/>
-                              
-                          </a>
+                                <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" clasa="btn btn-dark" Style="width: 120px;" />
+
+                            </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="#">
@@ -96,7 +96,8 @@
                                     <a class="dropdown-item" href="https://localhost:44399/config_utilizador.aspx"><i class="align-middle mr-1"></i>Configuração</a>
                                     <div class="dropdown-divider"></div>
                                     <div class="dropdown-item" style="text-align: center;">
-                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>
+                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -125,7 +126,7 @@
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered table-hover" cellspacing="0" id="tab_logic">
-                                       <thead>
+                                    <thead>
                                         <tr>
                                             <th class="text-center" style="display: none;">#
                                             </th>
@@ -169,11 +170,11 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                 
+
                                 </table>
-                                <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
-			                    <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>
-                                <a id="delete_prod" class="btn btn-danger pull-right">Remover Produto/Entrega</a>
+                                <a id="add_pickup_destination" class="btn btn-primary  pull-left" style="color: white;">Adicionar Entrega</a>&nbsp &nbsp
+			                    <a id="add_prod" class="btn btn-primary pull-center" style="color: white;">Adicionar Produto</a>
+                                <a id="delete_prod" class="btn btn-danger pull-right" style="color: white;">Remover Produto/Entrega</a>
                                 <!--<a id='delete_row' class="pull-right btn btn-default">Remover Entrega</a>-->
                                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="tab_trucks">
                                     <thead>
@@ -207,42 +208,38 @@
                                     </tbody>
                                 </table>
 
-                                <a id="add_truck" class="btn btn-primary  pull-left">Adicionar Veículo</a>&nbsp												
+                                <a id="add_truck" class="btn btn-primary  pull-left" style="color: white;">Adicionar Veículo</a>&nbsp												
 			                    <!--input type="submit" class="btn btn-primary"-->
 
-                                <a id='delete_truck' class="btn btn-danger pull-center ">Remover Veículo</a>
-                                <a id='enviar' class="btn btn-success pull-center ">ROTEIRIZAR</a>&nbsp
-				                <a id='send' class="btn btn-warning pull-center" onclick="window.location.reload();">RECOMEÇAR</a>
-
-                                <div class="">
-                                     <asp:Table ID="tblRotas" runat="server" class="table table-bordered table-hover table-condensed" style="width: 100%; margin-bottom: 15px;">
-
-                                           
-                                        </asp:Table>
-                                         <asp:GridView  runat="server" ID="grdRotas">
+                                <a id='delete_truck' class="btn btn-danger pull-center " style="color: white;">Remover Veículo</a>
+                                <a id='enviar' class="btn btn-success pull-center " style="color: white;">ROTEIRIZAR</a>&nbsp
+				                <a id='send' class="btn btn-warning pull-center" style="color: white;" onclick="window.location.reload();">RECOMEÇAR</a>
 
 
-                                         </asp:GridView>
+                                <asp:Table ID="tblRotas" runat="server" class="table table-bordered table-hover table-condensed" Style="width: 100%; margin-bottom: 15px;">
+                                </asp:Table>
+                                <asp:GridView runat="server" ID="grdRotas" class="table table-bordered table-hover table-condensed">
+                                </asp:GridView>
 
-                                </div>
+
                                 <div class="rotas" style="margin-bottom: 15px;">
                                     <p>Rotas por veículo</p>
-                                   
-                                    
+
+
                                     <div id="rtime">
-                                        <asp:Label ID="lbl_rtime" runat="server" style="background-color: chartreuse;" Text=""></asp:Label>
+                                        <asp:Label ID="lbl_rtime" runat="server" Style="background-color: chartreuse;" Text=""></asp:Label>
                                     </div>
                                     <div id="zmin">
-                                        <asp:Label ID="lbl_zmin" runat="server" Text="" style="background-color: chartreuse;"></asp:Label>
+                                        <asp:Label ID="lbl_zmin" runat="server" Text="" Style="background-color: chartreuse;"></asp:Label>
                                     </div>
-                                     
-                                     <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
-                                    <label id="lblnome2"  runat="server"></label>
+
+                                    <%-- <asp:Label ID="lbl_nome" runat="server" Text=""></asp:Label>--%>
+                                    <label id="lblnome2" runat="server"></label>
 
                                     <input type="hidden" id="tb_resp" runat="server" />
 
                                 </div>
-                                 <%-- <div id="resultado" text="" style="background-color: chartreuse; margin-top: 15px;" >
+                                <%-- <div id="resultado" text="" style="background-color: chartreuse; margin-top: 15px;" >
                                         
                                    </div>--%>
                                 <div class="mapa" style="position: relative;">
@@ -316,8 +313,6 @@
 
             //console.log(a);
             document.getElementById("qty1").innerHTML = a;
-
-
 
         }
 
@@ -820,11 +815,11 @@
 
                                 $.post(' <%= ResolveUrl("~/principal.aspx") %>', { data: data }, function (result) {
                                     if (result) {
-                                       // console.log(data);
-                                        
+                                        // console.log(data);
+
                                         alert("Registe a rota para salvar os dados.");
                                         //alert(result.d);
-                                       
+
                                     } else {
                                         alert(error);
 
@@ -871,11 +866,11 @@
 
                                 //$("#resultado").text(JSON.stringify(result.routesByVehicles));
                                 //$("#resultado").text(data);
-                              
+
                                 //document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+                                document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
                                 //document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
-                                //document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
-                               
+
                                 $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));
                                 $("#zmin").text("Custo mínimo de Transporte (€) : " + new Intl.NumberFormat("de-DE").format(result.z));
                                 //$("#zmin").text("Custo mínimo de Transporte (€) : " + JSON.stringify(Number(result.z)));

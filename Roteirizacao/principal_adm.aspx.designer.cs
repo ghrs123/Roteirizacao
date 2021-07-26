@@ -24,6 +24,15 @@ namespace Roteirizacao
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// btnRegistarRota control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegistarRota;
+
+        /// <summary>
         /// btn_sair control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,24 @@ namespace Roteirizacao
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl qty1;
+
+        /// <summary>
+        /// tblRotas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblRotas;
+
+        /// <summary>
+        /// grdRotas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdRotas;
 
         /// <summary>
         /// lblnome2 control.

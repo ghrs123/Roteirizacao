@@ -42,7 +42,12 @@
                                 <i class="align-middle" data-feather="phone"></i><span class="align-middle">Contacto</span>
                             </a>
                         </li>
-                       
+                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="#">
+                                <asp:Button ID="btnRegistarRota" runat="server" Text="Registar Rota" OnClick="btnRegistarRota_Click" clasa="btn btn-dark" Style="width: 120px;" />
+
+                            </a>
+                        </li>
                        
                     </ul>
                 </div>
@@ -78,8 +83,7 @@
                                 <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
                                     <span class="text-dark">Login</span>
                                 </a>
-                                
-                               
+     
                             </li>
                         </ul>
                     </div>
@@ -155,9 +159,9 @@
                                     </tbody>
 
                                 </table>
-                                <a id="add_pickup_destination" class="btn btn-primary  pull-left">Adicionar Entrega</a>&nbsp &nbsp
-                                   <a id="add_prod" class="btn btn-primary pull-center">Adicionar Produto</a>
-                                <a id="delete_prod" class="btn btn-danger pull-right">Remover Produto/Entrega</a>
+                                <a id="add_pickup_destination" class="btn btn-primary  pull-left" style="color: white;">Adicionar Entrega</a>&nbsp &nbsp
+                                   <a id="add_prod" class="btn btn-primary pull-center" style="color: white;">Adicionar Produto</a>
+                                <a id="delete_prod" class="btn btn-danger pull-right" style="color: white;">Remover Produto/Entrega</a>
                                 <!--<a id='delete_row' class="pull-right btn btn-default">Remover Entrega</a>-->
                                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="tab_trucks">
                                     <thead>
@@ -189,24 +193,30 @@
                                             </td>
                                             <td>
                                              <%--   //step='1' min='1' max='5'--%>
-                                                <input type='number'  onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='Custo R$/km' />
+                                                <input type='number'  onkeypress='return event.charCode >= 48 && event.charCode <= 57' title='Numbers only' id='cost0' name='cost' class=" form-control input-md" placeholder='Custo €/km' />
                                             </td>
                                         </tr>
                                         <tr id='truck1'></tr>
                                     </tbody>
                                 </table>
-                                <a id="add_truck" class="btn btn-primary  pull-left">Adicionar Veículo</a>&nbsp												
+                                <a id="add_truck" class="btn btn-primary  pull-left" style="color: white;">Adicionar Veículo</a>&nbsp												
 			                    <!--input type="submit" class="btn btn-primary"-->
-                                <a id='delete_truck' class="btn btn-danger pull-center">Remover Veículo</a>
+                                <a id='delete_truck' class="btn btn-danger pull-center" style="color: white;">Remover Veículo</a>
 
                               <%-- <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" OnClick="enviar_Click" Style="width: 120px; color: black;" />--%>
-                                 <a id='enviar' runat="server" class="btn btn-warning pull-center" disble="true">ROTEIRIZAR</a>
-                               <%-- <a id='send' runat="server" class="btn btn-warning pull-center">RECOMEÇAR</a>--%>
+                                 <a id='enviar' runat="server" class="btn btn-success pull-center" style="color: white;" disble="true">ROTEIRIZAR</a>
+                                <a id='send' runat="server" class="btn btn-warning pull-center" style="color: white;">RECOMEÇAR</a>
                                 
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>
 
                                     <div id="resultado" text="" style="background-color: chartreuse;">
+                                        
+                                <asp:Table ID="tblRotas" runat="server" class="table table-bordered table-hover table-condensed" Style="width: 100%; margin-bottom: 15px;">
+                                </asp:Table>
+                                <asp:GridView runat="server" ID="grdRotas" class="table table-bordered table-hover table-condensed">
+                                </asp:GridView>
+
                                     </div>
                                          
                                 
@@ -214,10 +224,10 @@
                                     <label id="lblnome2" runat="server"></label>
                         
                                     <input type="hidden" id="tb_resp" runat="server" />
-                                    <div id="rtime" style="background-color: chartreuse;">
+                                    <div id="rtime" style="color: white;">
                                         <asp:Label ID="lbl_rtime" runat="server" Text=""></asp:Label>
                                     </div>
-                                    <div id="zmin" style="background-color: chartreuse;">
+                                    <div id="zmin" style="color: white;">
                                         <asp:Label ID="lbl_zmin" runat="server" Text=""></asp:Label>
                                     </div>
 
@@ -593,7 +603,7 @@
 
                             var $addproduct = $('<tr id="addr' + (i) + '"></tr>').appendTo('#tab_logic thead:last');
 
-                            $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Demanda (kg)'  class='form-control input-md'></td>"));
+                            $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1'  onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Demanda (kg)'  class='form-control input-md'></td>"));
 
 
                         }

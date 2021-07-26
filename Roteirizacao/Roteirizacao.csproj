@@ -397,7 +397,6 @@
     <Content Include="assets\js\raphael.min.js" />
     <Content Include="assets\js\startmin.js" />
     <Content Include="ativacao.aspx" />
-    <Content Include="branco.aspx" />
     <Content Include="config_adm.aspx" />
     <Content Include="config_utilizador.aspx" />
     <Content Include="estilo.css" />
@@ -422,10 +421,6 @@
     <Content Include="principal_user.aspx" />
     <Content Include="recuperar_senha.aspx" />
     <Content Include="registar.aspx" />
-    <Content Include="tabela.aspx" />
-    <Content Include="tabela2.aspx" />
-    <Content Include="table1.aspx" />
-    <Content Include="Teste.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap.css" />
     <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -445,13 +440,6 @@
     </Compile>
     <Compile Include="ativacao.aspx.designer.cs">
       <DependentUpon>ativacao.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="branco.aspx.cs">
-      <DependentUpon>branco.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="branco.aspx.designer.cs">
-      <DependentUpon>branco.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cargas.cs" />
     <Compile Include="config_adm.aspx.cs">
@@ -549,34 +537,6 @@
       <DependentUpon>registar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Root.cs" />
-    <Compile Include="tabela.aspx.cs">
-      <DependentUpon>tabela.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tabela.aspx.designer.cs">
-      <DependentUpon>tabela.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="tabela2.aspx.cs">
-      <DependentUpon>tabela2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tabela2.aspx.designer.cs">
-      <DependentUpon>tabela2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="table1.aspx.cs">
-      <DependentUpon>table1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="table1.aspx.designer.cs">
-      <DependentUpon>table1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Teste.aspx.cs">
-      <DependentUpon>Teste.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Teste.aspx.designer.cs">
-      <DependentUpon>Teste.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\bootstrap.min.css.map" />
