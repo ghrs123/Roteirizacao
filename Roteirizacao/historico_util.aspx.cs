@@ -158,6 +158,13 @@ namespace Roteirizacao
             HTMLWorker htmlparser = new HTMLWorker(Doc);
             PdfWriter.GetInstance(Doc, Response.OutputStream);
             Doc.Open();
+
+            //for (int j = 0; 1 < rptViagem.Items.Count; j++)
+            //{
+            //    repeaterTable += sw.ToString();
+            //}
+
+
             for (int i = 0; i < rptViagem.Items.Count; i++)
             {
                 using (StringWriter sw = new StringWriter())
@@ -167,43 +174,50 @@ namespace Roteirizacao
                     {
                         Doc.SetPageSize(new Rectangle(600, 300));
                         Doc.NewPage();
+
                         rptViagem.Items[i].RenderControl(hw);
 
-                        repeaterTable = "<table>" +
-                                            "<thead>" +
-                                                "<tr>" +
-                                                    "<th> Id </th >" +
-                                                    "<th> Produto </th>" +
-                                                    "<th> Peso Kg </th > " +
-                                                    "<th> Origem </th > " +
-                                                    "<th> Local Coleta</th >" +
-                                                    "<th> Local de entrega</th >" +
-                                                    "<th> Data</th >" +
-                                                    "<th> Custo por Km</th >" +
-                                                    "<th> Matrícula do Veículo</th >." +
-                                                 "</tr> " +
-                                             "</thead >" +
-                                             "<tbody>" +
-                                             sw.ToString() +
-                                             "</ tbody >" +
-                                          "</ table >";
+                   repeaterTable = "<table>" +
+                                        "<thead>" +
+                                            "<tr>" +
+                                                "<th> Id </th >" +
+                                                "<th> Produto </th>" +
+                                                "<th> Peso Kg </th > " +
+                                                "<th> Origem </th > " +
+                                                "<th> Local Coleta</th >" +
+                                                "<th> Local de entrega</th >" +
+                                                "<th> Data</th >" +
+                                                "<th> Custo por Km</th >" +
+                                                "<th> Matrícula do Veículo</th >." +
+                                             "</tr> " +
+                                         "</thead >" +
+                                         "<tbody>";
+                                             for (int j = 0; j < rptViagem.Items.Count; j++)
+                                            {
+                                                 repeaterTable += sw.ToString();
+                                             }
+                          repeaterTable += "</ tbody >" +
+                                        "</ table >";
 
                     }
-                }
-
-
-                StringWriter stringWriter = new StringWriter();
-                HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
-
-                Panel1.RenderControl(htmlTextWriter);
-
-                StringReader stringReader = new StringReader(repeaterTable.ToString());
-
-                htmlparser.Parse(stringReader);
-                Doc.Close();
-                Response.Write(Doc);
-                Response.End();
             }
+
+
+           
+            }
+
+
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
+
+            Panel1.RenderControl(htmlTextWriter);
+
+            StringReader stringReader = new StringReader(repeaterTable.ToString());
+
+            htmlparser.Parse(stringReader);
+            Doc.Close();
+            Response.Write(Doc);
+            Response.End();
         }
 
     }
