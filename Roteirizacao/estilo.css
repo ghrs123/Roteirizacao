@@ -154,10 +154,8 @@ inpunt{
 .coluna {
     width: auto;
 }
-/*
-.table {
-    width: 100%;
-}*/
+
+
 
 .table thead tr th {
     background-color: #6C6C6C;
@@ -175,3 +173,4 @@ form {
     margin-top: 0px;
    
 }
+

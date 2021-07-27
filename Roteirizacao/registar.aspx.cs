@@ -32,20 +32,12 @@ namespace Roteirizacao
             myCommand.Parameters.AddWithValue("@palavra_passe", EncryptString(tb_pw.Value));        
             myCommand.Parameters.AddWithValue("@nome", tb_nome.Value);
             myCommand.Parameters.AddWithValue("@apelido", tb_apelido.Value);
-            /*myCommand.Parameters.AddWithValue("@morada", tb_pais.Value);
-            myCommand.Parameters.AddWithValue("@cod_postal", tb_cidade.Value);
-            myCommand.Parameters.AddWithValue("@pais", tb_pais.Value);
-            myCommand.Parameters.AddWithValue("@cidade", tb_cidade.Value);*/
-
-
-
+         
             SqlParameter valor = new SqlParameter();
             valor.ParameterName = "@retorno";
             valor.Direction = ParameterDirection.Output;
             valor.SqlDbType = SqlDbType.Int;
             myCommand.Parameters.Add(valor);
-
-
 
             myCommand.CommandType = CommandType.StoredProcedure;
             myCommand.CommandText = "registar";

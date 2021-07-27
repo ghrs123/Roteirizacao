@@ -27,7 +27,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="https://localhost:44399/principal_user.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Início</span>
                             </a>
                         </li>
 
@@ -149,8 +149,8 @@
                                                                                     <th align="center">Produto</th>
                                                                                     <th align="center">Peso Kg</th>
                                                                                     <th align="center">Origem</th>
-                                                                                    <th align="center">Local Coleta</th>
-                                                                                    <th align="center">Local de entrega</th>
+                                                                                    <th align="center">Local Recolha</th>
+                                                                                    <th align="center">Local de Entrega</th>
                                                                                     <th align="center">Data</th>
                                                                                     <!--<th style="width:15.83%">Distância (Km)</th>-->
                                                                                     <th align="center">Custo por Km</th>

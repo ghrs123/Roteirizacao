@@ -90,55 +90,6 @@ namespace Roteirizacao
 
                 Response.Redirect("historico_util.aspx");
 
-                //Response.ContentType = "application/pdf";
-                //Response.AddHeader("content-disposition", "attachment;filename=Panel.pdf");
-                //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                //StringWriter stringWriter = new StringWriter();
-                //HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
-                //Panel1.RenderControl(htmlTextWriter);
-
-                //StringReader stringReader = new StringReader(stringWriter.ToString());
-                //Document Doc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
-                //HTMLWorker htmlparser = new HTMLWorker(Doc);
-                //PdfWriter.GetInstance(Doc, Response.OutputStream);
-                //Doc.Open();
-                //htmlparser.Parse(stringReader);
-                //Doc.Close();
-                //Response.Write(Doc);
-                //Response.End();
-
-                //string repeaterTable = "<table>" +
-                //                "<thead>" +
-                //                    "<tr>" +
-                //                        "<th></ th >" +
-                //                        "<th> Id </ th >" +
-                //                        "<th> Produto </th>" +
-                //                        "<t> Quantidade Kg </ th > " +
-                //                        "<th> Origem </ th > " +
-                //                        "<th> Local Coleta </ th >" +
-                //                        "<th> Local de entrega</ th >" +
-                //                        "<th> Data </ th >" +
-                //                        "<th> Custo €</ th >" +
-                //                        "<th> Matrícula do Veículo </ th >." +
-                //                      "</tr > " +
-                //                 "</thead >" +
-                //                 "<tbody>";
-
-                //foreach (RepeaterItem item in rptViagem.Items)
-                //{
-                //    if (((CheckBox)item.FindControl("chkBox")).Checked)
-                //    {
-                //        repeaterTable += 
-                //            "<tr>" +
-                //                "<td>"+((CheckBox)item.FindControl("chkBox")).Text+ "</td>"+
-                //            "</tr>";
-                //    }
-                //}
-
-                //string tabela = repeaterTable + "<tbody>";
-
-
-
 
             }
 
@@ -158,12 +109,6 @@ namespace Roteirizacao
             HTMLWorker htmlparser = new HTMLWorker(Doc);
             PdfWriter.GetInstance(Doc, Response.OutputStream);
             Doc.Open();
-
-            //for (int j = 0; 1 < rptViagem.Items.Count; j++)
-            //{
-            //    repeaterTable += sw.ToString();
-            //}
-
 
             for (int i = 0; i < rptViagem.Items.Count; i++)
             {

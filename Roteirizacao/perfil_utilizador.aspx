@@ -25,7 +25,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="https://localhost:44399/principal_user.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Início</span>
                             </a>
                         </li>
                         <li class="sidebar-item active">
@@ -129,7 +129,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-5 px-1">
                                                                                 <div class="form-group">
-                                                                                    <label>Username</label>
+                                                                                    <label>Utilizador</label>
                                                                                     <asp:Label ID="tb_user" runat="server" class="form-control" Text='<%# Eval("username") %>'></asp:Label>
                                                                                 </div>
                                                                             </div>

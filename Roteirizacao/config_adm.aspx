@@ -20,12 +20,12 @@
                     <a class="sidebar-brand" href="https://localhost:44399/index.aspx">
                         <span class="align-middle">Roteirização</span>
                     </a>
-                      <ul class="sidebar-nav">
+                    <ul class="sidebar-nav">
                         <li class="sidebar-header">Paginas
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="https://localhost:44399/principal_adm.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Início</span>
                             </a>
                         </li>
                         <li class="sidebar-item ">
@@ -58,7 +58,6 @@
                     <a class="sidebar-toggle d-flex">
                         <i class="hamburger align-self-center"></i>
                     </a>
-
                     <div class="form-inline d-none d-sm-inline-block">
                         <div class="input-group input-group-navbar">
                             <input type="hidden" class="form-control" placeholder="Search…" aria-label="Search" />
@@ -66,7 +65,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown">
@@ -77,8 +75,7 @@
                                     <!--<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> -->
                                     <span class="text-dark">Menu</span>
                                 </a>
-
-                                 <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="https://localhost:44399/perfil_adm.aspx"><i class="align-middle mr-1"></i>Perfil</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="https://localhost:44399/historico_adm.aspx"><i class="align-middle mr-1"></i>Histórico</a>
@@ -86,109 +83,93 @@
                                     <a class="dropdown-item" href="https://localhost:44399/config_adm.aspx"><i class="align-middle mr-1"></i>Configuração</a>
                                     <div class="dropdown-divider"></div>
                                     <div class="dropdown-item" style="text-align: center;">
-                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton></div>
+                                        <asp:LinkButton Font-Underline="false" ForeColor="#6E7B8B" cass="btn align-middle" ID="btn_log" runat="server" OnClick="btn_log_Click" PostBackUrl="~/principal.aspx">Sair</asp:LinkButton>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
-
-                  <main class="content fundo">
+                <main class="content fundo">
                     <div class="container-fluid p-0">
-
                         <h1 class="h3 mb-3">Configuração</h1>
-
                         <div class="row">
                             <div class="col-md-4 col-xl-2">
-
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title mb-0">Meus Dados</h5>
                                     </div>
-
                                     <div class="list-group list-group-flush" role="tablist">
                                         <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">Conta
                                         </a>
-                                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">Alterar Senha
+                                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">Palavra-Passe
                                         </a>
-
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="col-md-8 col-xl-10">
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="account" role="tabpanel">
-
                                         <div class="card">
                                             <div class="card-header">
-
                                                 <h5 class="card-title mb-0">Minhas Informações</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="form">
                                                     <div class="row">
                                                         <div class="col-md-8">
-
                                                             <div class="form-group">
                                                                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" OnItemCommand="DataList1_ItemCommand" Width="100%">
                                                                     <ItemTemplate>
-                                                                            <div class="card-body">
+                                                                        <div class="card-body">
+                                                                            <div class="form-row">
 
-                                                                                <div class="form-row">
-
-                                                                                    <div class="form-group col-md-12">
-                                                                                        <label for="tb_user">Username</label>
-                                                                                        <asp:TextBox ID="tb_username" runat="server" class="form-control" Text='<%# Eval("username") %>'></asp:TextBox>
-                                                                                    </div>
-
-                                                                                    <div class="form-group col-md-6">
-                                                                                        <label for="tb_nome">Nome</label>
-                                                                                        <asp:TextBox ID="tb_nome" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:TextBox>
-                                                                                    </div>
-                                                                                    <div class="form-group col-md-6">
-                                                                                        <label for="inputLastName">Apelido</label>
-                                                                                    
-                                                                                        <asp:TextBox ID="tb_apelido" runat="server" class="form-control" Text='<%# Eval("apelido") %>'></asp:TextBox>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="inputEmail4">Email</label>
-                                                                                
-                                                                                    <asp:TextBox ID="tb_email" runat="server" class="form-control" Text='<%# Eval("email") %>'></asp:TextBox>
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="inputAddress">Morada</label>
-                                                                                   
-                                                                                    <asp:TextBox ID="tb_morada" runat="server" class="form-control" Text='<%# Eval("morada") %>'></asp:TextBox>
+                                                                                <div class="form-group col-md-12">
+                                                                                    <label for="tb_user">Utilizador</label>
+                                                                                    <asp:TextBox ID="tb_username" runat="server" class="form-control" Text='<%# Eval("username") %>'></asp:TextBox>
                                                                                 </div>
 
-                                                                                <div class="form-row">
-                                                                                    <div class="form-group col-md-6">
-                                                                                        <label for="inputCity">Cidade</label>
-                                                                                        <asp:TextBox ID="tb_cidade" runat="server" class="form-control" Text='<%# Eval("cidade") %>'></asp:TextBox>
-                                                                                    </div>
-                                                                                    <div class="form-group col-md-6">
-                                                                                        <label for="inputCity">Pais</label>
-                                                                                      
-                                                                                        <asp:TextBox ID="tb_pais" runat="server" class="form-control" Text='<%# Eval("pais") %>'></asp:TextBox>
-                                                                                    </div>
-
-                                                                                    <div class="form-group col-md-2">
-                                                                                        <label for="inputZip">Código Postal</label>
-                                                                                     
-                                                                                        <asp:TextBox ID="tb_postcod" runat="server" class="form-control" Text='<%# Eval("cod_postal") %>'></asp:TextBox>
-                                                                                    </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="tb_nome">Nome</label>
+                                                                                    <asp:TextBox ID="tb_nome" runat="server" class="form-control" Text='<%# Eval("nome") %>'></asp:TextBox>
                                                                                 </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="inputLastName">Apelido</label>
+
+                                                                                    <asp:TextBox ID="tb_apelido" runat="server" class="form-control" Text='<%# Eval("apelido") %>'></asp:TextBox>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="inputEmail4">Email</label>
+
+                                                                                <asp:TextBox ID="tb_email" runat="server" class="form-control" Text='<%# Eval("email") %>'></asp:TextBox>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="inputAddress">Morada</label>
+
+                                                                                <asp:TextBox ID="tb_morada" runat="server" class="form-control" Text='<%# Eval("morada") %>'></asp:TextBox>
+                                                                            </div>
+                                                                            <div class="form-row">
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="inputCity">Cidade</label>
+                                                                                    <asp:TextBox ID="tb_cidade" runat="server" class="form-control" Text='<%# Eval("cidade") %>'></asp:TextBox>
+                                                                                </div>
+                                                                                <div class="form-group col-md-6">
+                                                                                    <label for="inputCity">Pais</label>
+
+                                                                                    <asp:TextBox ID="tb_pais" runat="server" class="form-control" Text='<%# Eval("pais") %>'></asp:TextBox>
+                                                                                </div>
+
+                                                                                <div class="form-group col-md-2">
+                                                                                    <label for="inputZip">Código Postal</label>
+
+                                                                                    <asp:TextBox ID="tb_postcod" runat="server" class="form-control" Text='<%# Eval("cod_postal") %>'></asp:TextBox>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-
                                                                         <div>
-                                                                            <asp:Button ID="btn_salvardados" type="submit" Text="Salvar Alterações" runat="server" class="btn btn-primary" CommandName="btn_salvardados" ></asp:Button>
-
+                                                                            <asp:Button ID="btn_salvardados" type="submit" Text="Salvar Alterações" runat="server" class="btn btn-primary" CommandName="btn_salvardados"></asp:Button>
                                                                         </div>
-                                                                        
-                                                                      
                                                                     </ItemTemplate>
                                                                 </asp:DataList>
                                                                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
@@ -219,15 +200,9 @@
 
                                                         <!--Fim  Upload Foto-->
                                                     </div>
-
-
                                                 </div>
-
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <div class="tab-pane fade" id="password" role="tabpanel">
                                         <div class="card  ">
@@ -236,12 +211,12 @@
 
                                                 <div class="form ">
                                                     <div class="form-group">
-                                                        <label for="inputPasswordCurrent">Senha Atual</label>
+                                                        <label for="inputPasswordCurrent">Palavra-Passe Atual</label>
                                                         <asp:TextBox ID="tb_senhaatual" runat="server" class="form-control"></asp:TextBox>
-                                                        <small><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua Senha?</a></small>
+
                                                     </div>
                                                     <div class="form-group ">
-                                                        <label for="inputPasswordNew">Nova Senha</label>
+                                                        <label for="inputPasswordNew">Nova Palavra-Passe</label>
                                                         <asp:TextBox ID="tb_novasenha" runat="server" class="form-control"></asp:TextBox>
                                                     </div>
 
@@ -263,10 +238,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </main>
-
                 <footer class="footer">
                     <div class="container-fluid">
                         <div class="row text-muted">
@@ -296,10 +269,8 @@
                 </footer>
             </div>
         </div>
-
         <script src="assets/js/vendor.js"></script>
         <script src="assets/js/app.js"></script>
-
     </form>
 </body>
 </html>

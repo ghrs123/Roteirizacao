@@ -132,7 +132,7 @@
                                             </th>
                                             <th class="text-center">Produto
                                             </th>
-                                            <th class="text-center">Demanda (kg)
+                                            <th class="text-center">Carga (kg)
                                             </th>
                                         </tr>
                                     </thead>
@@ -144,7 +144,7 @@
                                                 <input type="text" name='prod1' id='prod1' class=" form-control input-md" placeholder="Produto" />
                                             </td>
                                             <td>
-                                                <input runat="server" type="number" step="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
+                                                <input runat="server" type="number" step="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Carga (kg)' />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -152,7 +152,7 @@
                                         <tr>
                                             <th class="text-center" style="display: none;">#
                                             </th>
-                                            <th class="text-center">Local de Coleta
+                                            <th class="text-center">Local de Recolha
                                             </th>
                                             <th class="text-center">Local de Entrega
                                             </th>
@@ -163,7 +163,7 @@
                                             <td class="text-center" style="display: none;">1
                                             </td>
                                             <td>
-                                                <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Coleta" />
+                                                <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Recolha" />
                                             </td>
                                             <td>
                                                 <input type="text" name='dest1' id='dest1' class="form-control input-md dest" placeholder="Local de Entrega" />
@@ -212,7 +212,7 @@
 			                    <!--input type="submit" class="btn btn-primary"-->
 
                                 <a id='delete_truck' class="btn btn-danger pull-center " style="color: white;">Remover Veículo</a>
-                                <a id='enviar' class="btn btn-success pull-center " style="color: white;">ROTEIRIZAR</a>&nbsp
+                                <a id='enviar' class="btn btn-success pull-center " style="color: white;">CALCULAR</a>&nbsp
 				                <a id='send' class="btn btn-warning pull-center" style="color: white;" onclick="window.location.reload();">RECOMEÇAR</a>
 
 
@@ -578,7 +578,7 @@
 
 
 
-                            $('<thead id="thead' + (i) + '"><tr style="background-color: blue"><th   class="text-center"></th><th  class="text-center"></th><th  class="text-center"></th></tr><tr><th   class="text-center" style="display:none;">#</th><th  class="text-center">Local de Coleta</th><th  class="text-center"> Local de Entrega</th></tr> </thead>').appendTo('#tab_logic');
+                            $('<thead id="thead' + (i) + '"><tr style="background-color: blue"><th   class="text-center"></th><th  class="text-center"></th><th  class="text-center"></th></tr><tr><th   class="text-center" style="display:none;">#</th><th  class="text-center">Local de Recolha</th><th  class="text-center"> Local de Entrega</th></tr> </thead>').appendTo('#tab_logic');
 
                             var $add_pickup_destination = $('<tr id="pickup' + (i) + '"></tr>').appendTo('#tab_logic thead:last');
 
@@ -642,11 +642,11 @@
 
                             i++;
 
-                            $('<thead id="thead' + (i) + '"><tr><th   class="text-center" style="display:none;">#</th><th  class="text-center">Produto</th><th  class="text-center">Demanda (kg)</th></tr> </thead>').appendTo('#tab_logic');
+                            $('<thead id="thead' + (i) + '"><tr><th   class="text-center" style="display:none;">#</th><th  class="text-center">Produto</th><th  class="text-center">Carga (kg)</th></tr> </thead>').appendTo('#tab_logic');
 
                             var $addproduct = $('<tr id="addr' + (i) + '"></tr>').appendTo('#tab_logic thead:last');
 
-                            $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Demanda (kg)'  class='form-control input-md'></td>"));
+                            $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Recolha (kg)'  class='form-control input-md'></td>"));
 
 
                         }

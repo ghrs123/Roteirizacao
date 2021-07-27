@@ -33,7 +33,7 @@
                         </li>
                         <li class="sidebar-item active">
                             <a class="sidebar-link" href="https://localhost:44399/principal.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Início</span>
                             </a>
                         </li>
                         <li>
@@ -66,7 +66,7 @@
                                     <span class="text-dark">Contacto</span>
                                 </a>
                                 <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
-                                    <span class="text-dark">Login</span>
+                                    <span class="text-dark">Entrar</span>
                                 </a>
                             </li>
                         </ul>
@@ -75,7 +75,7 @@
 
                 <main class="content fundo">
                     <div class="container-fluid p-0">
-                        <h1 class="h3 mb-3" style="color: white;">Login</h1>
+                        <h1 class="h3 mb-3" style="color: white;">Entrar</h1>
                         <div class="row">
                             <div class="auto-style1">
                                 <div class="cards">
@@ -83,10 +83,10 @@
                                         <!--Login-->
                                         <div id="container" class="login">
                                             <div class="form">
-                                                <label for="tb_user">Username:</label>
+                                                <label for="tb_user">Utilizador</label>
                                                 <input type="name" id="tb_user" runat="server" />
-                                                <label for="password">Password:</label>
-                                                <p><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua Senha?</a></p>
+                                                <label for="password">Paslavra-passe</label>
+                                                <p><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua palavra-Passe?</a></p>
                                                 <input type="password" id="tb_password" runat="server" />
                                                 <div id="lower" style="height: 90px;">
                                                     <div class="ml-1">

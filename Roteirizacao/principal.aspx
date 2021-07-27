@@ -29,7 +29,7 @@
                         </li>
                         <li class="sidebar-item active">
                             <a class="sidebar-link" href="https://localhost:44399/login.aspx">
-                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Login</span>
+                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Entrar</span>
                             </a>
                         </li>
                         <li>
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="sidebar-link" href="https://localhost:44399/registar.aspx">
+                            <a class="sidebar-link" href="#">
                                 <i class="align-middle" data-feather="phone"></i><span class="align-middle">Contacto</span>
                             </a>
                         </li>
@@ -81,7 +81,7 @@
                                     <span class="text-dark">Contacto</span>
                                 </a>
                                 <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
-                                    <span class="text-dark">Login</span>
+                                    <span class="text-dark">Entrar</span>
                                 </a>
      
                             </li>
@@ -118,7 +118,7 @@
                                             </th>
                                             <th class="text-center">Produto
                                             </th>
-                                            <th class="text-center">Demanda (kg)
+                                            <th class="text-center">Carga (kg)
                                             </th>
                                         </tr>
                                     </thead>
@@ -131,7 +131,7 @@
                                             </td>
                                             <td>
                                                <%-- step="1" min="1" max="5"--%>
-                                                <input runat="server" type="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Demanda (kg)' />
+                                                <input runat="server" type="number"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" title="Numbers only" name='qty1' id='qty1' onchange="removeChar(qty1)" class=" form-control input-md" placeholder='Carga (kg)' />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -139,7 +139,7 @@
                                         <tr>
                                             <th class="text-center" style="display: none;">#
                                             </th>
-                                            <th class="text-center">Local de Coleta
+                                            <th class="text-center">Local de Recolha
                                             </th>
                                             <th class="text-center">Local de Entrega
                                             </th>
@@ -150,7 +150,7 @@
                                             <td class="text-center" style="display: none;">1
                                             </td>
                                             <td>
-                                                <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Coleta" />
+                                                <input type="text" name='pickupplace1' id='pickupplace1' class=" form-control input-md dest" placeholder="Local de Recolha" />
                                             </td>
                                             <td>
                                                 <input type="text" name='dest1' id='dest1' class="form-control input-md dest" placeholder="Local de Entrega" />
@@ -204,7 +204,7 @@
                                 <a id='delete_truck' class="btn btn-danger pull-center" style="color: white;">Remover Veículo</a>
 
                               <%-- <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" OnClick="enviar_Click" Style="width: 120px; color: black;" />--%>
-                                 <a id='enviar' runat="server" class="btn btn-success pull-center" style="color: white;" disble="true">ROTEIRIZAR</a>
+                                 <a id='enviar' runat="server" class="btn btn-success pull-center" style="color: white;" disble="true">CALCULAR</a>
                                 <a id='send' runat="server" class="btn btn-warning pull-center" style="color: white;">RECOMEÇAR</a>
                                 
                                 <div class="rotas">
@@ -545,7 +545,7 @@
 
                             var $add_pickup_destination = $('<tr id="pickup' + (i) + '"></tr>').appendTo('#tab_logic thead:last');
 
-                            $add_pickup_destination.click($('#pickup' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='pickupplace" + i + "'  name='pickupplace" + d + "' type='text' placeholder='Local de Coleta'  class='form-control input-md dest'></td><td><input  id='dest" + i + "' name='dest" + d + "' type='text' placeholder='Local de Entrega' class='form-control input-md dest'></td>"));
+                            $add_pickup_destination.click($('#pickup' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='pickupplace" + i + "'  name='pickupplace" + d + "' type='text' placeholder='Local de Recolha'  class='form-control input-md dest'></td><td><input  id='dest" + i + "' name='dest" + d + "' type='text' placeholder='Local de Entrega' class='form-control input-md dest'></td>"));
 
 
 
@@ -767,9 +767,9 @@
                            
                                $.post(' <%= ResolveUrl("/principal.aspx/GetData") %>', { data: data2 }, function (result) {
                                     if (result) {
-                                        console.log(data2);
-                                        alert(data2);
-                                        alert("Post efetuado");
+                                        //console.log(data2);
+                                        //alert(data2);
+                                       /* alert("Post efetuado");*/
                                         //alert(result.d);
                                     } else {
                                         alert(error);
@@ -817,7 +817,7 @@
 
                                 //$("#resultado").text(JSON.stringify(result.routesByVehicles));
                                 //$("#resultado").text(data);
-                                document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
+                               // document.getElementById("lblnome2").textContent = JSON.stringify(result.routesByVehicles);
 
                                 document.getElementById("tb_resp").value = JSON.stringify(result.routesByVehicles);
                                 $("#rtime").text("Tempo de resolução (s):" + JSON.stringify(result.tempoResolucao));

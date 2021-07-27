@@ -23,16 +23,16 @@
                         <span class="align-middle">Roteirização</span>
                     </a>
                     <ul class="sidebar-nav">
-                        <li class="sidebar-header">Login
+                        <li class="sidebar-header">Entrar
                         </li>
                         <li class="sidebar-item active">
                             <a class="sidebar-link" href="https://localhost:44399/principal.aspx">
-                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Home</span>
+                                <i class="align-middle" data-feather="home"></i><span class="align-middle">Início</span>
                             </a>
                         </li>
                          <li class="sidebar-item">
                             <a class="sidebar-link" href="https://localhost:44399/login.aspx">
-                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Login</span>
+                                <i class="align-middle" data-feather="user"></i><span class="align-middle">Entrar</span>
                             </a>
                         </li>
                     </ul>
@@ -66,7 +66,7 @@
                                     <span class="text-dark">Contacto</span>
                                 </a>
                                 <a class="nav-link d-none d-sm-inline-block btn btn-light" href="https://localhost:44399/login.aspx">
-                                    <span class="text-dark">Login</span>
+                                    <span class="text-dark">Entrar</span>
                                 </a>
                             </li>
                         </ul>
@@ -92,14 +92,14 @@
                                 </div>
                                 <div class="col-md-5 px-1">
                                     <div class="form-group">
-                                        <label>Username</label>
+                                        <label>Utilizador</label>
                                        
                                        <input id="tb_user" runat="server" type="text" name="username" title="" pattern="[A-Za-z0-9]+" class="form-control" placeholder="" value="" />
                                     </div>
                                 </div>
                                 <div class="col-md-5 px-1">
                                     <div class="form-group">
-                                        <label>Senha</label>
+                                        <label>Palavra-Passe</label>
                                         <input id="tb_pw" runat="server" type="password" title="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" class="form-control" styrle="width: 80px;" />
                                     </div>
                                 </div>

@@ -115,7 +115,7 @@
                                     <div class="list-group list-group-flush" role="tablist">
                                         <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">Conta
                                         </a>
-                                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">Alterar Senha
+                                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">Alterar Pala-Passe
                                         </a>
 
                                     </div>
@@ -145,7 +145,7 @@
                                                                                 <div class="form-row">
 
                                                                                     <div class="form-group col-md-12">
-                                                                                        <label for="tb_user">Username</label>
+                                                                                        <label for="tb_user">Utilizador</label>
                                                                                         <asp:TextBox ID="tb_username" runat="server" class="form-control" Text='<%# Eval("username") %>'></asp:TextBox>
                                                                                     </div>
 
@@ -216,7 +216,7 @@
                                                                 <small>Para melhores resultados, use uma imagem pelo menos 128px por 128px no formato . jpg</small>
 
                                                                 <div class=" mb-5">
-                                                                    <asp:Button ID="btnUpload" type="submit" Text="Upload" runat="server" class="btn btn-primary" CommandName="update" OnClick="btnUpload_Click" Width="80px"></asp:Button>
+                                                                    <asp:Button ID="btnUpload" type="submit" Text="Alterar" runat="server" class="btn btn-primary" CommandName="update" OnClick="btnUpload_Click" Width="80px"></asp:Button>
                                                                 </div>
 
                                                                 <asp:Label ID="lbl_mensagem2" runat="server" Text=""></asp:Label>
@@ -242,12 +242,12 @@
 
                                                 <div class="form ">
                                                     <div class="form-group">
-                                                        <label for="tb_senhaatual">Senha Atual</label>
+                                                        <label for="tb_senhaatual">Pala-Passe Atual</label>
                                                         <asp:TextBox ID="tb_senhaatual" runat="server" type="passowrd" pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" class="form-control"></asp:TextBox>
-                                                        <small><a href="https://localhost:44399/recuperar_senha.aspx">Esqueceu sua Senha?</a></small>
+                                                       
                                                     </div>
                                                     <div class="form-group ">
-                                                        <label for="tb_novasenha">Nova Senha</label>
+                                                        <label for="tb_novasenha">Nova Pala-Passe</label>
                                                         <asp:TextBox ID="tb_novasenha" runat="server" type="passowrd"  pattern="^(?=(.{4})*$)[A-Za-z0-9+/]*={0,2}$" class="form-control"></asp:TextBox>
                                                     </div>
 

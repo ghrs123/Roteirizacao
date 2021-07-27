@@ -397,6 +397,7 @@
     <Content Include="assets\js\raphael.min.js" />
     <Content Include="assets\js\startmin.js" />
     <Content Include="ativacao.aspx" />
+    <Content Include="branco.aspx" />
     <Content Include="config_adm.aspx" />
     <Content Include="config_utilizador.aspx" />
     <Content Include="estilo.css" />
@@ -440,6 +441,13 @@
     </Compile>
     <Compile Include="ativacao.aspx.designer.cs">
       <DependentUpon>ativacao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="branco.aspx.cs">
+      <DependentUpon>branco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="branco.aspx.designer.cs">
+      <DependentUpon>branco.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cargas.cs" />
     <Compile Include="config_adm.aspx.cs">
