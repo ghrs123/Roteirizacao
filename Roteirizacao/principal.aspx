@@ -205,7 +205,7 @@
 
                               <%-- <asp:Button ID="enviar" runat="server" Text="ROTEIRIZAR" class="btn btn-success pull-center" OnClick="enviar_Click" Style="width: 120px; color: black;" />--%>
                                  <a id='enviar' runat="server" class="btn btn-success pull-center" style="color: white;" disble="true">CALCULAR</a>
-                                <a id='send' runat="server" class="btn btn-warning pull-center" style="color: white;">RECOMEÇAR</a>
+                                <a id='send' runat="server" class="btn btn-warning pull-center" style="color: white;" onclick="window.location.reload();">RECOMEÇAR</a>
                                 
                                 <div class="rotas">
                                     <p>Rotas por veículo</p>

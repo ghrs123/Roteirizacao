@@ -149,7 +149,7 @@ namespace Roteirizacao
 
                         if (c == 0)
                         {
-
+                         
                             //add veicules
                             linha["Veículo"] = ListaRotas[l].veiculo.ToString();
                         }
