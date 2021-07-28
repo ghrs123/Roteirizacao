@@ -64,13 +64,8 @@ namespace Roteirizacao
 
             }
 
-
-
-
-
             //dynamic resultado = serializer.DeserializeObject(lbl_nome.Text);
             string xpto = tb_resp.Value;
-
 
         }
 

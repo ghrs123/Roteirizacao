@@ -123,15 +123,6 @@ namespace Roteirizacao
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource5;
 
         /// <summary>
-        /// UpdatePanel4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel4;
-
-        /// <summary>
         /// tb_tipoCamiao control.
         /// </summary>
         /// <remarks>

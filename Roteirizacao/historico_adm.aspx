@@ -241,9 +241,9 @@
                                                             <tbody>
                                                                 <asp:Repeater ID="rptUtilizador" runat="server" OnItemCommand="rptUtilizador_ItemCommand" OnItemDataBound="rptUtilizador_ItemDataBound" DataSourceID="SqlDataSource2">
                                                                     <ItemTemplate>
-                                                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                                                            <ContentTemplate>
-                                                                                <tr>
+                                                                        <tr>
+                                                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                                                <ContentTemplate>
                                                                                     <td align="center">
                                                                                         <asp:Label ID="lbl_id" runat="server" Text=' style="width: 5%;"'></asp:Label>
                                                                                     </td>
@@ -273,19 +273,13 @@
 
                                                                                         <asp:TextBox ID="tb_morada" runat="server" Text='' Style="width: 100%"></asp:TextBox>
                                                                                     </td>
-
-                                                                                    <td class="table-action" style="float: left; display: inline;">
-                                                                                        <asp:Button ID="btnEdit" runat="server" class="align-middle btn btn-warning mb-2" Text="Editar" CommandName="btnEdit" Style="width: 100%;" />
-                                                                                        <asp:Button ID="btnDelete" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDelete" Style="width: 100%;" />
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </ContentTemplate>
-                                                                            <Triggers>
-                                                                                <asp:AsyncPostBackTrigger ControlID="btnEdit" />
-                                                                                <asp:AsyncPostBackTrigger ControlID="btnDelete" />
-                                                                            </Triggers>
-                                                                        </asp:UpdatePanel>
-
+                                                                                </ContentTemplate>
+                                                                            </asp:UpdatePanel>
+                                                                            <td class="table-action" style="float: left; display: inline;">
+                                                                                <asp:Button ID="btnEdit" runat="server" class="align-middle btn btn-warning mb-2" Text="Editar" CommandName="btnEdit" Style="width: 100%;" />
+                                                                                <asp:Button ID="btnDelete" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDelete" Style="width: 100%;" />
+                                                                            </td>
+                                                                        </tr>
                                                                     </ItemTemplate>
                                                                 </asp:Repeater>
                                                             </tbody>
@@ -323,25 +317,23 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                                                            <ContentTemplate>
-                                                                                <tr>
-                                                                                    <td style="margin-right: 10px;">
-                                                                                        <asp:TextBox runat="server" ID="tb_tipoCamiao"></asp:TextBox>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <asp:Button ID="btnAddtipo" runat="server" class="align-middle btn btn-warning mb-2" Text="Adicionar" OnClick="btnAddtipo_Click" Style="width: 100%;" />
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </ContentTemplate>
-                                                                        </asp:UpdatePanel>
+                                                                        <tr>
+                                                                            <td style="margin-right: 10px;">
+                                                                                <asp:TextBox runat="server" ID="tb_tipoCamiao"></asp:TextBox>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <asp:Button ID="btnAddtipo" runat="server" class="align-middle btn btn-warning mb-2" Text="Adicionar" OnClick="btnAddtipo_Click" Style="width: 100%;" />
+                                                                            </td>
+
+                                                                        </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-lg-12 mt-3" style="margin: 0 auto;">
                                                                     <h1 style="background-color: #696969; color: white; width: 315px; font-size: 20px; padding-left: 70px; display: block;"><strong>Adicionar Camião</strong></h1>
-                                                                    <asp:Label ID="lblMensagem" runat="server" Text="TEsteee"></asp:Label>
+                                                                    <asp:Label ID="lblMensagem" runat="server" Text=""></asp:Label>
                                                                     <div class="col6 d-flex">
 
                                                                         <table class="table camiao">
@@ -357,19 +349,19 @@
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                <tr>
-                                                                                    <td align="center">
-                                                                                        <asp:TextBox runat="server" ID="tbMatricula" Width="80%"></asp:TextBox>
-                                                                                    </td>
-                                                                                    <td align="center">
-                                                                                        <asp:TextBox runat="server" ID="tbKm" type="number" min="0" Width="80%"></asp:TextBox>
-                                                                                    </td>
-                                                                                    <td align="center">
-                                                                                        <asp:TextBox runat="server" ID="tbCusto" type="number" min="0" Width="80%"></asp:TextBox>
-                                                                                    </td>
-                                                                                    <td align="center">
-                                                                                        <asp:TextBox runat="server" ID="tbCap" type="number" min="0" Width="80%"></asp:TextBox>
-                                                                                    </td>
+                                                                                <tr>                                                                                    
+                                                                                            <td align="center">
+                                                                                                <asp:TextBox runat="server" ID="tbMatricula" Width="80%"></asp:TextBox>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                                <asp:TextBox runat="server" ID="tbKm" type="number" min="0" Width="80%"></asp:TextBox>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                                <asp:TextBox runat="server" ID="tbCusto" type="number" min="0" Width="80%"></asp:TextBox>
+                                                                                            </td>
+                                                                                            <td align="center">
+                                                                                                <asp:TextBox runat="server" ID="tbCap" type="number" min="0" Width="80%"></asp:TextBox>
+                                                                                            </td>                                                                                     
                                                                                     <td align="center">
 
                                                                                         <asp:DropDownList ID="ddlTipocC" runat="server" DataSourceID="SqlDataSource9" DataTextField="descricao" DataValueField="tipo_camiaoid" Width="80%"></asp:DropDownList>
@@ -408,19 +400,20 @@
                                                     <tbody>
                                                         <asp:Repeater ID="RptCamiao" runat="server" OnItemCommand="RptCamiao_ItemCommand" OnItemDataBound="RptCamiao_ItemDataBound" DataSourceID="SqlDataSource5">
                                                             <ItemTemplate>
-                                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                                                    <ContentTemplate>
 
-                                                                        <tr>
-                                                                            <td>
-                                                                                <asp:Label ID="lblIdCamiao" runat="server" Text=''></asp:Label>
-                                                                            </td>
-                                                                            <td align="center">
-                                                                                <asp:DropDownList ID="ddlTipoCamiao" runat="server" DataSourceID="SqlDataSource6" DataTextField="descricao" DataValueField="tipo_camiaoid" AutoPostBack="False" Width="85%"></asp:DropDownList>
-                                                                                <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
-                                                                                    SelectCommand="SELECT * FROM [tipo_camiao]"></asp:SqlDataSource>
 
-                                                                            </td>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:Label ID="lblIdCamiao" runat="server" Text=''></asp:Label>
+                                                                    </td>
+                                                                    <td align="center">
+                                                                        <asp:DropDownList ID="ddlTipoCamiao" runat="server" DataSourceID="SqlDataSource6" DataTextField="descricao" DataValueField="tipo_camiaoid" AutoPostBack="False" Width="85%"></asp:DropDownList>
+                                                                        <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
+                                                                            SelectCommand="SELECT * FROM [tipo_camiao]"></asp:SqlDataSource>
+
+                                                                    </td>
+                                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                                        <ContentTemplate>
                                                                             <td align="center">
                                                                                 <asp:TextBox ID="tb_matric" runat="server" Text='' Width="80%"></asp:TextBox>
                                                                             </td>
@@ -433,25 +426,24 @@
                                                                             <td align="center">
                                                                                 <asp:TextBox ID="tb_capacidade" runat="server" Text='' Width="80%"></asp:TextBox>
                                                                             </td>
-                                                                            <td align="center">
+                                                                        </ContentTemplate>
+                                                                    </asp:UpdatePanel>
+                                                                    <td align="center">
 
-                                                                                <asp:DropDownList ID="ddlMotorista" runat="server" DataSourceID="SqlDataSource7" DataTextField="nome" DataValueField="utilizadorid" AutoPostBack="False" Width="100%"></asp:DropDownList>
+                                                                        <asp:DropDownList ID="ddlMotorista" runat="server" DataSourceID="SqlDataSource7" DataTextField="nome" DataValueField="utilizadorid" AutoPostBack="False" Width="100%"></asp:DropDownList>
 
-                                                                                <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
-                                                                                    SelectCommand="SELECT utilizadorid, CONCAT('Id:',CONCAT(utilizadorid +' ',' '+CONCAT( nome+' ',apelido))) as 'nome' FROM [utilizador]"></asp:SqlDataSource>
-                                                                            </td>
+                                                                        <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
+                                                                            SelectCommand="SELECT utilizadorid, CONCAT('Id:',CONCAT(utilizadorid +' ',' '+CONCAT( nome+' ',apelido))) as 'nome' FROM [utilizador]"></asp:SqlDataSource>
+                                                                    </td>
+                                                                    <td class="table-action" style="float: left; display: inline;">
 
-                                                                            <td class="table-action" style="float: left; display: inline;">
-                                                                                
-                                                                                <asp:Button ID="btnEditC" runat="server" class="align-middle btn btn-warning mb-2" Text="Editar" CommandName="btnEditC" Width="100%" />
-                                                                                <asp:Button ID="btnDeleteC" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDeleteC" Width="100%" />
-                                                                            </td>
-                                                                        </tr>
+                                                                        <asp:Button ID="btnEditC" runat="server" class="align-middle btn btn-warning mb-2" Text="Editar" CommandName="btnEditC" Width="100%" />
+                                                                        <asp:Button ID="btnDeleteC" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDeleteC" Width="100%" />
+                                                                    </td>
 
-                                                                    </ContentTemplate>
-                                                                    
-                                                                </asp:UpdatePanel>
-                                                                
+                                                                </tr>
+
+
                                                             </ItemTemplate>
                                                         </asp:Repeater>
                                                     </tbody>
