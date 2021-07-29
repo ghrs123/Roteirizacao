@@ -76,21 +76,14 @@
                     <div class="content">
                         <div class="form">
                             <div class="registar row" style="width:630px;">
-                                <!--
-                                                    <div class="col-md-5 pr-1">
-													 <div class="form-group">
-														<label>Companhia (disabled)</label>
-														<input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-													  </div>			  
-													</div>
-                                                    -->
+                               
                                 <div class="col-md-12 pl-1">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input id="tb_email" runat="server" type="email" class="form-control" placeholder="" />
                                     </div>
                                 </div>
-                                <div class="col-md-5 px-1">
+                                <div class="col-md-5 px-2 mt-3">
                                     <div class="form-group">
                                         <label>Utilizador</label>
                                        

@@ -813,7 +813,7 @@
                                 }
                               <%--  /*<%= ResolveUrl("~/principal.aspx/GetData") %>*/--%>
 
-                                $.post(' <%= ResolveUrl("~/principal.aspx") %>', { data: data }, function (result) {
+                                $.post(' <%= ResolveUrl("~/principal_user.aspx") %>', { data: data }, function (result) {
                                     if (result) {
                                         // console.log(data);
 

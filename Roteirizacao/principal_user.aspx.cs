@@ -49,11 +49,7 @@ namespace Roteirizacao
 
             try
             {
-                //using (WebClient webClient = new WebClient())
-                //{
-                //    json = webClient.DownloadString("~/principal_user.aspx");
-                //}
-                //ReadJson(json);
+
 
                 string xpto = tb_resp.Value;
 
@@ -65,129 +61,104 @@ namespace Roteirizacao
 
                 List<Root> ListaRotas = j.Deserialize<List<Root>>(xpto);
 
-               
-
-                //GridView 
-                //    DataTable dataTable = new DataTable();
-                //    DataRow dataRow = null;
-                //    dataTable.Columns.Add("Veiculo");
-                //    dataTable.Columns.Add("Rotas");
-                //    dataTable.Columns.Add("Cargas");
-
-
-                //    //quantity of items in the first line veiculo,carga and rota(s)
-                //    for (int l = 0; l < ListaRotas.Count(); l++)
-                //    {
-
-                //        //inserir uma linha para cada objeto
-                //        tblRotas.Rows.Add(new TableRow());
-                //        dataRow = dataTable.NewRow();
-
-                //        for (int c = 0; c < 3; c++)
-                //        {
-                //            tblRotas.Rows[l].Cells.Add(new TableCell());
-
-                //            if (c == 0)
-                //            {
-
-                //                // tblRotas.Rows[l].Cells[c].Text = rota.veiculo.ToString();
-                //                //add ol veiculo
-                //                tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].veiculo.ToString();
-                //                dataRow["Veiculo"] += ListaRotas[l].veiculo.ToString();
-
-                //            }
-
-                //            //for colun rotas
-                //            if (c == 1)
-                //            {
-
-                //                for (int rt = 0; rt < ListaRotas[0].rotas.Count(); rt++ )
-                //                {
-                //                    tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[rt].ToString();
-                //                    dataRow["Rotas"] += $" Rota{(rt + 1)}: " + ListaRotas[l].rotas[rt].ToString()+ " ";
-
-                //                }
-
-                //                    //MessageBox.Show($"Rota{(r + 1)}:" + ListaRotas[0].rotas[r].ToString());
-
-                //            }
-                //            //for colun of cargas
-
-                //            if (c == 2)
-                //            {
-
-                //                for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
-                //                {
-                //                    tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas.ToString();
-                //                    dataRow["Cargas"] += " Tipo de Carga:  " + ListaRotas[l].cargas[cg].Carga.ToString() + " Quantidade: " + ListaRotas[l].cargas[cg].qty.ToString();
-                //                }
-                //            }
-
-                //        }
-
-                //        dataTable.Rows.Add(dataRow);
-                //    }
-                //    grdRotas.DataSource = dataTable;
-                //    grdRotas.DataBind();
-
 
                 DataTable Tabela = new DataTable();
-                Tabela.Columns.Add("Veículo", typeof(string));
-                Tabela.Columns.Add("Rotas", typeof(string));
-                Tabela.Columns.Add("Cargas", typeof(string));
+
 
                 DataRow linha = Tabela.NewRow();
-
-                //quantidade veiculo
+                int countr1 = 0;
+                int countr2 = 0;
+                int countc1 = 0;
+                int countc2 = 0;
+                int countv = 0;
+                //qantity object
                 for (int l = 0; l < ListaRotas.Count(); l++)
                 {
                     tblRotas.Rows.Add(new TableRow());
-                    //add veículo
 
+                    //add colunm = 3
                     for (int c = 0; c < 3; c++)
                     {
-
+                        //col 1
                         if (c == 0)
                         {
-                         
-                            //add veicules
-                            linha["Veículo"] = ListaRotas[l].veiculo.ToString();
-                        }
 
+                            if (l > 0)
+                            {
+                                countv = ListaRotas[l].veiculo.Count();
+                            }
+                            Tabela.Columns.Add($"Veículo{countv + 1}", typeof(string));
+                            linha[$"Veículo{countv + 1}"] += ListaRotas[l].veiculo.ToString();
+                            //for (int vc = 0;vc < ListaRotas[l].veiculo.Count(); vc++)
+                            //{
+
+                            //    //add line when l == 0 and add value in col
+                            //    //add value in col                          
+                            //    linha[$"Veiculo{countr2 + 1}"] += ListaRotas[l].rotas[vc].ToString();
+                            //    countv++;
+                            //}
+                        }
+                        //col 2
                         if (c == 1)
                         {
-                            //add Routes
+                            if (l > 0)
+                            {
+                                countr1 = ListaRotas[l].rotas[countr1].Count();
+                                countr2 = ListaRotas[l].rotas[countr1].Count();
+                            }
+
+                            //for (int cg = 0; cg < ListaRotas[l].Count(); cg++)
+                            //{
+                            Tabela.Columns.Add($"Ponto{countr1 + 1}", typeof(string));
+                            Tabela.Columns.Add($"Ponto{countr1 + 2}", typeof(string));
+                            Tabela.Columns.Add($"Ponto{ countr1 + 3}", typeof(string));
+                            Tabela.Columns.Add($"Ponto{ countr1 + 4}", typeof(string));
+                            //    countr1++;
+                            //}
+                            //ListaRotas[0].rotas[3] number of point
                             for (int rt = 0; rt < ListaRotas[l].rotas.Count(); rt++)
                             {
 
-                                //add colunms
-                                tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[rt].ToString();
-                                linha["Rotas"] = Tabela.Columns.Add($"Ponto{(rt + 1)}: ", typeof(string));
+                                //add line when l == 0 and add value in col
+                                //add value in col                          
+                                linha[$"Ponto{countr2 + 1}"] += ListaRotas[l].rotas[rt].ToString();
+                                countr2++;
                             }
 
-                            for (int rt = 0; rt < ListaRotas[l].rotas.Count(); rt++)
-                            {
-                                //add line                           
-                                linha[$"Ponto{(rt + 1)}"] = ListaRotas[l].rotas[rt].ToString();
-                            }
+
 
                         }
+                        //col 3
                         if (c == 2)
                         {
 
-                            //add carga and quatity
-                            for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
-                            {   //add colunms
-                                tblRotas.Rows[c].Cells[cg].Text = ListaRotas[l].rotas[cg].ToString();
-                                linha["Cargas"] = Tabela.Columns.Add($"Carga{(cg + 1)}: ", typeof(string));
-                                linha["Cargas"] = Tabela.Columns.Add($"Quantidade{(cg + 1)}: ", typeof(string));
+                            if (l > 0)
+                            {
+                                countc1 = ListaRotas[l].cargas[countc1].Carga.Count();
                             }
 
-                            for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
-                            {   //add line
-                                linha["Cargas"] += " Tipo de Carga:  " + ListaRotas[l].cargas[cg].Carga.ToString();
-                                linha["Cargas"] += " Quantidade: " + ListaRotas[l].cargas[cg].qty.ToString();
+                            for (int cg = 0; cg < ListaRotas[l].cargas.Count(); cg++)
+                            {
+                                Tabela.Columns.Add($"Carga{(countc1 + 1)}", typeof(string));
+                                Tabela.Columns.Add($"Quantidade{(countc1 + 1)}", typeof(string));
+                                countc1++;
+                                //Tabela.Columns.Add($"Carga{(countc1 + 1)}", typeof(string));
+                                //Tabela.Columns.Add($"Quantidade{(countc1 + 1)}", typeof(string));
+                                //countc1++;
                             }
+
+                            for (int cg = 0; cg < ListaRotas[l].cargas.Count(); cg++)
+                            {
+
+                                //add line
+                                linha[$"Carga{(countc2 + 1)}"] = ListaRotas[l].cargas[countc2].Carga.ToString();
+                                linha[$"Quantidade{ (countc2 + 1)}"] = ListaRotas[l].cargas[countc2].qty.ToString();
+                                countc2++;
+
+                            }
+
+
+
                         }
 
                     }
@@ -198,14 +169,142 @@ namespace Roteirizacao
                 grdRotas.DataBind();
 
 
+
+                //DataTable Tabela = new DataTable();
+                //Tabela.Columns.Add("Veículo", typeof(string));
+                //Tabela.Columns.Add("Rotas", typeof(string));
+                //Tabela.Columns.Add("Cargas", typeof(string));
+
+                //DataRow linha = Tabela.NewRow();
+
+                ////quantidade veiculo
+                //for (int l = 0; l < ListaRotas.Count(); l++)
+                //{
+                //    tblRotas.Rows.Add(new TableRow());
+                //    //add veículo
+
+                //    for (int c = 0; c < 3; c++)
+                //    {
+
+                //        if (c == 0)
+                //        {
+
+                //            //add veicules
+                //            linha["Veículo"] = ListaRotas[l].veiculo.ToString();
+                //        }
+
+                //        if (c == 1)
+                //        {
+                //            //add Routes
+                //            for (int rt = 0; rt < ListaRotas[l].rotas.Count(); rt++)
+                //            {
+
+                //                //add colunms
+                //                tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[rt].ToString();
+                //                linha["Rotas"] = Tabela.Columns.Add($"Ponto{(rt + 1)}: ", typeof(string));
+                //            }
+
+                //            for (int rt = 0; rt < ListaRotas[l].rotas.Count(); rt++)
+                //            {
+                //                //add line                           
+                //                linha[$"Ponto{(rt + 1)}"] = ListaRotas[l].rotas[rt].ToString();
+                //            }
+
+                //        }
+                //        if (c == 2)
+                //        {
+
+                //            //add carga and quatity
+                //            for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
+                //            {   //add colunms
+                //                tblRotas.Rows[c].Cells[cg].Text = ListaRotas[l].rotas[cg].ToString();
+                //                linha["Cargas"] = Tabela.Columns.Add($"Carga{(cg + 1)}: ", typeof(string));
+                //                linha["Cargas"] = Tabela.Columns.Add($"Quantidade{(cg + 1)}: ", typeof(string));
+                //            }
+
+                //            for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
+                //            {   //add line
+                //                linha["Cargas"] += " Tipo de Carga:  " + ListaRotas[l].cargas[cg].Carga.ToString();
+                //                linha["Cargas"] += " Quantidade: " + ListaRotas[l].cargas[cg].qty.ToString();
+                //            }
+                //        }
+
+                //    }
+
+                //    Tabela.Rows.Add(linha);
+                //}
+                //grdRotas.DataSource = Tabela;
+                //grdRotas.DataBind();
+
+
             }
             catch
             {
                 Response.Redirect("principal_user.aspx");
             }
 
+            try
+            {
 
-           
+                string xpto = tb_resp.Value;
+
+
+                string str = xpto;
+                xpto.TrimStart(new char[] { '[' }).TrimEnd(new char[] { ']' });
+
+                JavaScriptSerializer j = new JavaScriptSerializer();
+
+                List<Root> ListaRotas = j.Deserialize<List<Root>>(xpto);
+
+
+                string veiculo = "";
+                string origem = "", recolha = "", entrega = "";
+                double quantidade = 0;
+                string carga = "";
+
+                for (int c = 0; c < ListaRotas.Count; c++)
+                {
+
+                    veiculo = ListaRotas[c].veiculo.ToString();
+
+                    origem = ListaRotas[c].rotas[0].ToString();
+                    recolha = ListaRotas[c].rotas[1].ToString();
+                    entrega = ListaRotas[c].rotas[2].ToString();
+
+                   
+                        
+                        quantidade = Convert.ToDouble(ListaRotas[c].cargas[0].qty.ToString());
+                    
+            
+                    carga = ListaRotas[c].cargas[0].Carga.ToString();
+
+
+                }
+
+
+
+
+
+
+
+
+                //   INSERT INTO historico_viagem (data_viagem, camiaoid,rotaid,utilizadorid) VALUES ((SELECT CAST(GETDATE() AS Date )),@camiaoid,@rotaValor,@utilizadorid)
+
+                //INSERT INTO coleta (localColeta, rotaid) VALUES (@localColeta,@rotaValor)
+
+                //INSERT INTO entrega(localEntrega, rotaid) VALUES (@localEntrega,@rotaValor)
+
+                //INSERT INTO produto(descricao, peso_total) VALUES (@descricao,@peso_total);
+
+                //INSERT INTO carregar(produtoid, camiaoid,peso_carga,rotaid)	VALUES (@prodVal,@camiaoid,@peso_carga,@rotaValor);
+
+                //INSERT INTO entrega_coleta(coletaid, entregaid)	VALUES (@coletaVal,@entregaVal,@carregarVal);
+
+            }
+            catch
+            {
+
+            }
 
 
         }
@@ -214,7 +313,7 @@ namespace Roteirizacao
             Root rota = new Root();
             SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
             SqlCommand myCommand = new SqlCommand();
-          
+
 
             myCommand.Parameters.AddWithValue("@carga", rota.cargas[0].ToString());
             myCommand.Parameters.AddWithValue("@quantidade", rota.cargas[1].ToString());
@@ -265,8 +364,8 @@ namespace Roteirizacao
 
             }
             else if (repostaSP == 3)
-           {
-            //    lbl_mensagem.Text = "Email já existe.";
+            {
+                //    lbl_mensagem.Text = "Email já existe.";
             }
         }
 
