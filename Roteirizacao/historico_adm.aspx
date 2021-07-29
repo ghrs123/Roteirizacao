@@ -202,6 +202,7 @@
                                                         </table>
                                                     </asp:Panel>
                                                     <div class="btn_salvar col-md-3">
+                                                        <asp:Button ID="btnPdf" runat="server" class="btn btn-primary" Text="Salvar em PDF" OnClick="btnPdf_Click" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -290,7 +291,7 @@
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="camiao">
                                             <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
-                                                SelectCommand=" SELECT camiaoid,descricao, matricula,quilometragem,capacidade,custoKm,nome, apelido   
+                                                SelectCommand=" SELECT camiaoid,descricao, matricula,quilometragem,capacidade,Cast(CONVERT(DECIMAL(10,2),custoKm) as nvarchar) AS 'custoKm',nome, apelido   
 	                                                   FROM camiao 
 	                                                   INNER JOIN tipo_camiao ON tipo_camiao.tipo_camiaoid = camiao.tipocamiaoid
 	                                                   INNER JOIN utilizador ON utilizador.utilizadorid = camiao.utilizadorid
@@ -301,7 +302,7 @@
                                                     <h7 class="card-subtitle text-muted">Gestao de Camiões</h7>
                                                 </div>
                                                 <div class="card-body">
-                                                    <divc class="container">
+                                                    <div class="container">
                                                         <div class="row">
                                                             <div class="col-4 d-flex mr-3">
                                                                 <table class="ml-2">
@@ -349,21 +350,20 @@
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                <tr>                                                                                    
-                                                                                            <td align="center">
-                                                                                                <asp:TextBox runat="server" ID="tbMatricula" Width="80%"></asp:TextBox>
-                                                                                            </td>
-                                                                                            <td align="center">
-                                                                                                <asp:TextBox runat="server" ID="tbKm" type="number" min="0" Width="80%"></asp:TextBox>
-                                                                                            </td>
-                                                                                            <td align="center">
-                                                                                                <asp:TextBox runat="server" ID="tbCusto" type="number" min="0" Width="80%"></asp:TextBox>
-                                                                                            </td>
-                                                                                            <td align="center">
-                                                                                                <asp:TextBox runat="server" ID="tbCap" type="number" min="0" Width="80%"></asp:TextBox>
-                                                                                            </td>                                                                                     
+                                                                                <tr>
                                                                                     <td align="center">
-
+                                                                                        <asp:TextBox runat="server" ID="tbMatricula" Width="80%"></asp:TextBox>
+                                                                                    </td>
+                                                                                    <td align="center">
+                                                                                        <asp:TextBox runat="server" ID="tbKm" type="number" min="0" Width="80%"></asp:TextBox>
+                                                                                    </td>
+                                                                                    <td align="center">
+                                                                                        <asp:TextBox runat="server" ID="tbCusto" type="number" min="0" Width="80%"></asp:TextBox>
+                                                                                    </td>
+                                                                                    <td align="center">
+                                                                                        <asp:TextBox runat="server" ID="tbCap" type="number" min="0" Width="80%"></asp:TextBox>
+                                                                                    </td>
+                                                                                    <td align="center">
                                                                                         <asp:DropDownList ID="ddlTipocC" runat="server" DataSourceID="SqlDataSource9" DataTextField="descricao" DataValueField="tipo_camiaoid" Width="80%"></asp:DropDownList>
                                                                                         <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
                                                                                             SelectCommand="SELECT * FROM [tipo_camiao]"></asp:SqlDataSource>
@@ -383,6 +383,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
                                                 </div>
                                                 <table class="table">
                                                     <thead>
@@ -400,8 +401,6 @@
                                                     <tbody>
                                                         <asp:Repeater ID="RptCamiao" runat="server" OnItemCommand="RptCamiao_ItemCommand" OnItemDataBound="RptCamiao_ItemDataBound" DataSourceID="SqlDataSource5">
                                                             <ItemTemplate>
-
-
                                                                 <tr>
                                                                     <td>
                                                                         <asp:Label ID="lblIdCamiao" runat="server" Text=''></asp:Label>
@@ -410,7 +409,6 @@
                                                                         <asp:DropDownList ID="ddlTipoCamiao" runat="server" DataSourceID="SqlDataSource6" DataTextField="descricao" DataValueField="tipo_camiaoid" AutoPostBack="False" Width="85%"></asp:DropDownList>
                                                                         <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
                                                                             SelectCommand="SELECT * FROM [tipo_camiao]"></asp:SqlDataSource>
-
                                                                     </td>
                                                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                                         <ContentTemplate>
@@ -429,21 +427,15 @@
                                                                         </ContentTemplate>
                                                                     </asp:UpdatePanel>
                                                                     <td align="center">
-
                                                                         <asp:DropDownList ID="ddlMotorista" runat="server" DataSourceID="SqlDataSource7" DataTextField="nome" DataValueField="utilizadorid" AutoPostBack="False" Width="100%"></asp:DropDownList>
-
                                                                         <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:roteirizaçãoConnectionString %>"
                                                                             SelectCommand="SELECT utilizadorid, CONCAT('Id:',CONCAT(utilizadorid +' ',' '+CONCAT( nome+' ',apelido))) as 'nome' FROM [utilizador]"></asp:SqlDataSource>
                                                                     </td>
                                                                     <td class="table-action" style="float: left; display: inline;">
-
                                                                         <asp:Button ID="btnEditC" runat="server" class="align-middle btn btn-warning mb-2" Text="Editar" CommandName="btnEditC" Width="100%" />
                                                                         <asp:Button ID="btnDeleteC" runat="server" class="align-middle btn btn-danger " Text="Excluir" CommandName="btnDeleteC" Width="100%" />
                                                                     </td>
-
                                                                 </tr>
-
-
                                                             </ItemTemplate>
                                                         </asp:Repeater>
                                                     </tbody>

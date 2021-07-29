@@ -136,75 +136,76 @@ namespace Roteirizacao
 
             List<Root> ListaRotas = j.Deserialize<List<Root>>(xpto);
 
-            //GridView 
-            //DataTable dataTable = new DataTable();
-            //DataRow dataRow = null;
-            //dataTable.Columns.Add("Veiculo");
-            //dataTable.Columns.Add("Rotas");
-            //dataTable.Columns.Add("Cargas");
+           
+              //GridView 
+              //DataTable dataTable = new DataTable();
+              //DataRow dataRow = null;
+              //dataTable.Columns.Add("Veiculo");
+              //dataTable.Columns.Add("Rotas");
+              //dataTable.Columns.Add("Cargas");
 
 
-            //    //quantity of items in the first line veiculo,carga and rota(s)
-            //    for (int l = 0; l < ListaRotas.Count(); l++)
-            //    {
+              //    //quantity of items in the first line veiculo,carga and rota(s)
+              //    for (int l = 0; l < ListaRotas.Count(); l++)
+              //    {
 
-            //        //inserir uma linha para cada objeto
-            //        tblRotas.Rows.Add(new TableRow());
-            //        dataRow = dataTable.NewRow();
+              //        //inserir uma linha para cada objeto
+              //        tblRotas.Rows.Add(new TableRow());
+              //        dataRow = dataTable.NewRow();
 
-            //        for (int c = 0; c < 3; c++)
-            //        {
-            //            tblRotas.Rows[l].Cells.Add(new TableCell());
+              //        for (int c = 0; c < 3; c++)
+              //        {
+              //            tblRotas.Rows[l].Cells.Add(new TableCell());
 
-            //            if (c == 0)
-            //            {
+              //            if (c == 0)
+              //            {
 
-            //                // tblRotas.Rows[l].Cells[c].Text = rota.veiculo.ToString();
-            //                //add ol veiculo
-            //                tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].veiculo.ToString();
-            //                dataRow["Veiculo"] += ListaRotas[l].veiculo.ToString();
+              //                // tblRotas.Rows[l].Cells[c].Text = rota.veiculo.ToString();
+              //                //add ol veiculo
+              //                tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].veiculo.ToString();
+              //                dataRow["Veiculo"] += ListaRotas[l].veiculo.ToString();
 
-            //            }
+              //            }
 
-            //            //for colun rotas
-            //            if (c == 1)
-            //            {
+              //            //for colun rotas
+              //            if (c == 1)
+              //            {
 
-            //                for (int rt = 0; rt < ListaRotas[0].rotas.Count(); rt++ )
-            //                {
-            //                    tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[rt].ToString();
-            //                    dataRow["Rotas"] += $" Rota{(rt + 1)}: " + ListaRotas[l].rotas[rt].ToString()+ " ";
+              //                for (int rt = 0; rt < ListaRotas[0].rotas.Count(); rt++ )
+              //                {
+              //                    tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].rotas[rt].ToString();
+              //                    dataRow["Rotas"] += $" Rota{(rt + 1)}: " + ListaRotas[l].rotas[rt].ToString()+ " ";
 
-            //                }
+              //                }
 
-            //                    //MessageBox.Show($"Rota{(r + 1)}:" + ListaRotas[0].rotas[r].ToString());
+              //                    //MessageBox.Show($"Rota{(r + 1)}:" + ListaRotas[0].rotas[r].ToString());
 
-            //            }
-            //            //for colun of cargas
+              //            }
+              //            //for colun of cargas
 
-            //            if (c == 2)
-            //            {
+              //            if (c == 2)
+              //            {
 
-            //                for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
-            //                {
-            //                    tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas.ToString();
-            //                    dataRow["Cargas"] += " Tipo de Carga:  " + ListaRotas[l].cargas[cg].Carga.ToString() + " Quantidade: " + ListaRotas[l].cargas[cg].qty.ToString();
-            //                }
-            //            }
+              //                for (int cg = 0; cg < ListaRotas[l].cargas.Count; cg++)
+              //                {
+              //                    tblRotas.Rows[l].Cells[c].Text = ListaRotas[l].cargas.ToString();
+              //                    dataRow["Cargas"] += " Tipo de Carga:  " + ListaRotas[l].cargas[cg].Carga.ToString() + " Quantidade: " + ListaRotas[l].cargas[cg].qty.ToString();
+              //                }
+              //            }
 
-            //        }
+              //        }
 
-            //        dataTable.Rows.Add(dataRow);
-            //    }
-            //    grdRotas.DataSource = dataTable;
-            //    grdRotas.DataBind();
-
-
+              //        dataTable.Rows.Add(dataRow);
+              //    }
+              //    grdRotas.DataSource = dataTable;
+              //    grdRotas.DataBind();
 
 
-            //try
-            //{
-            DataTable Tabela = new DataTable();
+
+
+              //try
+              //{
+              DataTable Tabela = new DataTable();
 
 
             DataRow linha = Tabela.NewRow();
@@ -281,6 +282,9 @@ namespace Roteirizacao
                             Tabela.Columns.Add($"Carga{(countc1 + 1)}", typeof(string));
                             Tabela.Columns.Add($"Quantidade{(countc1 + 1)}", typeof(string));
                             countc1++;
+                            //Tabela.Columns.Add($"Carga{(countc1 + 1)}", typeof(string));
+                            //Tabela.Columns.Add($"Quantidade{(countc1 + 1)}", typeof(string));
+                            //countc1++;
                         }
                         
                         for (int cg = 0; cg < ListaRotas[l].cargas.Count(); cg++)

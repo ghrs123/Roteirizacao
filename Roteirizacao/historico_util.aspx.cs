@@ -122,33 +122,33 @@ namespace Roteirizacao
 
                         rptViagem.Items[i].RenderControl(hw);
 
-                   repeaterTable = "<table>" +
-                                        "<thead>" +
-                                            "<tr>" +
-                                                "<th> Id </th >" +
-                                                "<th> Produto </th>" +
-                                                "<th> Peso Kg </th > " +
-                                                "<th> Origem </th > " +
-                                                "<th> Local Coleta</th >" +
-                                                "<th> Local de entrega</th >" +
-                                                "<th> Data</th >" +
-                                                "<th> Custo por Km</th >" +
-                                                "<th> Matrícula do Veículo</th >." +
-                                             "</tr> " +
-                                         "</thead >" +
-                                         "<tbody>";
-                                             for (int j = 0; j < rptViagem.Items.Count; j++)
-                                            {
-                                                 repeaterTable += sw.ToString();
-                                             }
-                          repeaterTable += "</ tbody >" +
-                                        "</ table >";
+                        repeaterTable = "<table>" +
+                                             "<thead>" +
+                                                 "<tr>" +
+                                                     "<th> Id </th >" +
+                                                     "<th> Produto </th>" +
+                                                     "<th> Peso Kg </th > " +
+                                                     "<th> Origem </th > " +
+                                                     "<th> Local Coleta</th >" +
+                                                     "<th> Local de entrega</th >" +
+                                                     "<th> Data</th >" +
+                                                     "<th> Custo por Km</th >" +
+                                                     "<th> Matrícula do Veículo</th >." +
+                                                  "</tr> " +
+                                              "</thead >" +
+                                              "<tbody>";
+                        for (int j = 0; j < rptViagem.Items.Count; j++)
+                        {
+                            repeaterTable += sw.ToString();
+                        }
+                        repeaterTable += "</ tbody >" +
+                                      "</ table >";
 
                     }
-            }
+                }
 
 
-           
+
             }
 
 
@@ -165,6 +165,158 @@ namespace Roteirizacao
             Response.End();
         }
 
+
+        protected void dtlCamiao_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DataRowView dr = (DataRowView)e.Item.DataItem;
+                ((Label)e.Item.FindControl("lblIdCamiao")).Text = dr["camiaoid"].ToString();
+                ((TextBox)e.Item.FindControl("tb_matric")).Text = dr["matricula"].ToString();
+                ((TextBox)e.Item.FindControl("tb_quilometro")).Text = dr["quilometragem"].ToString();
+                ((TextBox)e.Item.FindControl("tb_custKm")).Text = dr["custoKm"].ToString();
+                ((TextBox)e.Item.FindControl("tb_capacidade")).Text = dr["capacidade"].ToString();
+                ((Button)e.Item.FindControl("btnEditC")).CommandArgument = dr["camiaoid"].ToString();
+                ((Button)e.Item.FindControl("btnDeleteC")).CommandArgument = dr["camiaoid"].ToString();
+            }
+        }
+
+        protected void dtlCamiao_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("btnEditC"))
+            {
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+                myConn.Open();
+               
+                SqlCommand myCommand = new SqlCommand();
+                
+                myCommand.Parameters.AddWithValue("@matricula", ((TextBox)e.Item.FindControl("tb_matric")).Text);
+                myCommand.Parameters.AddWithValue("@quilometragem", ((TextBox)e.Item.FindControl("tb_quilometro")).Text);
+                myCommand.Parameters.AddWithValue("@custoKm", ((TextBox)e.Item.FindControl("tb_custKm")).Text);
+                myCommand.Parameters.AddWithValue("@capacidade", ((TextBox)e.Item.FindControl("tb_capacidade")).Text);
+                myCommand.Parameters.AddWithValue("@tipocamiaoid", ((DropDownList)e.Item.FindControl("ddlTipoCamiao")).SelectedValue);
+                myCommand.Parameters.AddWithValue("@username", Session["util"]);
+
+                SqlParameter valor = new SqlParameter();
+                valor.ParameterName = "@retorno";
+                valor.Direction = ParameterDirection.Output;
+                valor.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(valor);
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "atualizar_camiao";
+
+
+                myCommand.Connection = myConn;
+
+                myCommand.ExecuteNonQuery();
+                int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+
+                myConn.Close();
+
+                if (repostaSP == 1)
+                {
+                    lblMensagem.Text = "Esse Camião já está registado!";
+                }
+                else
+                {
+                    lblMensagem.Text = "Dados atualizados!";
+                    //Thread.Sleep(2000);
+                    Response.Redirect("historico_util.aspx");
+                }
+
+            }
+            if (e.CommandName.Equals("btnDeleteC"))
+            {
+
+                SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+
+                SqlCommand myCommand = new SqlCommand();
+                myConn.Open();
+
+                myCommand.Parameters.AddWithValue("@camiaoid", ((Label)e.Item.FindControl("lblIdCamiao")).Text);
+
+
+                SqlParameter valor = new SqlParameter();
+                valor.ParameterName = "@retorno";
+                valor.Direction = ParameterDirection.Output;
+                valor.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(valor);
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "delete_camiao";
+
+
+                myCommand.Connection = myConn;
+
+                myCommand.ExecuteNonQuery();
+                int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+
+                myConn.Close();
+
+                if (repostaSP == 1)
+                {
+
+                    lblMsg.Text = "Camião excluido!";
+                    Response.Redirect("historico_util.aspx");
+
+                }
+                else
+                {
+                    lblMsg.Text = "Esse camião não está registado.";
+                    //Response.Redirect("historico_adm.aspx");
+                }
+
+                myConn.Close();
+            }
+        }
+
+        protected void btnAddC_Click(object sender, EventArgs e)
+        {
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+            myConn.Open();
+
+            //string query = " INSERT INTO camiao(matricula,quilometragem,custoKm,capacidade,tipocamiaoid,utilizadorid)" +
+            //    " VALUES ('" + tbMatricula.Text + "','" + tbKm.Text + "'," + tbCusto.Text + "," + tbCap.Text + "," + ddlTipocC.SelectedValue + "," + ddlMoto.SelectedValue + ");";
+
+            SqlCommand myCommand = new SqlCommand();
+
+            myCommand.Parameters.AddWithValue("@matricula", tbMatricula.Text);
+            myCommand.Parameters.AddWithValue("@quilometragem", tbKm.Text);
+            myCommand.Parameters.AddWithValue("@custoKm", tbCusto.Text);
+            myCommand.Parameters.AddWithValue("@capacidade", tbCap.Text);
+            myCommand.Parameters.AddWithValue("@tipocamiaoid", ddlTipocC.SelectedValue);
+            myCommand.Parameters.AddWithValue("@username", Session["util"]);
+
+            SqlParameter valor = new SqlParameter();
+            valor.ParameterName = "@retorno";
+            valor.Direction = ParameterDirection.Output;
+            valor.SqlDbType = SqlDbType.Int;
+            myCommand.Parameters.Add(valor);
+
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "inserir_camiao_utilizador";
+
+
+            myCommand.Connection = myConn;
+
+            myCommand.ExecuteNonQuery();
+            int repostaSP = Convert.ToInt32(myCommand.Parameters["@retorno"].Value);
+
+            myConn.Close();
+
+            if (repostaSP == 1)
+            {
+                lblMensagem.Text = "Camião já está registado!";
+            }
+            else
+            {
+                lblMensagem.Text = "Camião registado!";
+                //Thread.Sleep(2000);
+                Response.Redirect("historico_util.aspx");
+            }
+
+        }
     }
 
 }

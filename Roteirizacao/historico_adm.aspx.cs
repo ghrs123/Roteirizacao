@@ -13,11 +13,8 @@ using System.IO;
 using System.Web.UI.DataVisualization.Charting;
 using iTextSharp.text.pdf;
 using System.Threading;
-//using System.Web;
-//using System.Web.Services;
-//using System.Web.UI;
-//using System.Web.UI.WebControls;
-
+using System.Net;
+using System.Text;
 
 
 namespace Roteirizacao
@@ -47,9 +44,9 @@ namespace Roteirizacao
                 Response.Redirect("principal.aspx");
 
             }
-            
 
-           
+
+
 
 
         }
@@ -82,6 +79,7 @@ namespace Roteirizacao
             HTMLWorker htmlparser = new HTMLWorker(Doc);
             PdfWriter.GetInstance(Doc, Response.OutputStream);
             Doc.Open();
+
             for (int i = 0; i < rptViagem.Items.Count; i++)
             {
                 using (StringWriter sw = new StringWriter())
@@ -91,105 +89,117 @@ namespace Roteirizacao
                     {
                         Doc.SetPageSize(new Rectangle(600, 300));
                         Doc.NewPage();
+
                         rptViagem.Items[i].RenderControl(hw);
 
                         repeaterTable = "<table>" +
-                                            "<thead>" +
-                                                "<tr>" +
-                                                    "<th> Id </th >" +
-                                                    "<th> Produto </th>" +
-                                                    "<th> Peso Kg </th > " +
-                                                    "<th> Origem </th > " +
-                                                    "<th> Local Coleta</th >" +
-                                                    "<th> Local de entrega</th >" +
-                                                    "<th> Data</th >" +
-                                                    "<th> Custo por Km</th >" +
-                                                    "<th> Matrícula do Veículo</th >." +
-                                                 "</tr> " +
-                                             "</thead >" +
-                                             "<tbody>" +
-                                             sw.ToString() +
-                                             "</ tbody >" +
-                                          "</ table >";
+                                             "<thead>" +
+                                                 "<tr>" +
+                                                     "<th> Id </th >" +
+                                                     "<th> Produto </th>" +
+                                                     "<th> Peso Kg </th > " +
+                                                     "<th> Origem </th > " +
+                                                     "<th> Local Coleta</th >" +
+                                                     "<th> Local de entrega</th >" +
+                                                     "<th> Data</th >" +
+                                                     "<th> Custo por Km</th >" +
+                                                     "<th> Matrícula do Veículo</th >." +
+                                                  "</tr> " +
+                                              "</thead >" +
+                                              "<tbody>";
+                        for (int j = 0; j < rptViagem.Items.Count; j++)
+                        {
+                            repeaterTable += sw.ToString();
+                        }
+                        repeaterTable += "</ tbody >" +
+                                      "</ table >";
 
                     }
                 }
 
 
-                StringWriter stringWriter = new StringWriter();
-                HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
 
-                Panel1.RenderControl(htmlTextWriter);
-
-                StringReader stringReader = new StringReader(repeaterTable.ToString());
-
-                htmlparser.Parse(stringReader);
-                Doc.Close();
-                Response.Write(Doc);
-                Response.End();
             }
+
+
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
+
+            Panel1.RenderControl(htmlTextWriter);
+
+            StringReader stringReader = new StringReader(repeaterTable.ToString());
+
+            htmlparser.Parse(stringReader);
+            Doc.Close();
+            Response.Write(Doc);
+            Response.End();
         }
 
-        //protected void btnEdit_Click(object sender, EventArgs e)
-        //{
-        //    //string query1 = "", query2 = "", query3 = "", query4 = "", query5 = "", query6 = "", query7 = "";
 
 
-        //    //SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
-        //    //myConn.Open();
 
-        //    //foreach (RepeaterItem item in rptViagem.Items)
-        //    //{
-        //    //    if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
-        //    //    {
-        //    //        query1 = " UPDATE historico_viagem" +
-        //    //   " SET data_viagem ='" + ((TextBox)item.FindControl("tb_data")).Text + "'" +
-        //    //   " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //    //        query2 = " UPDATE camiao" +
-        //    //           " SET custoKm ='" + ((TextBox)item.FindControl("tb_custokm")).Text + ", matricula ='" + ((TextBox)item.FindControl("tb_data")).Text +
-        //    //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //    //        query3 = " UPDATE carregar" +
-        //    //             " SET peso_carga =" + ((TextBox)item.FindControl("tb_peso_carga")).Text +
-        //    //             " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            //string query1 = "", query2 = "", query3 = "", query4 = "", query5 = "", query6 = "", query7 = "";
 
-        //    //        query4 = " UPDATE produto" +
-        //    //           " SET descricao =" + ((TextBox)item.FindControl("tb_descicao")).Text +
-        //    //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //    //        query5 = " UPDATE rota" +
-        //    //            " SET origem =" + ((TextBox)item.FindControl("tb_origem")).Text +
-        //    //            " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+            //SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
+            //myConn.Open();
 
-        //    //        query6 = " UPDATE entrega" +
-        //    //           " SET localEntrega =" + ((TextBox)item.FindControl("tb_localEntrega")).Text +
-        //    //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+            //foreach (RepeaterItem item in rptViagem.Items)
+            //{
+            //    if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+            //    {
+            //        query1 = " UPDATE historico_viagem" +
+            //   " SET data_viagem ='" + ((TextBox)item.FindControl("tb_data")).Text + "'" +
+            //   " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //    //        query7 = " UPDATE coleta" +
-        //    //           " SET localColeta =" + ((TextBox)item.FindControl("tb_localColeta")).Text +
-        //    //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+            //        query2 = " UPDATE camiao" +
+            //           " SET custoKm ='" + ((TextBox)item.FindControl("tb_custokm")).Text + ", matricula ='" + ((TextBox)item.FindControl("tb_data")).Text +
+            //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //    //    }
-        //    //}
-        //    //SqlCommand myCommand1 = new SqlCommand(query1, myConn);
-        //    //SqlCommand myCommand2 = new SqlCommand(query2, myConn);
-        //    //SqlCommand myCommand3 = new SqlCommand(query3, myConn);
-        //    //SqlCommand myCommand4 = new SqlCommand(query4, myConn);
-        //    //SqlCommand myCommand5 = new SqlCommand(query5, myConn);
-        //    //SqlCommand myCommand6 = new SqlCommand(query6, myConn);
-        //    //SqlCommand myCommand7 = new SqlCommand(query7, myConn);
+            //        query3 = " UPDATE carregar" +
+            //             " SET peso_carga =" + ((TextBox)item.FindControl("tb_peso_carga")).Text +
+            //             " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //    //myCommand1.ExecuteNonQuery();
-        //    //myCommand2.ExecuteNonQuery();
-        //    //myCommand3.ExecuteNonQuery();
-        //    //myCommand4.ExecuteNonQuery();
-        //    //myCommand5.ExecuteNonQuery();
-        //    //myCommand6.ExecuteNonQuery();
-        //    //myCommand7.ExecuteNonQuery();
-        //    //myConn.Close();
+            //        query4 = " UPDATE produto" +
+            //           " SET descricao =" + ((TextBox)item.FindControl("tb_descicao")).Text +
+            //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
 
-        //}
+            //        query5 = " UPDATE rota" +
+            //            " SET origem =" + ((TextBox)item.FindControl("tb_origem")).Text +
+            //            " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+
+            //        query6 = " UPDATE entrega" +
+            //           " SET localEntrega =" + ((TextBox)item.FindControl("tb_localEntrega")).Text +
+            //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+
+            //        query7 = " UPDATE coleta" +
+            //           " SET localColeta =" + ((TextBox)item.FindControl("tb_localColeta")).Text +
+            //           " WHERE historico_viagem.historicoid ='" + ((Label)item.FindControl("Label1")).Text + "';";
+
+            //    }
+            //}
+            //SqlCommand myCommand1 = new SqlCommand(query1, myConn);
+            //SqlCommand myCommand2 = new SqlCommand(query2, myConn);
+            //SqlCommand myCommand3 = new SqlCommand(query3, myConn);
+            //SqlCommand myCommand4 = new SqlCommand(query4, myConn);
+            //SqlCommand myCommand5 = new SqlCommand(query5, myConn);
+            //SqlCommand myCommand6 = new SqlCommand(query6, myConn);
+            //SqlCommand myCommand7 = new SqlCommand(query7, myConn);
+
+            //myCommand1.ExecuteNonQuery();
+            //myCommand2.ExecuteNonQuery();
+            //myCommand3.ExecuteNonQuery();
+            //myCommand4.ExecuteNonQuery();
+            //myCommand5.ExecuteNonQuery();
+            //myCommand6.ExecuteNonQuery();
+            //myCommand7.ExecuteNonQuery();
+            //myConn.Close();
+
+        }
 
         /**************** VIAGEM *****************/
         protected void rptViagem_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -278,26 +288,26 @@ namespace Roteirizacao
 
             }
         }
-       
+
         /********** Utilizador *****************/
         protected void rptUtilizador_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-                {
-                    DataRowView dr = (DataRowView)e.Item.DataItem;
-                    ((Label)e.Item.FindControl("lbl_id")).Text = dr["utilizadorid"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_nome")).Text = dr["nome"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_apelido")).Text = dr["apelido"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_username")).Text = dr["username"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_email")).Text = dr["email"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_pais")).Text = dr["pais"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_cidade")).Text = dr["cidade"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_cod_postal")).Text = dr["cod_postal"].ToString();
-                    ((TextBox)e.Item.FindControl("tb_morada")).Text = dr["morada"].ToString();
-                    ((Button)e.Item.FindControl("btnEdit")).CommandArgument = dr["utilizadorid"].ToString();
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DataRowView dr = (DataRowView)e.Item.DataItem;
+                ((Label)e.Item.FindControl("lbl_id")).Text = dr["utilizadorid"].ToString();
+                ((TextBox)e.Item.FindControl("tb_nome")).Text = dr["nome"].ToString();
+                ((TextBox)e.Item.FindControl("tb_apelido")).Text = dr["apelido"].ToString();
+                ((TextBox)e.Item.FindControl("tb_username")).Text = dr["username"].ToString();
+                ((TextBox)e.Item.FindControl("tb_email")).Text = dr["email"].ToString();
+                ((TextBox)e.Item.FindControl("tb_pais")).Text = dr["pais"].ToString();
+                ((TextBox)e.Item.FindControl("tb_cidade")).Text = dr["cidade"].ToString();
+                ((TextBox)e.Item.FindControl("tb_cod_postal")).Text = dr["cod_postal"].ToString();
+                ((TextBox)e.Item.FindControl("tb_morada")).Text = dr["morada"].ToString();
+                ((Button)e.Item.FindControl("btnEdit")).CommandArgument = dr["utilizadorid"].ToString();
 
-                }
-            
+            }
+
 
         }
 
@@ -305,7 +315,7 @@ namespace Roteirizacao
         {
             if (e.CommandName.Equals("btnEdit"))
             {
-            
+
                 SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
 
                 SqlCommand myCommand = new SqlCommand();
@@ -329,7 +339,7 @@ namespace Roteirizacao
                 myCommand.CommandType = CommandType.StoredProcedure;
                 myCommand.CommandText = "atualizar_dados";
 
-                
+
                 myCommand.Connection = myConn;
 
                 myCommand.ExecuteNonQuery();
@@ -340,8 +350,8 @@ namespace Roteirizacao
                 if (repostaSP == 1)
                 {
 
-                    lblMsg.Text  = "Dados Atualizados!";
-                    
+                    lblMsg.Text = "Dados Atualizados!";
+
                 }
                 else
                 {
@@ -351,13 +361,13 @@ namespace Roteirizacao
 
                 myConn.Close();
 
-               
+
             }
 
 
             if (e.CommandName.Equals("btnDelete"))
             {
-               
+
 
                 //SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
 
@@ -395,7 +405,7 @@ namespace Roteirizacao
                 //{
                 //    lblMsg.Text = "Essa utilizador não existe!";
                 //   Response.Redirect("historico_adm.aspx");
-                    
+
                 //}
 
 
@@ -425,7 +435,7 @@ namespace Roteirizacao
                 SqlCommand myCommand6 = new SqlCommand(query6, myConn);
                 myCommand6.ExecuteNonQuery();
                 myConn.Close();
-                
+
             }
         }
 
@@ -472,7 +482,7 @@ namespace Roteirizacao
                 myConn.Open();
 
                 myCommand.Parameters.AddWithValue("@camiaoid", ((Label)e.Item.FindControl("lblIdCamiao")).Text);
- 
+
 
                 SqlParameter valor = new SqlParameter();
                 valor.ParameterName = "@retorno";
@@ -549,13 +559,12 @@ namespace Roteirizacao
                 {
 
                     lblMensagem.Text = "Esse tipo de camião já existe!";
-                   
+
                 }
                 else
                 {
                     lblMensagem.Text = "Tipo de camião inserido!";
                     Response.Redirect("historico_adm.aspx");
-
 
                 }
 
@@ -566,9 +575,6 @@ namespace Roteirizacao
         {
             SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["roteirizaçãoConnectionString"].ConnectionString);
             myConn.Open();
-
-            //string query = " INSERT INTO camiao(matricula,quilometragem,custoKm,capacidade,tipocamiaoid,utilizadorid)" +
-            //    " VALUES ('" + tbMatricula.Text + "','" + tbKm.Text + "'," + tbCusto.Text + "," + tbCap.Text + "," + ddlTipocC.SelectedValue + "," + ddlMoto.SelectedValue + ");";
 
             SqlCommand myCommand = new SqlCommand();
 
@@ -611,6 +617,7 @@ namespace Roteirizacao
         }
 
 
-       
+
+
     }
 }
