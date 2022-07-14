@@ -14,9 +14,6 @@
 
         }
 
-        //  $(document).ready(
-        //     function() {
-
         function removeChar(id) {
 
 
@@ -28,8 +25,6 @@
             document.getElementById("qty1").innerHTML = a;
 
         }
-
-
 
         function addressLookup() {
 
