@@ -27,8 +27,6 @@
             //console.log(a);
             document.getElementById("qty1").innerHTML = a;
 
-
-
         }
 
 
@@ -55,10 +53,10 @@
                 function () {
 
 
-        // fillInAddress();
+       
 
     });
-            // });
+           
 
 
             var address = document.getElementsByClassName('dest');
@@ -193,7 +191,7 @@
                 if (typeof checkType != "undefined") {
 
 
-        getPickupPlace = slugify($('#pickupplace' + (i)).val());
+                    getPickupPlace = slugify($('#pickupplace' + (i)).val());
 
                     getDestinationPlace = slugify($('#dest' + (i)).val());
 
@@ -211,7 +209,7 @@
 
                 if (typeof checkType != "undefined") {
 
-        product = $('#prod' + (i)).val();
+                    product = $('#prod' + (i)).val();
                     quantity = $('#qty' + (i)).val();
 
                     //console.log(product,quantity);
@@ -220,25 +218,14 @@
 
                 }
 
-
-
             }
-
-
-            //if (routes.length==0)
-            //routes.push(route);
-
-            //console.log(routes);
-
-
+ 
             if (trucks.length < numRowsTblTrucks - 2) {
 
 
                 for (var i = 1; i < numRowsTblTrucks - 2; i++) {
                     var ID = tbl_trucks.rows[i].id;
                     var cells = tbl_trucks.rows[i].getElementsByTagName('td');
-
-
 
                     id = $('#id' + (i - 1)).val();
                     capacidade = $('#cap' + (i - 1)).val();
@@ -270,16 +257,12 @@
 
         var colourArray = ['navy', 'green', 'fuchsia', 'red', 'white', 'lime', 'maroon', 'purple', 'aqua', 'black', 'grey', 'silver', 'olive', 'blue', 'yellow', 'teal'];
 
-
-
         $(document).ready(function () {
 
         addressLookup()  //bind googlemaps autocomplete to origin and destinations
 
 
             //bind googlemaps autocomplete to origin and destinations
-
-
 
             $("#add_pickup_destination").click(function () {
 
@@ -295,7 +278,6 @@
                     i++
 
 
-
                     $('<thead id="thead' + (i) + '"><tr style="background-color: blue"><th   class="text-center"></th><th  class="text-center"></th><th  class="text-center"></th></tr><tr><th   class="text-center" style="display:none;">#</th><th  class="text-center">Local de Coleta</th><th  class="text-center"> Local de Entrega</th></tr> </thead>').appendTo('#tab_logic');
 
                     var $add_pickup_destination = $('<tr id="pickup' + (i) + '"></tr>').appendTo('#tab_logic thead:last');
@@ -307,18 +289,12 @@
                     addressLookup() //bind googlemaps autocomplete to new destinations
 
 
-
                 }
-
-
-
 
 
 
             }
         });
-
-
 
 
 
@@ -330,14 +306,10 @@
             $("#delete_row").click(function () {
                 if (d > 1) {
 
-        /*if(){ //to do - dont delete row is there is no destination
-          $("#addr"+(i-1)).
-        }*/
-
-        $("#addr" + (d)).html('');
-                    $("#addr" + (d)).remove();
-                    $("#thead" + (d)).html('');
-                    $("#thead" + (d)).remove();
+                    $("#addr" + (d)).html('');
+                                $("#addr" + (d)).remove();
+                                $("#thead" + (d)).html('');
+                                $("#thead" + (d)).remove();
 
 
                     d--;
@@ -348,23 +320,18 @@
             });
 
 
-
-
             ////product////////////////////
 
             //var i=1;
             $("#add_prod").click(function () {
 
-        getFormData(function (res) {
+            getFormData(function (res) {
             if (res) {
 
                 var routes = res.routes;
 
                 routes = routes[routes.length - 1];
 
-
-
-                //if (routes.products.length <=1){ //somente 2 produtos por Entrega
                 if (routes.products.length <= 10) { //somente 2 produtos por Entrega
 
                     i++;
@@ -376,89 +343,58 @@
                     $addproduct.click($('#addr' + (i)).html("<td class='text-center' style='display:none;'>" + i + "</td><td><input  id='prod" + i + "'  name='prod" + d + "' type='text'   placeholder='Produto'  class='form-control input-md'></td><td><input  id='qty" + i + "' name='qty" + d + "' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only'  placeholder='Demanda (kg)'  class='form-control input-md'></td>"));
 
 
-
-
-
                 }
 
             }
         });
 
 
-
-
-
-
             });
 
 
             $("#delete_prod").click(function () {
-                /*if(d>1){
-
-        $("#addr" + (d)).html('');
-                $( "#addr"+(d) ).remove();
-                $("#thead"+(d)).html('');
-                $( "#thead"+(d) ).remove();
-
-                d--;
-
-                }*/
-
+         
                 if (i > 1) {
 
-        $("#addr" + (i)).html('');
-                    $("#addr" + (i)).remove();
-                    $("#thead" + (i)).html('');
-                    $("#thead" + (i)).remove();
+                    $("#addr" + (i)).html('');
+                                $("#addr" + (i)).remove();
+                                $("#thead" + (i)).html('');
+                                $("#thead" + (i)).remove();
 
-                    i--;
+                                i--;
 
                 }
-
-
-
-
 
             });
 
             ////product////////////////////
 
-
-
             var t = 1;
-
-
 
             $("#add_truck").click(function () {
 
                 //if(t<=2){ //LIMITADO À TRES CAMINHÕES SOMENTE
                 if (t <= 100) { //LIMITADO À TRES CAMINHÕES SOMENTE
-        $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo R$/km'  class='form-control input-md'></td>");
+                $('#truck' + t).html("<td style='display:none;'>" + (t + 1) + "</td><td><input id='id" + t + "' name='id' type='text' placeholder='Referência do veículo' class='form-control input-md'  /> </td><td><input  id='cap" + t + "' name='cap' type='text' placeholder='Capacidade (kg)'  class='form-control input-md'></td><td><input  id='cost" + t + "' name='cost' type='number' step='1'  min='1' max='5' onkeypress='return event.charCode >= 48 && event.charCode <= 57'  title='Numbers only' placeholder='Custo R$/km'  class='form-control input-md'></td>");
 
-                    $('#tab_trucks').append('<tr id="truck' + (t + 1) + '"></tr>');
-                    t++;
+                            $('#tab_trucks').append('<tr id="truck' + (t + 1) + '"></tr>');
+                            t++;
 
-                }
+                        }
             });
-
-
 
 
             $("#delete_truck").click(function () {
                 if (t > 1) {
-        $("#truck" + (t - 1)).html('');
-                    t--;
-                }
-            });
-
-
-
+                    $("#truck" + (t - 1)).html('');
+                                t--;
+                            }
+                        });
 
             $("#send").click(function (e) {
 
 
         loadMap();
-
 
                 onclick = $('#cover-spin').show(0);
 
@@ -469,13 +405,9 @@
                     if (res) {
 
 
-                        //console.log("enviar", res);
-
                         var origin = res.$origin;
                         var routes = res.routes;
                         var trucks = res.trucks;
-
-
 
                         var data = {origin, routes, trucks};
 
@@ -494,7 +426,7 @@
                             if (result) {
 
 
-        console.log("Server responded with ", result);
+                               console.log("Server responded with ", result);
 
                                 //str = str.replace(/^"(.*)"$/, '$1');
 
@@ -519,23 +451,20 @@
 
                                     for (var loc in rotas) {
 
-        waypoints.push({ location: rotas[loc], stopover: true });
-
+                                        waypoints.push({ location: rotas[loc], stopover: true });
 
                                     }
 
 
 
                                     var request = {
-        origin: start,
+                                        origin: start,
                                         destination: end,
                                         waypoints: waypoints,
                                         travelMode: google.maps.TravelMode.DRIVING
                                     };
 
                                     // Pass the directions request to the directions service.
-
-
 
                                     directionsService
                                         .route(
@@ -545,25 +474,19 @@
                                                 status) {
                                                 if (status == google.maps.DirectionsStatus.OK) {
 
-        directionsDisplay = new google.maps.DirectionsRenderer;
+                                                    directionsDisplay = new google.maps.DirectionsRenderer;
 
                                                     directionsDisplay.setMap(map);
 
                                                     directionsDisplay.setOptions({
-        preserveViewport: true,
+                                                        preserveViewport: true,
                                                         suppressInfoWindows: false,
                                                         polylineOptions: {
-        strokeWeight: 4,
+                                                            strokeWeight: 4,
                                                             strokeOpacity: 0.8,
                                                             strokeColor: colourArray[c]
                                                         },
-                                                        /*markerOptions:{
-        icon:{
-        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                                                                scale: 3,
-                                                                strokeColor: colourArray[c]
-                                                            }
-                                                        }*/
+                                                       
                                                     });
 
                                                     // Display the route on the map.
@@ -574,33 +497,13 @@
                                                 }
                                             });
 
-
-
                                 }
-
-                                // $('#cover-spin').hide();
-
+                              
                             }
                             else
                                 console.log("no response");
 
                         });
-
-
-
-                        //$.getJSON('/calc',data,	function(result) {,
-                        //	if (result!="nok") {
-
-                        //		console.log("recebido");
-
-                        //}
-                        //else{
-
-                        //		console.log("recebido");
-                        //	}
-
-
-                        //})
 
 
 
