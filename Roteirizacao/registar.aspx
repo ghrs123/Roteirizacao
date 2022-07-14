@@ -98,34 +98,7 @@
                                 </div>
                                   <asp:Button class="btn btn-primary" ID="btn_registar" runat="server" Text="Registar" OnClick="btn_registar_Click" />
                             </div>
-                            <%-- <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Morada</label>
-                                                        <input id="tb_morada" runat="server" type="text" class="form-control" placeholder="" value=""/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Cidade</label>
-                                                        <input id="tb_cidade" runat="server" type="text" class="form-control" placeholder="" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 px-1">
-                                                    <div class="form-group">
-                                                        <label>País</label>
-                                                        <input id="tb_pais" runat="server" type="text" class="form-control" placeholder="" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Código Postal</label>
-                                                        <input  id="tb_codpostal" runat="server" type="number" class="form-control" placeholder=""/>
-                                                    </div>
-                                                </div>
-                            --%>
+                           
                         </div>
                     </div>
                 </main>
