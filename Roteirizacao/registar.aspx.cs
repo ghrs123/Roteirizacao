@@ -115,7 +115,7 @@ namespace Roteirizacao
                 string passEnc = EncryptString(tb_email.Value);
 
 
-                mail.From = new MailAddress("gusinho3@gmail.com");
+                mail.From = new MailAddress("teste2@gmail.com");
 
                 mail.To.Add(new MailAddress(tb_email.Value));
                 mail.Subject = "Ativação da Conta";
@@ -127,7 +127,7 @@ namespace Roteirizacao
                 sc.Host = "smtp.gmail.com";
                 sc.Port = 587;
                 sc.UseDefaultCredentials = true;
-                sc.Credentials = new NetworkCredential("gusinho3@gmail.com", "rrkubvswoakzrwcm");
+                sc.Credentials = new NetworkCredential("meuemail@gmail.com", "12345687");
                 sc.EnableSsl = true;
                 sc.Send(mail);
 
