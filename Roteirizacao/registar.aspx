@@ -58,14 +58,7 @@
                     <div class="content">
                         <div class="form">
                             <div class="registar row" style="width: 530px;">
-                                <!--
-                                                    <div class="col-md-5 pr-1">
-													 <div class="form-group">
-														<label>Companhia (disabled)</label>
-														<input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-													  </div>			  
-													</div>
-                                                    -->
+                           
                                 <div class="col-md-10 pl-1">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
